@@ -5,26 +5,30 @@
     ViewData["Title"] = "Home page";
 }
 
-<table class="table index-table">
-    <tr class="index-headers-text">
-        <td>Country</td>
-        <td>Customers</td>
-        <td>Accounts</td>
-        <td>Total Balance</td>
-        <td>View Country</td>
-    </tr>
-    @foreach (var country in Model.CustomersPerCountry)
-    {
-        <tr>
-            <td>@country.Key</td>
-            <td>@country.Value</td>
-            <td>@(Model.AccountsPerCountry.ContainsKey(country.Key) ? Model.AccountsPerCountry[country.Key] : 0)</td>
-            <td>@(Model.BalancePerCountry.ContainsKey(country.Key) ? Model.BalancePerCountry[country.Key] : 0)</td>
-            <td>
-                <a class="view-country" asp-page="/Country" asp-route-country="@country.Key">View</a>
-            </td>
+<table class="table index-table data-mdb-animation-init data-mdb-animation='slide-right'">
+    <thead>
+        <tr class="index-headers-text">
+            <th>Country</th>
+            <th>Customers</th>
+            <th>Accounts</th>
+            <th>Total Balance</th>
+            <th>View Country</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var country in Model.CustomersPerCountry)
+        {
+            <tr>
+                <td>@country.Key</td>
+                <td>@country.Value</td>
+                <td>@(Model.AccountsPerCountry.ContainsKey(country.Key) ? Model.AccountsPerCountry[country.Key] : 0)</td>
+                <td>@(Model.BalancePerCountry.ContainsKey(country.Key) ? Model.BalancePerCountry[country.Key] : 0)</td>
+                <td>
+                    <a class="view-country" asp-page="/Country" asp-route-country="@country.Key">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
 

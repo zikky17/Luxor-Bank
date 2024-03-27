@@ -35,7 +35,14 @@
                     <td>@transaction.Date.ToShortDateString()</td>
                     <td>@transaction.Operation</td>
                     <td>@transaction.Type</td>
-                    <td>@transaction.Amount</td>
+                    @if(transaction.Type == "Debit")
+                    {
+                        <td style="color: red">@transaction.Amount</td>
+                    }
+                    else
+                    {
+                        <td style="color: green">@transaction.Amount</td>
+                    }
                 </tr>
             }
         </table>
