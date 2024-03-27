@@ -6,8 +6,7 @@
 
 <h1 class="details">Customer Search</h1>
 <div class="flex-item-customer">
-    <div class="grid-item">
-        <h3>Search by Customer Number</h3>
+    <div class="grid-item col-md-4">
 
         <form method="get" class="customer-search-form" asp-page="/Customer" asp-route-customerId="@Model.CustomerId" onsubmit="return validateCustomerId()">
             <input type="text" id="customerId" name="customerId" class="form-control" placeholder="Enter a customer number" required><br />

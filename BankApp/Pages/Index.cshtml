@@ -4,18 +4,18 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
-<table class="table index-table data-mdb-animation-init data-mdb-animation='slide-right'">
-    <thead>
+<div class="margin-container">
+    <h1>Empowering</h1>
+    <br />
+    <h1 class="empovering">Your Financial Future</h1>
+    <table class="table index-table table-hover">
         <tr class="index-headers-text">
-            <th>Country</th>
-            <th>Customers</th>
-            <th>Accounts</th>
-            <th>Total Balance</th>
-            <th>View Country</th>
+            <td>Country</td>
+            <td>Customers</td>
+            <td>Accounts</td>
+            <td>Total Balance</td>
+            <td>View Country</td>
         </tr>
-    </thead>
-    <tbody>
         @foreach (var country in Model.CustomersPerCountry)
         {
             <tr>
@@ -28,7 +28,8 @@
                 </td>
             </tr>
         }
-    </tbody>
-</table>
+    </table>
+
+</div>
 
 

@@ -570,11 +570,6 @@ strong {
     gap: 20px;
 }
 
-.index-table {
-    margin-top: 110px !important;
-    color: #E07A5F;
-}
-
 .burger-item {
     margin-top: 10px;
 }
@@ -595,7 +590,7 @@ strong {
     margin-top: 120px;
 }
 
-.top-text, .list-group-item, .account-table {
+.top-text, .list-group-item, .account-table, .index-table {
     color: #E07A5F;
 }
 
@@ -654,8 +649,6 @@ strong {
     object-fit: cover;
 }
 
-
-
 .background-image {
     position: fixed;
     top: 0;
@@ -665,5 +658,20 @@ strong {
     background-image: url('/images/wp7445626.webp');
     background-size: cover;
     z-index: -1;
-    opacity: 0.2;
+    opacity: 0.1;
+}
+
+.margin-container {
+    margin-top: 120px !important;
+    color: #E07A5F;
+    text-align: center;
+}
+
+.index-table {
+    margin-top: 50px;
+}
+
+.empovering {
+    font-size: 56px;
+    --font-weight-normal;
 }
