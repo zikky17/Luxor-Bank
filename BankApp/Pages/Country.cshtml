@@ -1,0 +1,20 @@
+﻿@page
+@model BankApp.Pages.CountryModel
+@{
+}
+
+<div class="container-custom">
+    <h1 class="top-text">
+        Top 10 Customers in @Model.Country
+        <hr />
+    </h1>
+
+    <ol class="list-group-numbered">
+        @foreach (var customer in Model.TopTenCustomers)
+        {
+            <li class="list-group-item">@customer.Key - @customer.Value</li>
+        }
+    </ol>
+
+    <a class="return-button custom-btn custom-border-btn btn" asp-page="/Index">Return</a>
+</div>

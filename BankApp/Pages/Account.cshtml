@@ -1,0 +1,44 @@
+﻿@page
+@using BankApp.ViewModels
+@model AccountModel
+@{
+}
+
+@foreach (var acc in Model.Accounts)
+{
+    <div class="details">
+        <h1>Account @acc.AccountId</h1>
+
+        <dt class="col-sm-4">Balance:</dt>
+        <dd class="col-sm-8">@acc.Balance</dd>
+        <hr />
+
+        <div class="account-menu">
+            <dt class="col-sm-4">Transactions</dt>
+            <a class="custom-btn custom-border-btn btn account-button" asp-page="./DepositViewModel">Deposit</a>
+            <a class="custom-btn custom-border-btn btn account-button">Withdraw</a>
+            <a class="custom-btn custom-border-btn btn account-button">Transfer</a>
+        </div>
+        <table class="table account-table">
+            <tr class="index-headers-text">
+                <td>Date</td>
+                <td>Operation</td>
+                <td>Type</td>
+                <td>Amount</td>
+            </tr>
+
+            <hr />
+
+            @foreach (var transaction in acc.Transactions)
+            {
+                <tr>
+                    <td>@transaction.Date.ToShortDateString()</td>
+                    <td>@transaction.Operation</td>
+                    <td>@transaction.Type</td>
+                    <td>@transaction.Amount</td>
+                </tr>
+            }
+        </table>
+        <button id="load-more-btn" class="custom-btn custom-border-btn btn">Load More</button>
+    </div>
+}
