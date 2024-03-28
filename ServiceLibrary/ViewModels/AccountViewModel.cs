@@ -1,5 +1,4 @@
-﻿using BankApp.Data;
-using ServiceLibrary.Models;
+﻿using ServiceLibrary.Models;
 
 namespace BankApp.ViewModels
 {
