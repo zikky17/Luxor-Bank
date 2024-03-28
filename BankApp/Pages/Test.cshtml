@@ -1,0 +1,85 @@
+﻿@page
+@model BankApp.Pages.TestModel
+@{
+}
+
+<div class="margin-classs">
+    <th scope="col">
+        First Name
+        <a asp-page="/Test"
+           asp-route-sortColumn="FirstName"
+           asp-route-sortOrder="asc"
+           style="text-decoration:none">
+            <i class="fa-solid fa-angle-up"></i>
+
+        </a>
+        <a asp-page="/Test"
+           asp-route-sortColumn="FirstName"
+           asp-route-sortOrder="desc"
+           style="text-decoration:none">
+            <i class="fa-solid fa-angle-down"></i>
+        </a>
+    </th>
+
+    <th scope="col">
+        Last Name
+        <a asp-page="/Test"
+           asp-route-sortColumn="LastName"
+           asp-route-sortOrder="asc"
+           style="text-decoration:none">
+            <i class="fa-solid fa-angle-up"></i>
+
+        </a>
+        <a asp-page="/Test"
+           asp-route-sortColumn="LastName"
+           asp-route-sortOrder="desc"
+           style="text-decoration:none">
+            <i class="fa-solid fa-angle-down"></i>
+        </a>
+    </th>
+
+    <th scope="col">
+        Country
+        <a asp-page="/Test"
+           asp-route-sortColumn="Country"
+           asp-route-sortOrder="asc"
+           style="text-decoration:none">
+            <i class="fa-solid fa-angle-up"></i>
+
+        </a>
+        <a asp-page="/Test"
+           asp-route-sortColumn="Country"
+           asp-route-sortOrder="desc"
+           style="text-decoration:none">
+            <i class="fa-solid fa-angle-down"></i>
+        </a>
+    </th>
+
+    <h1>All Customers</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Supplier Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Country</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var supp in Model.Customers)
+            {
+                <tr>
+                    <td>@supp.CustomerId</td>
+                    <td>@supp.FirstName</td>
+                    <td>@supp.LastName</td>
+                    <td>@supp.Country</td>
+                    <td><a asp-page="/Supplier" asp-route-id="@supp.CustomerId" class="btn btn-primary">View</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

@@ -19,14 +19,12 @@ public class DataInitializer
         SeedUsers();
     }
 
-    // Här finns möjlighet att uppdatera dina användares loginuppgifter
     private void SeedUsers()
     {
         AddUserIfNotExists("richard.chalk@systementor.se", "Hejsan123#", new string[] { "Admin" });
         AddUserIfNotExists("richard.chalk@customer.systementor.se", "Hejsan123#", new string[] { "Cashier" });
     }
 
-    // Här finns möjlighet att uppdatera dina användares roller
     private void SeedRoles()
     {
         AddRoleIfNotExisting("Admin");

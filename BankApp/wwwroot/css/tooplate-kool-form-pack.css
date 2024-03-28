@@ -675,3 +675,8 @@ strong {
     font-size: 56px;
     --font-weight-normal;
 }
+
+.margin-classs {
+    margin-top: 120px;
+    color: #E07A5F;
+}
