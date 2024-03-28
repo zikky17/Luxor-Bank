@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceLibrary.Services
+namespace ServiceLibrary.Interfaces
 {
     public interface ICustomerService
     {
-        List<CustomerViewModel> GetAllCustomers();
+        List<CustomerViewModel> GetAllCustomers(string sortColumn, string sortOrder);
     }
 }

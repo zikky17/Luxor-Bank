@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceLibrary.Services
+namespace ServiceLibrary.Interfaces
 {
     public interface IAccountService
     {
-        
+
     }
 }
