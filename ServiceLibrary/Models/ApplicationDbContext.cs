@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using BankApp.Data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ServiceLibrary.Models;
 
 namespace BankWeb.Data;
 

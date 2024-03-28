@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BankApp.Data;
+namespace ServiceLibrary.Models;
 
 public partial class AspNetUser
 {

@@ -2,6 +2,7 @@ using BankApp.ViewModels;
 using BankWeb.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ServiceLibrary.Models;
 
 namespace BankApp.Pages
 {

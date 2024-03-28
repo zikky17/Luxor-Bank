@@ -1,10 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
-using BankApp.Data;
 using BankWeb.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
+using ServiceLibrary.Models;
 
 namespace BankWeb.Pages
 {
