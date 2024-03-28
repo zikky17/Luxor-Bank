@@ -7,20 +7,19 @@ using ServiceLibrary.Models;
 
 namespace BankApp.Pages
 {
-    public class TestModel : PageModel
+    public class CustomersModel : PageModel
     {
 
         public ICustomerService _customerService { get; set; }
         public List<CustomerViewModel> Customers { get; set; }
 
-        public TestModel(ICustomerService service)
+        public CustomersModel(ICustomerService service)
         {
             _customerService = service;
         }
 
         public void OnGet(string sortColumn, string sortOrder)
         {
-
             Customers = _customerService.GetAllCustomers(sortColumn, sortOrder);
         }
     }
