@@ -16,15 +16,15 @@ namespace ServiceLibrary.Services
 
         public CustomerService(ApplicationDbContext context)
         {
-            _dbContext = context;
+            _context = context;
         }
 
-        private readonly ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContext _context;
         public List<CustomerViewModel> Customers { get; set; }
 
         public List<CustomerViewModel> GetAllCustomers(string sortColumn, string sortOrder)
         {
-            var query = _dbContext.Customers.Select(c => new CustomerViewModel
+            var query = _context.Customers.Select(c => new CustomerViewModel
             {
                 CustomerId = c.CustomerId,
                 FirstName = c.Givenname,
@@ -56,5 +56,38 @@ namespace ServiceLibrary.Services
             Customers = query.ToList();
             return Customers;
         }
+
+        public (List<CustomerViewModel>, List<AccountViewModel>, decimal) GetCustomerDetails(int customerId)
+        {
+            var customers = _context.Customers
+                .Where(c => c.CustomerId == customerId)
+                .Select(c => new CustomerViewModel
+                {
+                    CustomerId = c.CustomerId,
+                    FirstName = c.Givenname,
+                    LastName = c.Surname,
+                    Address = c.Streetaddress,
+                    City = c.City,
+                    ZipCode = c.Zipcode,
+                    Country = c.Country,
+                    Birthday = c.Birthday,
+                    Email = c.Emailaddress
+                }).ToList();
+
+            var accounts = _context.Dispositions
+                .Where(d => d.CustomerId == customerId)
+                .Select(d => new AccountViewModel
+                {
+                    AccountId = d.AccountId
+                }).ToList();
+
+            var totalBalance = _context.Dispositions
+                .Where(d => d.CustomerId == customerId)
+                .Select(d => d.Account.Balance)
+                .Sum();
+
+            return (customers, accounts, totalBalance);
+        }
+
     }
 }
