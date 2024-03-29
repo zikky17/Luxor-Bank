@@ -9,14 +9,14 @@ namespace BankApp.Pages
 {
     public class CustomersModel : PageModel
     {
-
-        public ICustomerService _customerService { get; set; }
-        public List<CustomerViewModel> Customers { get; set; }
-
         public CustomersModel(ICustomerService service)
         {
             _customerService = service;
         }
+
+        public ICustomerService _customerService { get; set; }
+        public List<CustomerViewModel> Customers { get; set; }
+
 
         public void OnGet(string sortColumn, string sortOrder)
         {

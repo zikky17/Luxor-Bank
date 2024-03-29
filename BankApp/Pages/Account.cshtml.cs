@@ -13,14 +13,14 @@ namespace BankApp.Pages
 {
     public class AccountModel : PageModel
     {
-        private readonly IAccountService _accountService;
-
-        public List<AccountViewModel> Accounts { get; set; }
-
         public AccountModel(IAccountService service)
         {
             _accountService = service;
         }
+
+        private readonly IAccountService _accountService;
+        public List<AccountViewModel> Accounts { get; set; }
+
 
         public void OnGet(int accountId)
         {

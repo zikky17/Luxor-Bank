@@ -15,15 +15,16 @@ namespace BankApp.Pages
     public class CustomerModel : PageModel
     {
 
+        public CustomerModel(ICustomerService service)
+        {
+            _customerService = service;
+        }
+
         private readonly ICustomerService _customerService;
         public List<CustomerViewModel> Customers { get; set; }
         public List<AccountViewModel> Accounts { get; set; }
         public decimal TotalBalance { get; set; }
 
-        public CustomerModel(ICustomerService service)
-        {
-            _customerService = service;
-        }
 
         public void OnGet(int customerId)
         {
