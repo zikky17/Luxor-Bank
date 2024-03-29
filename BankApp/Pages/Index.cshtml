@@ -18,7 +18,8 @@
         </tr>
         @foreach (var country in Model.CustomersPerCountry)
         {
-            <tr>
+            <div data-aos="fade-up" data-aos-delay="150">
+            <tr class="fade-in">
                 <td>@country.Key</td>
                 <td>@country.Value</td>
                 <td>@(Model.AccountsPerCountry.ContainsKey(country.Key) ? Model.AccountsPerCountry[country.Key] : 0)</td>
@@ -27,6 +28,8 @@
                     <a class="view-country" asp-page="/Country" asp-route-country="@country.Key">View</a>
                 </td>
             </tr>
+            </div>
+
         }
     </table>
 
