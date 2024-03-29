@@ -582,9 +582,9 @@ strong {
     color: lightgreen;
 }
 
-    .view-country:hover {
-        color: white;
-    }
+.view-country:hover {
+    color: white;
+}
 
 .container-custom {
     margin-top: 120px;
@@ -679,4 +679,13 @@ strong {
 .margin-classs {
     margin-top: 120px;
     color: #E07A5F;
+}
+
+.show-all-customers {
+    margin-top: 30px;
+    color: #E07A5F;
+}
+
+.green-color {
+    color: green;
 }

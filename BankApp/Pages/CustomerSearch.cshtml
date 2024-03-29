@@ -6,14 +6,18 @@
 
 <h1 class="details">Customer Search</h1>
 <div class="flex-item-customer">
-    <div class="grid-item col-md-4">
-
+    <div class="grid-item col-md-5">
         <form method="get" class="customer-search-form" asp-page="/Customer" asp-route-customerId="@Model.CustomerId" onsubmit="return validateCustomerId()">
             <input type="text" id="customerId" name="customerId" class="form-control" placeholder="Enter a customer number" required><br />
             <span id="customerIdError" style="color: red;"></span><br />
             <button type="submit" class="custom-btn custom-border-btn btn">Search</button>
         </form>
-           
+        <div class="show-all-customers">
+        <h2>Show All Customers</h2>
+        <a asp-page="/Customers" class="custom-btn custom-border-btn btn">All Customers</a>
+
+           </div>
+
     </div>
 
    @*  <div class="grid-item">
