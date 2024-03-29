@@ -8,7 +8,7 @@
 
     <h1>All Customers</h1>
 
-    <table class="table index-table">
+    <table class="table customers-table">
         <thead>
             <tr>
                 <th class="index-headers-text" scope="col">Id</th>
@@ -69,12 +69,12 @@
 
             @foreach (var supp in Model.Customers)
             {
-                <tr>
+                <tr class="primary-color">
                     <td>@supp.CustomerId</td>
                     <td>@supp.FirstName</td>
                     <td>@supp.LastName</td>
                     <td>@supp.Country</td>
-                    <td><a asp-page="/Supplier" asp-route-id="@supp.CustomerId" class="btn btn-primary">View</a></td>
+                    <td><a asp-page="/Supplier" asp-route-id="@supp.CustomerId" class="custom-btn custom-border-btn">View</a></td>
                 </tr>
             }
         </tbody>
