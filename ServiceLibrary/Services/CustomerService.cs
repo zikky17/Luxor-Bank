@@ -30,32 +30,27 @@ namespace ServiceLibrary.Services
                 FirstName = c.Givenname,
                 LastName = c.Surname,
                 Country = c.Country,
-
             });
 
+            switch (sortColumn)
+            {
+                case "FirstName":
+                    query = sortOrder == "asc" ? query.OrderBy(s => s.FirstName) : query.OrderByDescending(s => s.FirstName);
+                    break;
+                case "LastName":
+                    query = sortOrder == "asc" ? query.OrderBy(s => s.LastName) : query.OrderByDescending(s => s.LastName);
+                    break;
+                case "Country":
+                    query = sortOrder == "asc" ? query.OrderBy(s => s.Country) : query.OrderByDescending(s => s.Country);
+                    break;
+                case "Id":
+                    query = sortOrder == "asc" ? query.OrderBy(s => s.CustomerId) : query.OrderByDescending(s => s.CustomerId);
+                    break;
+            }
 
-            if (sortColumn == "FirstName")
-                if (sortOrder == "asc")
-                    query = query.OrderBy(s => s.FirstName);
-                else if (sortOrder == "desc")
-                    query = query.OrderByDescending(s => s.FirstName);
-
-            if (sortColumn == "LastName")
-                if (sortOrder == "asc")
-                    query = query.OrderBy(s => s.LastName);
-                else if (sortOrder == "desc")
-                    query = query.OrderByDescending(s => s.LastName);
-
-            if (sortColumn == "Country")
-                if (sortOrder == "asc")
-                    query = query.OrderBy(s => s.Country);
-                else if (sortOrder == "desc")
-                    query = query.OrderByDescending(s => s.Country);
-
-
-            Customers = query.ToList();
-            return Customers;
+            return query.ToList();
         }
+
 
         public (List<CustomerViewModel>, List<AccountViewModel>, decimal) GetCustomerDetails(int customerId)
         {

@@ -565,7 +565,7 @@ strong {
     margin-top: 50px;
 }
 
-.header-quote {
+.header-quote, footer-text {
     color: #E07A5F;
 }
 
@@ -594,7 +594,7 @@ strong {
     margin-top: 120px;
 }
 
-.top-text, .list-group-item, .account-table, .index-table, .link-colour {
+.top-text, .list-group-item, .index-table, .link-colour {
     color: #E07A5F;
 }
 
@@ -625,6 +625,17 @@ strong {
 }
 
 .account-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transactions {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.buttons {
     display: flex;
     gap: 30px;
 }
@@ -659,7 +670,7 @@ strong {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url('/images/1200px-Nya_Banken,_Bankhallen.jpg');
+    background-image: url('/images/pexels-fauxels-3184436.jpg');
     background-size: 100% 100%;
     z-index: -1;
     opacity: 0.2;
@@ -672,10 +683,14 @@ strong {
     text-align: center;
 }
 
-.index-table {
-    margin-top: 450px;
-    background-color: rgba(0, 0, 0, 0.8); 
+.custom-table {
+    background-color: rgba(0, 0, 0, 0.8);
     border-collapse: collapse;
+    color: #E07A5F;
+}
+
+.index-table-margin {
+    margin-top: 450px;
 }
 
 .customers-table {
@@ -723,4 +738,9 @@ strong {
 
 .fade-in {
     animation: fadeIn 0.5s ease-in-out;
+}
+
+.footer-text {
+    color: #E07A5F;
+    margin-left: 110px;
 }

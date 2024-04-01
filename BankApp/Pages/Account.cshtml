@@ -14,12 +14,17 @@
         <hr />
 
         <div class="account-menu">
-            <dt class="col-sm-4">Transactions</dt>
-            <a class="custom-btn custom-border-btn btn account-button" asp-page="./DepositViewModel">Deposit</a>
-            <a class="custom-btn custom-border-btn btn account-button">Withdraw</a>
-            <a class="custom-btn custom-border-btn btn account-button">Transfer</a>
+            <div class="transactions">
+                <h3>Transactions</h3>
+            </div>
+            <div class="buttons">
+                <a class="custom-btn custom-border-btn btn account-button" asp-page="./DepositViewModel">Deposit</a>
+                <a class="custom-btn custom-border-btn btn account-button">Withdraw</a>
+                <a class="custom-btn custom-border-btn btn account-button">Transfer</a>
+            </div>
         </div>
-        <table class="table account-table">
+
+        <table class="table custom-table">
             <tr class="index-headers-text">
                 <td>Date</td>
                 <td>Operation</td>
