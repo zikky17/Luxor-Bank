@@ -21,9 +21,9 @@ namespace BankApp.Pages
         private readonly IAccountService _accountService;
         public List<AccountViewModel> Accounts { get; set; }
 
-
         public void OnGet(int accountId)
         {
+
             Accounts = _accountService.GetAccountInfo(accountId);
         }
     }

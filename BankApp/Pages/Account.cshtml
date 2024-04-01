@@ -29,7 +29,9 @@
                 <td>Date</td>
                 <td>Operation</td>
                 <td>Type</td>
-                <td>Amount</td>
+                <td>Amount
+                   
+                </td>
             </tr>
 
             <hr />
@@ -37,7 +39,8 @@
             @foreach (var transaction in acc.Transactions)
             {
                 <tr>
-                    <td>@transaction.Date.ToShortDateString()</td>
+                    <td>@transaction.Date.ToShortDateString()
+                    </td>
                     <td>@transaction.Operation</td>
                     <td>@transaction.Type</td>
                     @if(transaction.Type == "Debit")

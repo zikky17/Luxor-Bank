@@ -13,29 +13,32 @@ namespace ServiceLibrary.Services
 {
     public class AccountService : IAccountService
     {
+        private readonly ApplicationDbContext _context;
 
         public AccountService(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        private readonly ApplicationDbContext _context;
-        public List<AccountViewModel> Accounts { get; set; }
-
         public List<AccountViewModel> GetAccountInfo(int accountId)
         {
-            Accounts = _context.Dispositions
-               .Include(d => d.Account)
-               .Where(d => d.AccountId == accountId)
-               .Select(d => new AccountViewModel
-               {
-                   AccountId = d.AccountId,
-                   Created = d.Account.Created,
-                   Balance = d.Account.Balance,
-                   Transactions = d.Account.Transactions.ToList()
-               })
-               .ToList();
-            return Accounts;
+            var query = _context.Dispositions
+                .Include(d => d.Account)
+                .Where(d => d.AccountId == accountId)
+                .Select(d => new AccountViewModel
+                {
+                    AccountId = d.AccountId,
+                    Created = d.Account.Created,
+                    Balance = d.Account.Balance,
+                    Transactions = d.Account.Transactions.ToList()
+                });
+
+          
+
+            var sortedAccounts = query.ToList();
+            return sortedAccounts;
         }
     }
+
+
 }

@@ -6,31 +6,31 @@
 
 <h1 class="details">Customer Search</h1>
 <div class="flex-item-customer">
-    <div class="grid-item col-md-5">
-        <form method="get" class="customer-search-form" asp-page="/Customer" asp-route-customerId="@Model.CustomerId" onsubmit="return validateCustomerId()">
+    <div class="grid-item">
+        <form method="get" class="customer-search-form flex-item" asp-page="/Customer" asp-route-customerId="@Model.CustomerId" onsubmit="return validateCustomerId()">
             <input type="text" id="customerId" name="customerId" class="form-control" placeholder="Enter a customer number" required><br />
             <span id="customerIdError" style="color: red;"></span><br />
-            <button type="submit" class="custom-btn custom-border-btn btn">Search</button>
+            <button type="submit" class="custom-btn custom-border-btn btn search-button">Search</button>
         </form>
-        <div class="show-all-customers">
-        <h2>Show All Customers</h2>
-        <a asp-page="/Customers" class="custom-btn custom-border-btn btn">All Customers</a>
 
-           </div>
+        <div class="show-all-customers">
+            <h2>Show All Customers</h2>
+            <a asp-page="/Customers" class="custom-btn custom-border-btn btn">All Customers</a>
+        </div>
 
     </div>
 
-   @*  <div class="grid-item">
-        <h3>Search by Name and City</h3>
-        <form id="nameForm" method="get" class="customer-search-form" asp-page="/CustomerDetails" asp-route-customerName="@Model.CustomerName">
-            <input type="text" id="customerName" name="customerName" class="form-control" placeholder="Enter a name" required><br />
-            <button type="button" onclick="submitForm('nameForm')" class="custom-btn custom-border-btn btn">Search</button>
-        </form>
+    @*  <div class="grid-item">
+    <h3>Search by Name and City</h3>
+    <form id="nameForm" method="get" class="customer-search-form" asp-page="/CustomerDetails" asp-route-customerName="@Model.CustomerName">
+    <input type="text" id="customerName" name="customerName" class="form-control" placeholder="Enter a name" required><br />
+    <button type="button" onclick="submitForm('nameForm')" class="custom-btn custom-border-btn btn">Search</button>
+    </form>
 
-        <form id="cityForm" method="get" class="customer-search-form" asp-page="/CustomerDetails" asp-route-customerCity="@Model.City">
-            <input type="text" id="customerCity" name="customerCity" class="form-control" placeholder="Enter a city" required><br />
-            <button type="button" onclick="submitForm('cityForm')" class="custom-btn custom-border-btn">Search</button>
-        </form>
+    <form id="cityForm" method="get" class="customer-search-form" asp-page="/CustomerDetails" asp-route-customerCity="@Model.City">
+    <input type="text" id="customerCity" name="customerCity" class="form-control" placeholder="Enter a city" required><br />
+    <button type="button" onclick="submitForm('cityForm')" class="custom-btn custom-border-btn">Search</button>
+    </form>
     </div> *@
 </div>
 
