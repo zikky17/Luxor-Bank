@@ -9,12 +9,27 @@
         <hr />
     </h1>
 
-    <ol class="list-group-numbered">
-        @foreach (var customer in Model.TopTenCustomers)
-        {
-            <li class="list-group-item">@customer.Key - @customer.Value</li>
-        }
-    </ol>
+    <table class="table custom-table">
+        <thead>
+            <tr class="index-headers-text">
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Assets</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model.TopTenCustomers.Select((value, index) => new { Value = value, Rank = index + 1 }))
+            {
+                <tr>
+                    <td>@customer.Rank</td>
+                    <td>@customer.Value.Key</td>
+                    <td>@customer.Value.Value $</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-    <a class="return-button custom-btn custom-border-btn btn" asp-page="/Index">Return</a>
+
+
+    <a class="custom-btn custom-border-btn btn" asp-page="/Index">Return</a>
 </div>

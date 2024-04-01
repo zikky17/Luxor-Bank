@@ -594,7 +594,7 @@ strong {
     margin-top: 120px;
 }
 
-.top-text, .list-group-item, .index-table, .link-colour {
+.top-text, .index-table, .link-colour {
     color: #E07A5F;
 }
 
@@ -638,10 +638,6 @@ strong {
 .buttons {
     display: flex;
     gap: 30px;
-}
-
-.return-button {
-    margin-left: 30px;
 }
 
 .flex-item-customer {
