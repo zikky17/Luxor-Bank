@@ -1,11 +1,7 @@
 ﻿@page
 @model BankApp.Pages.CustomersModel
-@{
-}
 
 <div class="margin-classs">
-
-
     <h1>All Customers</h1>
     <h3>Page @Model.CurrentPage of @Model.TotalPages</h3>
 
@@ -15,6 +11,15 @@
         <input class="custom-btn custom-border-btn btn" type="submit" value="Search" />
     </form>
 
+    <form method="get" id="paginationForm">
+        <label for="pagination">Showing</label>
+        <select name="pagination" id="paginationSelect">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+    </form>
 
     <table class="table customers-table">
         <thead>
@@ -27,7 +32,6 @@
                        asp-route-sortOrder="asc"
                        style="text-decoration:none">
                         <i class="fa-solid fa-angle-up green-color"></i>
-
                     </a>
                     <a asp-page="/Customers"
                        asp-route-q="@Model.Q"
@@ -45,7 +49,6 @@
                        asp-route-sortOrder="asc"
                        style="text-decoration:none">
                         <i class="fa-solid fa-angle-up green-color"></i>
-
                     </a>
                     <a asp-page="/Customers"
                        asp-route-q="@Model.Q"
@@ -55,7 +58,6 @@
                         <i class="fa-solid fa-angle-down green-color"></i>
                     </a>
                 </th>
-
                 <th class="index-headers-text" scope="col">
                     Last Name
                     <a asp-page="/Customers"
@@ -64,7 +66,6 @@
                        asp-route-sortOrder="asc"
                        style="text-decoration:none">
                         <i class="fa-solid fa-angle-up green-color"></i>
-
                     </a>
                     <a asp-page="/Customers"
                        asp-route-q="@Model.Q"
@@ -74,7 +75,6 @@
                         <i class="fa-solid fa-angle-down green-color"></i>
                     </a>
                 </th>
-
                 <th class="index-headers-text" scope="col">
                     City
                     <a asp-page="/Customers"
@@ -83,7 +83,6 @@
                        asp-route-sortOrder="asc"
                        style="text-decoration:none">
                         <i class="fa-solid fa-angle-up green-color"></i>
-
                     </a>
                     <a asp-page="/Customers"
                        asp-route-q="@Model.Q"
@@ -97,46 +96,44 @@
             </tr>
         </thead>
         <tbody>
-
-            @foreach (var supp in Model.Customers)
+            @foreach (var customer in Model.Customers)
             {
                 <tr class="primary-color">
-                    <td>@supp.CustomerId</td>
-                    <td>@supp.FirstName</td>
-                    <td>@supp.LastName</td>
-                    <td>@supp.City</td>
-                    <td><a asp-page="/Customer" asp-route-customerId="@supp.CustomerId" class="custom-btn custom-border-btn">View</a></td>
+                    <td>@customer.CustomerId</td>
+                    <td>@customer.FirstName</td>
+                    <td>@customer.LastName</td>
+                    <td>@customer.City</td>
+                    <td><a asp-page="/Customer" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn">View</a></td>
                 </tr>
             }
-        <td>
-                @if (Model.CurrentPage != 1)
-                {
-
-                <a asp-page="/Customers"
-                   asp-route-sortColumn="@Model.SortColumn"
-                   asp-route-customerId="@Model.CustomerId"
-                   asp-route-sortOrder="@Model.SortOrder"
-                   asp-route-pageNumber="@(Model.CurrentPage-1)"
-                   class="custom-btn custom-border-btn btn pagination-button">Previous</a>
-
-                }
-        </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-                @if (Model.CurrentPage < Model.TotalPages)
-                {
-                <a asp-page="/Customers"
-                   asp-route-sortColumn="@Model.SortColumn"
-                   asp-route-customerId="@Model.CustomerId"
-                   asp-route-sortOrder="@Model.SortOrder"
-                   asp-route-pageNumber="@(Model.CurrentPage+1)"
-                   class="custom-btn custom-border-btn btn pagination-button">Next</a>
-                }
-        </td>
-
         </tbody>
     </table>
+    <div class="flex-item" style="justify-content: space-between">
+        @if (Model.CurrentPage != 1)
+        {
+
+            <a asp-page="/Customers"
+               asp-route-sortColumn="@Model.SortColumn"
+               asp-route-customerId="@Model.CustomerId"
+               asp-route-q="@Model.Q"
+               asp-route-sortOrder="@Model.SortOrder"
+               asp-route-pageNumber="@(Model.CurrentPage - 1)"
+               class="custom-btn custom-border-btn btn pagination-button">Previous</a>
+        }
+
+        @if (Model.CurrentPage != Model.TotalPages && Model.TotalPages > 1)
+        {
+            <a asp-page="/Customers"
+               asp-route-sortColumn="@Model.SortColumn"
+               asp-route-customerId="@Model.CustomerId"
+               asp-route-q="@Model.Q"
+               asp-route-sortOrder="@Model.SortOrder"
+               asp-route-pageNumber="@(Model.CurrentPage + 1)"
+               class="custom-btn custom-border-btn btn pagination-button">Next</a>
+        }
+
+      
+
+    </div>
 
 </div>

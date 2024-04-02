@@ -32,8 +32,9 @@
                 <td>Date</td>
                 <td>Operation</td>
                 <td>Type</td>
-                <td>Amount
-                   
+                <td>
+                    Amount
+
                 </td>
             </tr>
 
@@ -42,11 +43,12 @@
             @foreach (var transaction in acc.Transactions)
             {
                 <tr>
-                    <td>@transaction.Date.ToShortDateString()
+                    <td>
+                        @transaction.Date.ToShortDateString()
                     </td>
                     <td>@transaction.Operation</td>
                     <td>@transaction.Type</td>
-                    @if(transaction.Type == "Debit")
+                    @if (transaction.Type == "Debit")
                     {
                         <td style="color: red">@transaction.Amount</td>
                     }
@@ -57,6 +59,9 @@
                 </tr>
             }
         </table>
-        <button id="load-more-btn" class="custom-btn custom-border-btn btn">Load More</button>
+        <div class="flex-item">
+            <a class="custom-btn custom-border-btn btn" onclick="window.history.back()">Return</a>
+            <button id="load-more-btn" class="custom-btn custom-border-btn btn">Load More</button>
+        </div>
     </div>
 }

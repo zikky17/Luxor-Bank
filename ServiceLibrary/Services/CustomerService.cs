@@ -1,22 +1,23 @@
-﻿using Azure;
-using BankApp.ViewModels;
+﻿using BankApp.ViewModels;
 using BankWeb.Data;
+using Microsoft.EntityFrameworkCore;
 using ServiceLibrary.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ServiceLibrary.Services
 {
     public class CustomerService : ICustomerService
     {
+        private readonly ApplicationDbContext _context;
 
         public CustomerService(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        private readonly ApplicationDbContext _context;
-        public List<CustomerViewModel> Customers { get; set; }
-
-        public List<CustomerViewModel> GetAllCustomers(string sortColumn, string sortOrder, int pageNumber, string q)
+        public List<CustomerViewModel> GetAllCustomers(string sortColumn, string sortOrder, int pageSize, int pageNumber, string q, out int totalCustomersCount)
         {
             var query = _context.Customers.Select(c => new CustomerViewModel
             {
@@ -61,10 +62,10 @@ namespace ServiceLibrary.Services
                     break;
             }
 
-            var firstItemIndex = (pageNumber - 1) * 50;
+            totalCustomersCount = query.Count();
 
-            query = query.Skip(firstItemIndex);
-            query = query.Take(50);
+            int skipAmount = (pageNumber - 1) * pageSize;
+            query = query.Skip(skipAmount).Take(pageSize);
 
             return query.ToList();
         }
@@ -99,12 +100,6 @@ namespace ServiceLibrary.Services
                 .Sum();
 
             return (customers, accounts, totalBalance);
-        }
-
-        public int GetTotalCustomersCount()
-        {
-            var totalCustomers = _context.Customers.Count();
-            return totalCustomers;
         }
     }
 }
