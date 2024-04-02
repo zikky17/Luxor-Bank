@@ -749,3 +749,9 @@ strong {
     background-color: #E07A5F;
     color: black;
 }
+
+.customer-details-row {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    padding: 20px;
+}

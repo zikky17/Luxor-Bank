@@ -11,6 +11,16 @@
         <input class="custom-btn custom-border-btn btn" type="submit" value="Search" />
     </form>
 
+    <form method="get" id="paginationForm">
+        <label for="pagination">Showing</label>
+        <select name="pagination" id="paginationSelect">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+    </form>
+
     <table class="table customers-table">
         <thead>
             <tr>
@@ -101,6 +111,7 @@
     <div class="flex-item" style="justify-content: space-between">
         @if (Model.CurrentPage != 1)
         {
+
             <a asp-page="/Customers"
                asp-route-sortColumn="@Model.SortColumn"
                asp-route-customerId="@Model.CustomerId"
@@ -120,6 +131,8 @@
                asp-route-pageNumber="@(Model.CurrentPage + 1)"
                class="custom-btn custom-border-btn btn pagination-button">Next</a>
         }
+
+      
 
     </div>
 
