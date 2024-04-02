@@ -20,9 +20,13 @@ namespace BankApp.Pages
 
         private readonly IAccountService _accountService;
         public List<AccountViewModel> Accounts { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        public void OnGet(int accountId)
+        public void OnGet(int accountId, string firstName, string lastName)
         {
+            FirstName = firstName;
+            LastName = lastName;
 
             Accounts = _accountService.GetAccountInfo(accountId);
         }

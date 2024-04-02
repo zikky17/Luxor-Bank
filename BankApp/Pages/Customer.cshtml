@@ -48,7 +48,11 @@
                             @foreach (var account in Model.Accounts)
                             {
                                 <span>@account.AccountId</span> <br />
-                                <a class="account-button custom-btn custom-border-btn btn" asp-page="/Account" asp-route-accountId="@account.AccountId">View Account</a>
+                                <a class="account-button custom-btn custom-border-btn btn" 
+                                asp-page="/Account" 
+                                asp-route-accountId="@account.AccountId"
+                                asp-route-firstName="@c.FirstName"
+                                asp-route-lastName="@c.LastName">View Account</a>
                             }                        
                    </dd>
                     <dt class="col-sm-4">Total Balance:</dt>
