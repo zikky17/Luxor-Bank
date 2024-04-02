@@ -1,13 +1,6 @@
 ﻿using BankApp.ViewModels;
 using BankWeb.Data;
-using Microsoft.EntityFrameworkCore;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceLibrary.Services
 {
@@ -22,15 +15,34 @@ namespace ServiceLibrary.Services
         private readonly ApplicationDbContext _context;
         public List<CustomerViewModel> Customers { get; set; }
 
-        public List<CustomerViewModel> GetAllCustomers(string sortColumn, string sortOrder)
+        public List<CustomerViewModel> GetAllCustomers(string sortColumn, string sortOrder, int pageNumber, string q)
         {
             var query = _context.Customers.Select(c => new CustomerViewModel
             {
                 CustomerId = c.CustomerId,
                 FirstName = c.Givenname,
                 LastName = c.Surname,
-                Country = c.Country,
+                City = c.City
             });
+
+            if (!string.IsNullOrEmpty(q))
+            {
+                if (int.TryParse(q, out int customerId))
+                {
+                    query = query.Where(c =>
+                        c.City.Contains(q) ||
+                        c.FirstName.Contains(q) ||
+                        c.LastName.Contains(q) ||
+                        c.CustomerId == customerId);
+                }
+                else
+                {
+                    query = query.Where(c =>
+                        c.City.Contains(q) ||
+                        c.FirstName.Contains(q) ||
+                        c.LastName.Contains(q));
+                }
+            }
 
             switch (sortColumn)
             {
@@ -40,16 +52,21 @@ namespace ServiceLibrary.Services
                 case "LastName":
                     query = sortOrder == "asc" ? query.OrderBy(s => s.LastName) : query.OrderByDescending(s => s.LastName);
                     break;
-                case "Country":
-                    query = sortOrder == "asc" ? query.OrderBy(s => s.Country) : query.OrderByDescending(s => s.Country);
+                case "City":
+                    query = sortOrder == "asc" ? query.OrderBy(s => s.City) : query.OrderByDescending(s => s.City);
                     break;
                 case "Id":
                     query = sortOrder == "asc" ? query.OrderBy(s => s.CustomerId) : query.OrderByDescending(s => s.CustomerId);
                     break;
             }
 
+            var firstItemIndex = (pageNumber - 1) * 50;
+
+            query = query.Skip(firstItemIndex).Take(50);
+
             return query.ToList();
         }
+
 
 
         public (List<CustomerViewModel>, List<AccountViewModel>, decimal) GetCustomerDetails(int customerId)
