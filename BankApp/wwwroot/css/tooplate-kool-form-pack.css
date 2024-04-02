@@ -744,3 +744,8 @@ strong {
 .search-button {
     margin-left: 30px;
 }
+
+.pagination-button {
+    background-color: #E07A5F;
+    color: black;
+}
