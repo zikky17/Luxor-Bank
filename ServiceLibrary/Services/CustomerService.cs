@@ -1,4 +1,5 @@
-﻿using BankApp.ViewModels;
+﻿using Azure;
+using BankApp.ViewModels;
 using BankWeb.Data;
 using ServiceLibrary.Interfaces;
 
@@ -62,12 +63,11 @@ namespace ServiceLibrary.Services
 
             var firstItemIndex = (pageNumber - 1) * 50;
 
-            query = query.Skip(firstItemIndex).Take(50);
+            query = query.Skip(firstItemIndex);
+            query = query.Take(50);
 
             return query.ToList();
         }
-
-
 
         public (List<CustomerViewModel>, List<AccountViewModel>, decimal) GetCustomerDetails(int customerId)
         {
@@ -101,5 +101,10 @@ namespace ServiceLibrary.Services
             return (customers, accounts, totalBalance);
         }
 
+        public int GetTotalCustomersCount()
+        {
+            var totalCustomers = _context.Customers.Count();
+            return totalCustomers;
+        }
     }
 }
