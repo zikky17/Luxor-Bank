@@ -4,18 +4,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceLibrary.Interfaces;
 using ServiceLibrary.Models;
-using System.Drawing.Printing;
+using System;
+using System.Collections.Generic;
 
 namespace BankApp.Pages
 {
     public class CustomersModel : PageModel
     {
-        public CustomersModel(ICustomerService service)
+        private readonly ICustomerService _customerService;
+
+        public CustomersModel(ICustomerService customerService)
         {
-            _customerService = service;
+            _customerService = customerService;
         }
 
-        public ICustomerService _customerService { get; set; }
         public List<CustomerViewModel> Customers { get; set; }
 
         public int CustomerId { get; set; }
@@ -24,28 +26,23 @@ namespace BankApp.Pages
         public string SortColumn { get; set; }
         public string SortOrder { get; set; }
         public string Q { get; set; }
+        public int PageSize { get; set; } = 50;
 
-
-        public void OnGet(int customerId, string sortColumn, string sortOrder, int pageNumber, string q)
+        public void OnGet(string sortColumn, string sortOrder, int pageNumber, string q)
         {
             Q = q;
             SortColumn = sortColumn;
             SortOrder = sortOrder;
+            CurrentPage = pageNumber;
 
-
-
-            if (pageNumber == 0)
+            if (CurrentPage < 1)
             {
-                pageNumber = 1;
-                CurrentPage = pageNumber;
-
+                CurrentPage = 1;
             }
 
-            CurrentPage = pageNumber;
-            Customers = _customerService.GetAllCustomers(sortColumn, sortOrder, pageNumber, q);
+            Customers = _customerService.GetAllCustomers(sortColumn, sortOrder, PageSize, CurrentPage, q, out int totalCustomersCount);
 
-            var totalCustomers = _customerService.GetTotalCustomersCount();
-            TotalPages = (int)Math.Ceiling((double)totalCustomers / 50);
+            TotalPages = totalCustomersCount == 0 ? 1 : (int)Math.Ceiling((double)totalCustomersCount / PageSize);
         }
     }
 }

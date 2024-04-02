@@ -9,10 +9,9 @@ namespace ServiceLibrary.Interfaces
 {
     public interface ICustomerService
     {
-        List<CustomerViewModel> GetAllCustomers(string sortColumn, string sortOrder, int pageNumber, string q);
+        List<CustomerViewModel> GetAllCustomers(string sortColumn, string sortOrder, int pageSize, int pageNumber, string q, out int totalCustomersCount);
 
         (List<CustomerViewModel>, List<AccountViewModel>, decimal) GetCustomerDetails(int customerId);
 
-        int GetTotalCustomersCount();
     }
 }
