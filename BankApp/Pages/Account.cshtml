@@ -25,7 +25,10 @@
                     asp-route-customerId="@Model.CustomerId" 
                     asp-route-accountId="@acc.AccountId"
                     asp-page="/Deposit">Deposit</a>
-                <a class="custom-btn custom-border-btn btn account-button">Withdraw</a>
+                <a class="custom-btn custom-border-btn btn account-button"
+                   asp-route-customerId="@Model.CustomerId"
+                   asp-route-accountId="@acc.AccountId"
+                   asp-page="/Withdraw">Withdraw</a>
                 <a class="custom-btn custom-border-btn btn account-button">Transfer</a>
             </div>
         </div>

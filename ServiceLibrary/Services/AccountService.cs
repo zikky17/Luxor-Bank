@@ -55,6 +55,20 @@ namespace ServiceLibrary.Services
                 return false;
             }
         }
+
+        public bool Withdraw(Transaction transaction)
+        {
+            try
+            {
+                _context.Transactions.Add(transaction);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 
 
