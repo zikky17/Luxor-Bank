@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using BankApp.ViewModels;
 using BankWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using ServiceLibrary.Interfaces;
+using ServiceLibrary.Models;
+using Transaction = ServiceLibrary.Models.Transaction;
 
 namespace ServiceLibrary.Services
 {
@@ -37,6 +40,20 @@ namespace ServiceLibrary.Services
 
             var sortedAccounts = query.ToList();
             return sortedAccounts;
+        }
+
+        public bool Deposit(Transaction transaction)
+        {
+            try
+            {
+                _context.Transactions.Add(transaction);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 

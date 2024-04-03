@@ -1,0 +1,28 @@
+﻿@page
+@model BankApp.Pages.DepositModel
+@{
+}
+
+<div>
+    <h1 class="margin-class">Deposit</h1>
+
+    <form method="post">
+        <h4 class="top-text">Choose account:</h4>
+        <select asp-for="AccountId">
+            @foreach (var acc in Model.Accounts)
+            {
+                <option value="@acc.AccountId">@acc.AccountId</option>
+            }
+        </select>
+        <h4 class="top-text">Amount to deposit: </h4>
+        <input asp-for="DepositAmount" />
+        <input class="custom-btn custom-border-btn btn" type="submit" value="Deposit" />
+    </form>
+</div>
+
+<div id="depositSuccessModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Deposit is successful</p>
+    </div>
+</div>

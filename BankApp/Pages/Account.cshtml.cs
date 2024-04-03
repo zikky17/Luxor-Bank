@@ -22,13 +22,20 @@ namespace BankApp.Pages
         public List<AccountViewModel> Accounts { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public int CustomerId { get; set; }
 
-        public void OnGet(int accountId, string firstName, string lastName)
+        public void OnGet(int accountId, string firstName, string lastName, int customerId)
         {
             FirstName = firstName;
             LastName = lastName;
+            CustomerId = customerId;
 
             Accounts = _accountService.GetAccountInfo(accountId);
+
+            foreach (var account in Accounts)
+            {
+                account.Transactions = account.Transactions.OrderByDescending(t => t.Date).ToList();
+            }
         }
     }
 }
