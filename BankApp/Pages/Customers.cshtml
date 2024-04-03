@@ -42,6 +42,23 @@
                     </a>
                 </th>
                 <th class="index-headers-text" scope="col">
+                    National Id
+                    <a asp-page="/Customers"
+                       asp-route-q="@Model.Q"
+                       asp-route-sortColumn="NationalId"
+                       asp-route-sortOrder="asc"
+                       style="text-decoration:none">
+                        <i class="fa-solid fa-angle-up green-color"></i>
+                    </a>
+                    <a asp-page="/Customers"
+                       asp-route-q="@Model.Q"
+                       asp-route-sortColumn="NationalId"
+                       asp-route-sortOrder="desc"
+                       style="text-decoration:none">
+                        <i class="fa-solid fa-angle-down green-color"></i>
+                    </a>
+                </th>
+                <th class="index-headers-text" scope="col">
                     First Name
                     <a asp-page="/Customers"
                        asp-route-q="@Model.Q"
@@ -76,6 +93,23 @@
                     </a>
                 </th>
                 <th class="index-headers-text" scope="col">
+                    Address
+                    <a asp-page="/Customers"
+                       asp-route-q="@Model.Q"
+                       asp-route-sortColumn="Address"
+                       asp-route-sortOrder="asc"
+                       style="text-decoration:none">
+                        <i class="fa-solid fa-angle-up green-color"></i>
+                    </a>
+                    <a asp-page="/Customers"
+                       asp-route-q="@Model.Q"
+                       asp-route-sortColumn="Address"
+                       asp-route-sortOrder="desc"
+                       style="text-decoration:none">
+                        <i class="fa-solid fa-angle-down green-color"></i>
+                    </a>
+                </th>
+                <th class="index-headers-text" scope="col">
                     City
                     <a asp-page="/Customers"
                        asp-route-q="@Model.Q"
@@ -100,8 +134,10 @@
             {
                 <tr class="primary-color">
                     <td>@customer.CustomerId</td>
+                    <td>@customer.NationalId</td>
                     <td>@customer.FirstName</td>
                     <td>@customer.LastName</td>
+                    <td>@customer.Address</td>
                     <td>@customer.City</td>
                     <td><a asp-page="/Customer" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn">View</a></td>
                 </tr>
