@@ -36,32 +36,45 @@ namespace ServiceLibrary.Services
                     Transactions = d.Account.Transactions.ToList()
                 });
 
-          
+
 
             var sortedAccounts = query.ToList();
             return sortedAccounts;
         }
 
-        public bool Deposit(Transaction transaction)
+        public bool Deposit(Transaction transaction, int accountId)
         {
             try
             {
+                var account = _context.Accounts.First(a => a.AccountId == accountId);
+
+                account.Balance += transaction.Amount;
+
                 _context.Transactions.Add(transaction);
+
                 _context.SaveChanges();
+
                 return true;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 return false;
             }
+
         }
 
-        public bool Withdraw(Transaction transaction)
+        public bool Withdraw(Transaction transaction, int accountId)
         {
             try
             {
+                var account = _context.Accounts.First(a => a.AccountId == accountId);
+
+                account.Balance -= transaction.Amount;
+
                 _context.Transactions.Add(transaction);
+
                 _context.SaveChanges();
+
                 return true;
             }
             catch (Exception ex)

@@ -50,11 +50,10 @@ namespace BankApp.Pages
                 Amount = WithdrawAmount,
             };
 
-            var withdrawResult = _accountService.Withdraw(transaction);
+            var withdrawResult = _accountService.Withdraw(transaction, AccountId);
 
             if (withdrawResult)
             {
-                TotalBalance -= WithdrawAmount;
                 return Page();
             }
             else

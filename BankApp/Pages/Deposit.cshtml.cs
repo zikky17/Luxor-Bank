@@ -52,7 +52,7 @@ namespace BankApp.Pages
                 Amount = DepositAmount,
             };
 
-            var depositResult = _accountService.Deposit(transaction);
+            var depositResult = _accountService.Deposit(transaction, AccountId);
 
             if (depositResult)
             {

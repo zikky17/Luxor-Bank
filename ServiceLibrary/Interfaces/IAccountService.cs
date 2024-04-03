@@ -14,8 +14,8 @@ namespace ServiceLibrary.Interfaces
     {
         List<AccountViewModel> GetAccountInfo(int accountId);
 
-        bool Deposit(Transaction transaction);
+        bool Deposit(Transaction transaction, int accountId);
 
-        bool Withdraw(Transaction transaction);
+        bool Withdraw(Transaction transaction, int accountId);
     }
 }
