@@ -29,7 +29,7 @@
         <span asp-validation-for="Comment" class="text-danger"></span>
     </div>
     <a class="custom-btn custom-border-btn btn mt-5" onclick="window.history.back()">Back</a>
-    <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Deposit" />
+    <input class="custom-btn custom-border-btn btn mt-5 ml-3" type="submit" value="Deposit" />
 </form>
 
 <div id="depositSuccessModal" class="modal">
@@ -38,3 +38,24 @@
         <p>Deposit is successful</p>
     </div>
 </div>
+
+
+<script>
+    var modal = document.getElementById("depositSuccessModal");
+
+    @if (Model.DepositResult == ServiceLibrary.Interfaces.StatusMessage.Approved)
+    {
+        @:modal.style.display = "block";
+    }
+        var closeButton = document.querySelector(".close");
+
+    closeButton.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>

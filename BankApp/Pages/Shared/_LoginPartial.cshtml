@@ -8,32 +8,14 @@
         <div class="partial-nav">
         <li class="nav-item">
                 @{
-                    try
-                    {
-                        var nameParts = User.Identity.Name.Split('@')[0].Split('.');
-                        var firstName = ToUpperFirstLetter(nameParts[0]);
-                        var lastName = ToUpperFirstLetter(nameParts[1]);
-
-                        string ToUpperFirstLetter(string input)
-                        {
-                            if (string.IsNullOrEmpty(input))
-                                return input;
-                            return char.ToUpper(input[0]) + input.Substring(1);
-                        }
+                    var name = User.Identity.Name;
+               
                     <div class="partial-nav">
-                        <a asp-page="/CustomerSearch" class="custom-btn custom-border-btn btn">Search Customer</a>
-                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @name!</a>
                     </div>
-                    }
-                    catch
-                    {
-                        var name = User.Identity.Name;
-                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @name!</a>
-                    }
                 }
 
         </li>
-
         <a class="bi-list offcanvas-icon" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu"></a>
         </div>
     }
@@ -41,7 +23,6 @@
     {
         <div class="partial-nav">
             <a asp-page="/Customer/Index" class="custom-btn custom-border-btn btn">Show All Customers</a>
-            
             <a asp-page="/Account/Register" asp-area="Identity" class="custom-btn custom-border-btn btn">
                 Register
                 <i class="bi-arrow-right ms-2"></i>

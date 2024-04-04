@@ -75,15 +75,16 @@
             <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
                 <nav>
                     <ul>
+
                         <li class="nav-item burger-item">
-                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                <button type="submit" class="custom-btn custom-border-btn btn">My Accounts</button>
+                            <form class="form-inline" asp-area="Identity" asp-page="/Customer/Create" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                <button type="submit" class="custom-btn custom-border-btn btn">Create new customer</button>
                             </form>
                         </li>
 
                         <li class="nav-item burger-item">
-                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                <button type="submit" class="custom-btn custom-border-btn btn">Withdraw</button>
+                            <form class="form-inline" asp-area="Identity" asp-page="/Customer/Index" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                <button type="submit" class="custom-btn custom-border-btn btn">All customers</button>
                             </form>
                         </li>
 

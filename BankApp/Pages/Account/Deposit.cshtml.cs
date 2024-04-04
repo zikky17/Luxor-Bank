@@ -36,6 +36,8 @@ namespace BankApp.Pages
         [StringLength(100)]
         public string Comment { get; set; }
 
+        public StatusMessage DepositResult { get; set; }
+
 
 
 
@@ -49,10 +51,12 @@ namespace BankApp.Pages
         {
             var depositResult = _accountService.Deposit(DepositAmount, AccountId, Comment);
 
+            
             if (ModelState.IsValid)
             {     
                 if (depositResult == StatusMessage.Approved)
                 {
+                    DepositResult = depositResult;
                     return RedirectToPage("Index");
                 }
             }
