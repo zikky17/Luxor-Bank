@@ -155,7 +155,7 @@ strong {
   CUSTOM BUTTON               
 -----------------------------------------*/
 .custom-btn {
-    background: var(--custom-btn-bg-color);
+    background: rgba(0, 0, 0, 0.85);
     border: 2px solid transparent;
     border-radius: var(--border-radius-large);
     color: var(--white-color);
@@ -172,7 +172,7 @@ strong {
     }
 
 .custom-border-btn {
-    background: transparent;
+    /*background: transparent;*/
     border: 1px solid var(--secondary-color);
     color: var(--secondary-color);
 }
@@ -580,7 +580,7 @@ strong {
 
 .index-headers-text {
     color: whitesmoke;
-    --font-weight:normal;
+    font-weight: 400;
 }
 
 .view-country {
@@ -790,3 +790,12 @@ modal {
         text-decoration: none;
         cursor: pointer;
     }
+
+.deposit-input {
+    width: 100px;
+    margin-top: 20px;
+}
+
+.small-margin {
+    margin-left: 10px;
+}
