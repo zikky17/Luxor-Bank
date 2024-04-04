@@ -10,10 +10,21 @@ using Transaction = ServiceLibrary.Models.Transaction;
 
 namespace ServiceLibrary.Interfaces
 {
+
+    public enum StatusMessage
+    {
+        Approved,
+        TooLowBalance,
+        IncorrectAmount,
+        MessageRequired
+    }
+
     public interface IAccountService
     {
         List<AccountViewModel> GetAccountInfo(int accountId);
 
-        bool Deposit(Transaction transaction);
+        StatusMessage Deposit(decimal amount, int accountId, string comment);
+
+        StatusMessage Withdraw(Transaction transaction, int accountId);
     }
 }

@@ -24,8 +24,11 @@
                 <a class="custom-btn custom-border-btn btn account-button"
                     asp-route-customerId="@Model.CustomerId" 
                     asp-route-accountId="@acc.AccountId"
-                    asp-page="/Deposit">Deposit</a>
-                <a class="custom-btn custom-border-btn btn account-button">Withdraw</a>
+                    asp-page="/Account/Deposit">Deposit</a>
+                <a class="custom-btn custom-border-btn btn account-button"
+                   asp-route-customerId="@Model.CustomerId"
+                   asp-route-accountId="@acc.AccountId"
+                   asp-page="/Account/Withdraw">Withdraw</a>
                 <a class="custom-btn custom-border-btn btn account-button">Transfer</a>
             </div>
         </div>
@@ -49,7 +52,9 @@
                     <td>
                         @transaction.Date.ToShortDateString()
                     </td>
-                    <td>@transaction.Operation</td>
+                    <td>
+                        @(string.IsNullOrEmpty(transaction.Operation) ? "Information is missing" : transaction.Operation)
+                    </td>
                     <td>@transaction.Type</td>
                     @if (transaction.Type == "Debit")
                     {

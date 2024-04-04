@@ -36,26 +36,68 @@ namespace ServiceLibrary.Services
                     Transactions = d.Account.Transactions.ToList()
                 });
 
-          
+
 
             var sortedAccounts = query.ToList();
             return sortedAccounts;
         }
 
-        public bool Deposit(Transaction transaction)
+        public StatusMessage Deposit(decimal amount, int accountId, string comment)
         {
-            try
+
+            var account = _context.Accounts.First(a => a.AccountId == accountId);
+
+            if (amount < 100 || amount > 10000)
             {
-                _context.Transactions.Add(transaction);
-                _context.SaveChanges();
-                return true;
+                return StatusMessage.IncorrectAmount;
             }
-            catch (Exception ex)
+
+            if (comment == null)
             {
-                return false;
+                return StatusMessage.MessageRequired;
             }
+
+            account.Balance += amount;
+
+            var transaction = new Transaction
+            { 
+                AccountId = accountId,
+                Date = DateOnly.FromDateTime(DateTime.Now),
+                Type = "Credit",
+                Operation = comment,
+                Amount = amount
+            };
+
+            _context.Transactions.Add(transaction);
+
+            _context.SaveChanges();
+
+            return StatusMessage.Approved;
+
+        }
+
+        public StatusMessage Withdraw(Transaction transaction, int accountId)
+        {
+            var account = _context.Accounts.First(a => a.AccountId == accountId);
+
+            if (account.Balance < transaction.Amount)
+            {
+                return StatusMessage.TooLowBalance;
+            }
+
+            if (transaction.Amount < 100 || transaction.Amount > 10000)
+            {
+                return StatusMessage.IncorrectAmount;
+            }
+
+            account.Balance -= transaction.Amount;
+
+            _context.Transactions.Add(transaction);
+
+            _context.SaveChanges();
+
+            return StatusMessage.Approved;
         }
     }
-
-
 }
+

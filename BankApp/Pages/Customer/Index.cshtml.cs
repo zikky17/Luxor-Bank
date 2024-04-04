@@ -7,7 +7,7 @@ using ServiceLibrary.Models;
 using System;
 using System.Collections.Generic;
 
-namespace BankApp.Pages
+namespace BankApp.Pages.Customer
 {
     public class CustomersModel : PageModel
     {

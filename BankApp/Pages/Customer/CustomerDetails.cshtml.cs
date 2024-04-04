@@ -10,12 +10,12 @@ using System.Diagnostics.Metrics;
 using System.Net;
 using System.Reflection.Emit;
 
-namespace BankApp.Pages
+namespace BankApp.Pages.Customer
 {
-    public class CustomerModel : PageModel
+    public class CustomerDetailsModel : PageModel
     {
 
-        public CustomerModel(ICustomerService service)
+        public CustomerDetailsModel(ICustomerService service)
         {
             _customerService = service;
         }

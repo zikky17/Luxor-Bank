@@ -22,8 +22,10 @@ namespace ServiceLibrary.Services
             var query = _context.Customers.Select(c => new CustomerViewModel
             {
                 CustomerId = c.CustomerId,
+                NationalId = c.NationalId,
                 FirstName = c.Givenname,
                 LastName = c.Surname,
+                Address = c.Streetaddress,
                 City = c.City
             });
 
@@ -59,6 +61,12 @@ namespace ServiceLibrary.Services
                     break;
                 case "Id":
                     query = sortOrder == "asc" ? query.OrderBy(s => s.CustomerId) : query.OrderByDescending(s => s.CustomerId);
+                    break;
+                case "NationalId":
+                    query = sortOrder == "asc" ? query.OrderBy(s => s.NationalId) : query.OrderByDescending(s => s.NationalId);
+                    break;
+                case "Address":
+                    query = sortOrder == "asc" ? query.OrderBy(s => s.Address) : query.OrderByDescending(s => s.Address);
                     break;
             }
 

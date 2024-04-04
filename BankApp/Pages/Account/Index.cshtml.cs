@@ -9,7 +9,7 @@ using ServiceLibrary.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BankApp.Pages
+namespace BankApp.Pages.Account
 {
     public class AccountModel : PageModel
     {
