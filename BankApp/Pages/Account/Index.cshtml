@@ -52,7 +52,9 @@
                     <td>
                         @transaction.Date.ToShortDateString()
                     </td>
-                    <td>@transaction.Operation</td>
+                    <td>
+                        @(string.IsNullOrEmpty(transaction.Operation) ? "Information is missing" : transaction.Operation)
+                    </td>
                     <td>@transaction.Type</td>
                     @if (transaction.Type == "Debit")
                     {

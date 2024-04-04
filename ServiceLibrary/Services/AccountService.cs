@@ -42,47 +42,62 @@ namespace ServiceLibrary.Services
             return sortedAccounts;
         }
 
-        public bool Deposit(Transaction transaction, int accountId)
+        public StatusMessage Deposit(decimal amount, int accountId, string comment)
         {
-            try
+
+            var account = _context.Accounts.First(a => a.AccountId == accountId);
+
+            if (amount < 100 || amount > 10000)
             {
-                var account = _context.Accounts.First(a => a.AccountId == accountId);
-
-                account.Balance += transaction.Amount;
-
-                _context.Transactions.Add(transaction);
-
-                _context.SaveChanges();
-
-                return true;
+                return StatusMessage.IncorrectAmount;
             }
-            catch(Exception ex)
+
+            if (comment == null)
             {
-                return false;
+                return StatusMessage.MessageRequired;
             }
+
+            account.Balance += amount;
+
+            var transaction = new Transaction
+            { 
+                AccountId = accountId,
+                Date = DateOnly.FromDateTime(DateTime.Now),
+                Type = "Credit",
+                Operation = comment,
+                Amount = amount
+            };
+
+            _context.Transactions.Add(transaction);
+
+            _context.SaveChanges();
+
+            return StatusMessage.Approved;
 
         }
 
-        public bool Withdraw(Transaction transaction, int accountId)
+        public StatusMessage Withdraw(Transaction transaction, int accountId)
         {
-            try
+            var account = _context.Accounts.First(a => a.AccountId == accountId);
+
+            if (account.Balance < transaction.Amount)
             {
-                var account = _context.Accounts.First(a => a.AccountId == accountId);
-
-                account.Balance -= transaction.Amount;
-
-                _context.Transactions.Add(transaction);
-
-                _context.SaveChanges();
-
-                return true;
+                return StatusMessage.TooLowBalance;
             }
-            catch (Exception ex)
+
+            if (transaction.Amount < 100 || transaction.Amount > 10000)
             {
-                return false;
+                return StatusMessage.IncorrectAmount;
             }
+
+            account.Balance -= transaction.Amount;
+
+            _context.Transactions.Add(transaction);
+
+            _context.SaveChanges();
+
+            return StatusMessage.Approved;
         }
     }
-
-
 }
+

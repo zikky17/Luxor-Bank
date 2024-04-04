@@ -579,7 +579,8 @@ strong {
 }
 
 .index-headers-text {
-    color: gold;
+    color: whitesmoke;
+    --font-weight:normal;
 }
 
 .view-country {

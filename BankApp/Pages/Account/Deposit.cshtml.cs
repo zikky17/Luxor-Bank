@@ -12,28 +12,31 @@ namespace BankApp.Pages
     [BindProperties]
     public class DepositModel : PageModel
     {
-        private readonly IAccountService _accountService;
-        private readonly ICustomerService _customerService;
-
         public DepositModel(IAccountService service, ICustomerService customerService)
         {
             _accountService = service;
             _customerService = customerService;
         }
 
+        private readonly IAccountService _accountService;
+        private readonly ICustomerService _customerService;
+
         public List<CustomerViewModel> Customers { get; set; }
 
         public List<AccountViewModel> Accounts { get; set; }
 
         public decimal TotalBalance { get; set; }
- 
+
         public int AccountId { get; set; }
 
         [Range(100, 10000)]
         public decimal DepositAmount { get; set; }
 
         [Required]
+        [StringLength(100)]
         public string Comment { get; set; }
+
+
 
 
         public void OnGet(int customerId, int accountId)
@@ -44,29 +47,27 @@ namespace BankApp.Pages
 
         public IActionResult OnPost()
         {
+            var depositResult = _accountService.Deposit(DepositAmount, AccountId, Comment);
+
             if (ModelState.IsValid)
-            {
-                var transaction = new Transaction
+            {     
+                if (depositResult == StatusMessage.Approved)
                 {
-                    AccountId = AccountId,
-                    Date = DateOnly.FromDateTime(DateTime.Now),
-                    Type = "Credit",
-                    Operation = Comment,
-                    Amount = DepositAmount,
-                };
-
-                var depositResult = _accountService.Deposit(transaction, AccountId);
-
-                if (depositResult)
-                {
-                    return Page();
-                }
-                else
-                {
-
-                    return Page();
+                    return RedirectToPage("Index");
                 }
             }
+
+            if (depositResult == StatusMessage.MessageRequired)
+            {
+                ModelState.AddModelError("Comment", "Please enter a comment for this deposit.");
+            }
+
+            if (depositResult == StatusMessage.IncorrectAmount)
+            {
+                ModelState.AddModelError("DepositAmount", "Please enter a correct amount between 100 - 10.000");
+
+            }
+
             return Page();
         }
     }

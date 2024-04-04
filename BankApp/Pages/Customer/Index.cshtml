@@ -133,12 +133,12 @@
             {
                 <tr class="primary-color">
                     <td>@customer.CustomerId</td>
-                    <td>@customer.NationalId</td>
+                    <td> @(string.IsNullOrEmpty(customer.NationalId) ? "Not specified" : customer.NationalId)</td>
                     <td>@customer.FirstName</td>
                     <td>@customer.LastName</td>
                     <td>@customer.Address</td>
                     <td>@customer.City</td>
-                    <td><a asp-page="/Customer/Customer" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn">View</a></td>
+                    <td><a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn">View</a></td>
                 </tr>
             }
         </tbody>

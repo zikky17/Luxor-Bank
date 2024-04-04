@@ -49,15 +49,7 @@ namespace BankApp.Pages.Account
 
                 var withdrawResult = _accountService.Withdraw(transaction, AccountId);
 
-                if (withdrawResult)
-                {
-                    return RedirectToPage("Account");
-                }
-                else
-                {
-
-                    return Page();
-                }
+              
             }
 
 
