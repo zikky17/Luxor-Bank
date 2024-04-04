@@ -1,5 +1,5 @@
 ﻿@page
-@model BankApp.Pages.CustomersModel
+@model BankApp.Pages.Customer.CustomersModel
 
 <div class="margin-class">
     <h1>All Customers</h1>
@@ -25,14 +25,14 @@
             <tr>
                 <th class="index-headers-text" scope="col">
                     Id
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="Id"
                        asp-route-sortOrder="asc"
                        style="text-decoration:none">
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="Id"
                        asp-route-sortOrder="desc"
@@ -42,14 +42,14 @@
                 </th>
                 <th class="index-headers-text" scope="col">
                     National Id
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="NationalId"
                        asp-route-sortOrder="asc"
                        style="text-decoration:none">
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="NationalId"
                        asp-route-sortOrder="desc"
@@ -59,14 +59,14 @@
                 </th>
                 <th class="index-headers-text" scope="col">
                     First Name
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="FirstName"
                        asp-route-sortOrder="asc"
                        style="text-decoration:none">
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="FirstName"
                        asp-route-sortOrder="desc"
@@ -76,14 +76,14 @@
                 </th>
                 <th class="index-headers-text" scope="col">
                     Last Name
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="LastName"
                        asp-route-sortOrder="asc"
                        style="text-decoration:none">
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="LastName"
                        asp-route-sortOrder="desc"
@@ -93,14 +93,14 @@
                 </th>
                 <th class="index-headers-text" scope="col">
                     Address
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="Address"
                        asp-route-sortOrder="asc"
                        style="text-decoration:none">
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="Address"
                        asp-route-sortOrder="desc"
@@ -110,14 +110,14 @@
                 </th>
                 <th class="index-headers-text" scope="col">
                     City
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="City"
                        asp-route-sortOrder="asc"
                        style="text-decoration:none">
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
-                    <a asp-page="/Customers"
+                    <a asp-page="/Customer/Customers"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="City"
                        asp-route-sortOrder="desc"
@@ -138,7 +138,7 @@
                     <td>@customer.LastName</td>
                     <td>@customer.Address</td>
                     <td>@customer.City</td>
-                    <td><a asp-page="/Customer" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn">View</a></td>
+                    <td><a asp-page="/Customer/Customer" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn">View</a></td>
                 </tr>
             }
         </tbody>

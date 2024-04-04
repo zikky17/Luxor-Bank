@@ -10,7 +10,7 @@ using System.Diagnostics.Metrics;
 using System.Net;
 using System.Reflection.Emit;
 
-namespace BankApp.Pages
+namespace BankApp.Pages.Customer
 {
     public class CustomerModel : PageModel
     {

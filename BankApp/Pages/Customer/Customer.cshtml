@@ -1,5 +1,5 @@
 ﻿@page
-@model BankApp.Pages.CustomerModel
+@model BankApp.Pages.Customer.CustomerModel
 @{
 }
 
@@ -49,7 +49,7 @@
                             {
                                 <span>@account.AccountId</span> <br />
                                 <a class="account-button custom-btn custom-border-btn btn" 
-                                asp-page="/Account" 
+                                asp-page="/Account/Account" 
                                 asp-route-customerId="@c.CustomerId"
                                 asp-route-accountId="@account.AccountId"
                                 asp-route-firstName="@c.FirstName"

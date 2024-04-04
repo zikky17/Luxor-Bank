@@ -1,12 +1,12 @@
 ﻿@page
-@model BankApp.Pages.WithdrawModel
+@model BankApp.Pages.DepositModel
 @{
 }
 
 <div>
-    <h1 class="margin-class">Withdraw</h1>
+    <h1 class="margin-class">Deposit</h1>
 
-    <form method="post">
+    <form method="post" />
         <h4 class="top-text">Choose account:</h4>
         <select asp-for="AccountId">
             @foreach (var acc in Model.Accounts)
@@ -14,9 +14,10 @@
                 <option value="@acc.AccountId">@acc.AccountId</option>
             }
         </select>
-        <h4 class="top-text">Amount to withdraw: </h4>
-        <input asp-for="WithdrawAmount" />
-        <input class="custom-btn custom-border-btn btn" type="submit" value="Withdraw" />
+        <h4 class="top-text">Amount to deposit: </h4>
+        <input asp-for="DepositAmount" />
+        <input asp-for="Comment" /> 
+        <input class="custom-btn custom-border-btn btn" type="submit" value="Deposit"" />
     </form>
 </div>
 

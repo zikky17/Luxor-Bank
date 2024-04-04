@@ -1,10 +1,10 @@
 ﻿@page
-@model BankApp.Pages.DepositModel
+@model WithdrawModel
 @{
 }
 
 <div>
-    <h1 class="margin-class">Deposit</h1>
+    <h1 class="margin-class">Withdraw</h1>
 
     <form method="post">
         <h4 class="top-text">Choose account:</h4>
@@ -14,15 +14,15 @@
                 <option value="@acc.AccountId">@acc.AccountId</option>
             }
         </select>
-        <h4 class="top-text">Amount to deposit: </h4>
-        <input asp-for="DepositAmount" />
-        <input class="custom-btn custom-border-btn btn" type="submit" value="Deposit" />
+        <h4 class="top-text">Amount to withdraw: </h4>
+        <input asp-for="WithdrawAmount" />
+        <input class="custom-btn custom-border-btn btn" type="submit" value="Withdraw" />
     </form>
 </div>
 
 <div id="depositSuccessModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <p>Deposit is successful</p>
+        <p>Withdraw is successful</p>
     </div>
 </div>

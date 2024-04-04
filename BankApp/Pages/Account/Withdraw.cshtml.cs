@@ -4,19 +4,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceLibrary.Interfaces;
 using ServiceLibrary.Models;
 
-namespace BankApp.Pages
+namespace BankApp.Pages.Account
 {
+    [BindProperties]
     public class WithdrawModel : PageModel
     {
-        [BindProperty]
         public List<CustomerViewModel> Customers { get; set; }
-        [BindProperty]
+
         public List<AccountViewModel> Accounts { get; set; }
-        [BindProperty]
+
         public decimal TotalBalance { get; set; }
-        [BindProperty]
+
         public int AccountId { get; set; }
-        [BindProperty]
+
         public decimal WithdrawAmount { get; set; }
 
         private readonly IAccountService _accountService;
@@ -36,31 +36,32 @@ namespace BankApp.Pages
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return Page();
+                var transaction = new Transaction
+                {
+                    AccountId = AccountId,
+                    Date = DateOnly.FromDateTime(DateTime.Now),
+                    Type = "Debit",
+                    Operation = "Withdraw from customer",
+                    Amount = WithdrawAmount,
+                };
+
+                var withdrawResult = _accountService.Withdraw(transaction, AccountId);
+
+                if (withdrawResult)
+                {
+                    return RedirectToPage("Account");
+                }
+                else
+                {
+
+                    return Page();
+                }
             }
 
-            var transaction = new Transaction
-            {
-                AccountId = AccountId,
-                Date = DateOnly.FromDateTime(DateTime.Now),
-                Type = "Debit",
-                Operation = "Withdraw from customer",
-                Amount = WithdrawAmount,
-            };
 
-            var withdrawResult = _accountService.Withdraw(transaction, AccountId);
-
-            if (withdrawResult)
-            {
-                return Page();
-            }
-            else
-            {
-
-                return Page();
-            }
+            return RedirectToPage("Withdraw");
         }
     }
 }
