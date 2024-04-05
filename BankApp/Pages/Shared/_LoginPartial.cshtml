@@ -7,6 +7,12 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+
+        <div class="partial-nav">
+            <a asp-page="/Customer/Index" class="custom-btn custom-border-btn btn">Show All Customers</a>
+            <a class="custom-btn custom-border-btn btn" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">User Menu</a>
+        </div>
+
         var user = await UserManager.GetUserAsync(User);
         var userRoles = await UserManager.GetRolesAsync(user);
 
