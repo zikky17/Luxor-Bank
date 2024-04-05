@@ -2,3 +2,70 @@
 @model BankApp.Pages.Customer.CreateModel
 @{
 }
+
+<h1 class="margin-class">Create new Customer</h1>
+<hr class="primary-color" />
+
+<form method="post">
+        <div class="form-group">
+            <label class="primary-color input-style" asp-for="@Model.Givenname">First Name</label>
+        <input asp-for="@Model.Givenname" />
+        <span asp-validation-for="@Model.Givenname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.Surname">Last Name</label>
+        <input asp-for="@Model.Surname" />
+        <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.Gender">Gender</label>
+        <input asp-for="@Model.Gender" />
+        <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.Streetaddress">Address</label>
+        <input asp-for="@Model.Streetaddress" />
+        <span asp-validation-for="@Model.Streetaddress" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.City">City</label>
+        <input asp-for="@Model.City" />
+        <span asp-validation-for="@Model.City" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.Zipcode">Zip Code</label>
+        <input asp-for="@Model.Zipcode" />
+        <span asp-validation-for="@Model.Zipcode" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.Country">Country</label>
+        <input asp-for="@Model.Country" />
+        <span asp-validation-for="@Model.Country" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.CountryCode">Country Code</label>
+        <input asp-for="@Model.CountryCode" />
+        <span asp-validation-for="@Model.CountryCode" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.Birthday">(Optional) Birthday</label>
+        <input asp-for="@Model.Birthday" />
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.NationalId">(Optional) National Id</label>
+        <input asp-for="@Model.NationalId" />
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.Telephonecountrycode">(Optional) Telephone country code</label>
+        <input asp-for="@Model.Telephonecountrycode" />
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.Telephonenumber">(Optional) Telephone Number</label>
+        <input asp-for="@Model.Telephonenumber" />
+        </div>
+        <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.Emailaddress">(Optional) Email Address</label>
+        <input asp-for="@Model.Emailaddress" />
+        </div>
+        <input class="custom-btn custom-border-btn btn" type="submit" value="Create" />
+</form>
