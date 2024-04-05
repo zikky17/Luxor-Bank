@@ -20,5 +20,7 @@ namespace ServiceLibrary.Interfaces
 
         public void CreateCustomer(Customer customer);
 
+        public void UpdateCustomer(Customer customer);  
+
     }
 }

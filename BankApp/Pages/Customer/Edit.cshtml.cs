@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BankApp.Pages.Customer
 {
+    [BindProperties]
     public class EditModel : PageModel
     {
         public EditModel(ICustomerService service)
@@ -49,26 +50,47 @@ namespace BankApp.Pages.Customer
 
         public void OnGet(int customerId)
         {
-            //var customer = _customerService.GetCustomerDetails(customerId);
-            //Gender = customer.Gender;
-            //Givenname = customer.FirstName;
-            //Surname = customer.LastName;
-            //Streetaddress = customer.Address;
-            //City = customer.City;
-            //Zipcode = customer.ZipCode;
-            //Country = customer.Country;
-            //CountryCode = customer.CountryCode;
-            //Birthday = customer.Birthday;
-            //NationalId = customer.NationalId;
-            //Telephonecountrycode = customer.Telephonecountrycode;
-            //Telephonenumber = customer.Telephonenumber;
-            //Emailaddress = customer.Email;
+            var customer = _customerService.GetCustomerDetails(customerId).First();
+
+            Gender = customer.Gender;
+            Givenname = customer.FirstName;
+            Surname = customer.LastName;
+            Streetaddress = customer.Address;
+            City = customer.City;
+            Zipcode = customer.ZipCode;
+            Country = customer.Country;
+            CountryCode = customer.CountryCode;
+            Birthday = customer.Birthday;
+            NationalId = customer.NationalId;
+            Telephonecountrycode = customer.Telephonecountrycode;
+            Telephonenumber = customer.Telephonenumber;
+            Emailaddress = customer.Email;
 
         }
 
         public void OnPost()
         {
+            if(ModelState.IsValid)
+            {
+                var customer = new ServiceLibrary.Models.Customer
+                {
+                    Givenname = Givenname,
+                    Surname = Surname,
+                    Gender = Gender,
+                    Streetaddress = Streetaddress,
+                    City = City,
+                    Zipcode = Zipcode,
+                    Country = Country,
+                    CountryCode = CountryCode,
+                    Birthday = Birthday,
+                    NationalId = NationalId,
+                    Telephonecountrycode = Telephonecountrycode,
+                    Telephonenumber = Telephonenumber,
+                    Emailaddress = Emailaddress,
+                };
 
+                _customerService.UpdateCustomer(customer);
+            }
         
         }
 

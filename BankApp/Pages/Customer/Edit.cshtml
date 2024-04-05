@@ -4,7 +4,7 @@
 }
 
 
-<h1 class="margin-class">Edit</h1>
+<h1 class="margin-class">Edit @Model.Givenname @Model.Surname</h1>
 <hr class="primary-color" />
 
 <form method="post">
@@ -73,5 +73,5 @@
         <label class="primary-color input-style" asp-for="@Model.Emailaddress">Email Address</label>
         <input placeholder="(Optional)" asp-for="@Model.Emailaddress" />
     </div>
-    <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Create" />
+    <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Update" />
 </form>

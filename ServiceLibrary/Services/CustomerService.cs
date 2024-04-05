@@ -158,5 +158,11 @@ namespace ServiceLibrary.Services
             _context.Dispositions.Add(newDisposition);
             _context.SaveChanges();
         }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+        }
     }
 }
