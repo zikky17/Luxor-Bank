@@ -36,6 +36,8 @@ namespace BankApp.Pages
         [StringLength(100)]
         public string Comment { get; set; }
 
+        public StatusMessage DepositResult { get; set; }
+
 
 
 
@@ -47,26 +49,29 @@ namespace BankApp.Pages
 
         public IActionResult OnPost()
         {
-            var depositResult = _accountService.Deposit(DepositAmount, AccountId, Comment);
 
             if (ModelState.IsValid)
-            {     
+            {
+                var depositResult = _accountService.Deposit(DepositAmount, AccountId, Comment);
+
                 if (depositResult == StatusMessage.Approved)
                 {
+                    DepositResult = depositResult;
                     return RedirectToPage("Index");
+                }
+
+                if (depositResult == StatusMessage.MessageRequired)
+                {
+                    ModelState.AddModelError("Comment", "Please enter a comment for this deposit.");
+                }
+
+                if (depositResult == StatusMessage.IncorrectAmount)
+                {
+                    ModelState.AddModelError("DepositAmount", "Please enter a correct amount between 100 - 10.000");
+
                 }
             }
 
-            if (depositResult == StatusMessage.MessageRequired)
-            {
-                ModelState.AddModelError("Comment", "Please enter a comment for this deposit.");
-            }
-
-            if (depositResult == StatusMessage.IncorrectAmount)
-            {
-                ModelState.AddModelError("DepositAmount", "Please enter a correct amount between 100 - 10.000");
-
-            }
 
             return Page();
         }

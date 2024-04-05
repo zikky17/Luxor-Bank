@@ -3,22 +3,29 @@
 @{
 }
 
-<div>
-    <h1 class="margin-class">Withdraw</h1>
-
-    <form method="post">
-        <h4 class="top-text">Choose account:</h4>
-        <select asp-for="AccountId">
+<h1 class="margin-class">Withdraw</h1>
+<hr class="primary-color" />
+<form method="post">
+    <dt class="col-sm-4 primary-color">Balance:</dt>
+    <dd class="col-sm-8 personal-text">@Model.TotalBalance $</dd>
+    <hr />
+    <div class="flex-item">
+        <h5 class="header-quote">Choose account:</h5>
+        <select class="small-margin" asp-for="AccountId">
             @foreach (var acc in Model.Accounts)
             {
                 <option value="@acc.AccountId">@acc.AccountId</option>
             }
         </select>
-        <h4 class="top-text">Amount to withdraw: </h4>
+    </div>
+    <div class="form-group">
+        <label class="primary-color deposit-input" asp-for="WithdrawAmount">Amount</label>
         <input asp-for="WithdrawAmount" />
-        <input class="custom-btn custom-border-btn btn" type="submit" value="Withdraw" />
-    </form>
-</div>
+        <span asp-validation-for="WithdrawAmount" class="text-danger"></span>
+    </div>
+    <a class="custom-btn custom-border-btn btn mt-5" onclick="window.history.back()">Back</a>
+    <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Withdraw" />
+</form>
 
 <div id="depositSuccessModal" class="modal">
     <div class="modal-content">
@@ -26,3 +33,5 @@
         <p>Withdraw is successful</p>
     </div>
 </div>
+
+

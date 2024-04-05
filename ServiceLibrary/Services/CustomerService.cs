@@ -2,9 +2,12 @@
 using BankWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using ServiceLibrary.Interfaces;
+using ServiceLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ServiceLibrary.Services
 {
@@ -108,6 +111,38 @@ namespace ServiceLibrary.Services
                 .Sum();
 
             return (customers, accounts, totalBalance);
+        }
+
+        public void CreateCustomer(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            CreateAccount(customer.CustomerId);
+        }
+
+        public void CreateAccount(int customerId)
+        {
+            var newAccount = new Account
+            {
+                Frequency = "Monthly",
+                Created = DateOnly.FromDateTime(DateTime.Now)
+            };
+            _context.Accounts.Add(newAccount);
+            _context.SaveChanges();
+            CreateDisposition(customerId, newAccount.AccountId);
+        }
+
+        public void CreateDisposition(int customerId, int accountId)
+        {
+            var newDisposition = new Disposition
+            {
+                CustomerId = customerId,
+                AccountId = accountId,
+                Type = "Owner"
+            };
+
+            _context.Dispositions.Add(newDisposition);
+            _context.SaveChanges();
         }
     }
 }

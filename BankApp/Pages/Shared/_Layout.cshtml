@@ -75,28 +75,21 @@
             <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
                 <nav>
                     <ul>
+
                         <li class="nav-item burger-item">
-                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                <button type="submit" class="custom-btn custom-border-btn btn">My Accounts</button>
-                            </form>
+                            <a asp-page="/Customer/Create" class="custom-btn custom-border-btn btn">Create new customer</a>
                         </li>
 
                         <li class="nav-item burger-item">
-                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                <button type="submit" class="custom-btn custom-border-btn btn">Withdraw</button>
-                            </form>
+                            <a asp-page="/Customer/Index" class="custom-btn custom-border-btn btn">Show All Customers</a>
                         </li>
 
                         <li class="nav-item burger-item">
-                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                <button type="submit" class="custom-btn custom-border-btn btn">Deposit</button>
-                            </form>
+                            <a asp-page="/Customer/Index" class="custom-btn custom-border-btn btn">Make a deposit</a>
                         </li>
 
                         <li class="nav-item burger-item">
-                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                <button type="submit" class="custom-btn custom-border-btn btn">Transfer</button>
-                            </form>
+                            <a asp-page="/Customer/Index" class="custom-btn custom-border-btn btn">Make a withdraw</a>
                         </li>
 
                         <li class="nav-item burger-item">
