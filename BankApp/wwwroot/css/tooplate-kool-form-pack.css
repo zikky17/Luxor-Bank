@@ -799,3 +799,7 @@ modal {
 .small-margin {
     margin-left: 10px;
 }
+
+.personal-text {
+    color: green !important;
+}
