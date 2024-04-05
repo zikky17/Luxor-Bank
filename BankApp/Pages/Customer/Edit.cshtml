@@ -1,9 +1,10 @@
-﻿@* @page
-@model BankApp.Pages.Customer.UpdateModel
+﻿@page
+@model BankApp.Pages.Customer.EditModel
 @{
 }
 
-<h1 class="margin-class">Edit @Model.Givenname @Model.Surname</h1>
+
+<h1 class="margin-class">Edit</h1>
 <hr class="primary-color" />
 
 <form method="post">
@@ -73,4 +74,4 @@
         <input placeholder="(Optional)" asp-for="@Model.Emailaddress" />
     </div>
     <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Create" />
-</form> *@
+</form>

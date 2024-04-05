@@ -1,17 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Models;
-using ServiceLibrary.Services;
 using System.ComponentModel.DataAnnotations;
 
 namespace BankApp.Pages.Customer
 {
-    [BindProperties]
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
-
-        public CreateModel(ICustomerService service)
+        public EditModel(ICustomerService service)
         {
             _customerService = service;
         }
@@ -51,34 +47,29 @@ namespace BankApp.Pages.Customer
 
         public string? Emailaddress { get; set; }
 
-        public void OnGet()
+        public void OnGet(int customerId)
         {
-          
+            //var customer = _customerService.GetCustomerDetails(customerId);
+            //Gender = customer.Gender;
+            //Givenname = customer.FirstName;
+            //Surname = customer.LastName;
+            //Streetaddress = customer.Address;
+            //City = customer.City;
+            //Zipcode = customer.ZipCode;
+            //Country = customer.Country;
+            //CountryCode = customer.CountryCode;
+            //Birthday = customer.Birthday;
+            //NationalId = customer.NationalId;
+            //Telephonecountrycode = customer.Telephonecountrycode;
+            //Telephonenumber = customer.Telephonenumber;
+            //Emailaddress = customer.Email;
+
         }
 
         public void OnPost()
         {
-            if (ModelState.IsValid)
-            {
-                var customer = new ServiceLibrary.Models.Customer
-                {
-                    Givenname = Givenname,
-                    Surname = Surname,
-                    Gender = Gender,
-                    Streetaddress = Streetaddress,
-                    City = City,
-                    Zipcode = Zipcode,
-                    Country = Country,
-                    CountryCode = CountryCode,
-                    Birthday = Birthday,
-                    NationalId = NationalId,
-                    Telephonecountrycode = Telephonecountrycode,
-                    Telephonenumber = Telephonenumber,
-                    Emailaddress = Emailaddress,
-                };
 
-                _customerService.CreateCustomer(customer);
-            }
+        
         }
 
     }

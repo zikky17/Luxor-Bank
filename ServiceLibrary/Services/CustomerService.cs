@@ -1,6 +1,7 @@
 ﻿using BankApp.ViewModels;
 using BankWeb.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using ServiceLibrary.Interfaces;
 using ServiceLibrary.Models;
 using System;
@@ -81,36 +82,49 @@ namespace ServiceLibrary.Services
             return query.ToList();
         }
 
-        public (List<CustomerViewModel>, List<AccountViewModel>, decimal) GetCustomerDetails(int customerId)
+        public List<CustomerViewModel> GetCustomerDetails(int customerId)
         {
-            var customers = _context.Customers
+            var customer = _context.Customers
                 .Where(c => c.CustomerId == customerId)
                 .Select(c => new CustomerViewModel
                 {
                     CustomerId = c.CustomerId,
                     FirstName = c.Givenname,
                     LastName = c.Surname,
+                    Gender = c.Gender,
                     Address = c.Streetaddress,
                     City = c.City,
                     ZipCode = c.Zipcode,
                     Country = c.Country,
+                    CountryCode = c.CountryCode,
                     Birthday = c.Birthday,
+                    Telephonecountrycode = c.Telephonecountrycode,
+                    Telephonenumber = c.Telephonenumber,
                     Email = c.Emailaddress
                 }).ToList();
 
+            return customer;
+        }
+
+        public List<AccountViewModel> GetAccountInfo(int customerId)
+        {
             var accounts = _context.Dispositions
-                .Where(d => d.CustomerId == customerId)
-                .Select(d => new AccountViewModel
-                {
-                    AccountId = d.AccountId
-                }).ToList();
+              .Where(d => d.CustomerId == customerId)
+              .Select(d => new AccountViewModel
+              {
+                  AccountId = d.AccountId
+              }).ToList();
+            return accounts;
+        }
+
+        public decimal GetBalance(int customerId)
+        {
 
             var totalBalance = _context.Dispositions
                 .Where(d => d.CustomerId == customerId)
                 .Select(d => d.Account.Balance)
                 .Sum();
-
-            return (customers, accounts, totalBalance);
+            return totalBalance;
         }
 
         public void CreateCustomer(Customer customer)
