@@ -20,12 +20,26 @@
             }
         </select>
     </div>
-
+    <br />
+    <br />
+    <br />
     <div id="customerSelection">
         <h5 class="header-quote">Find customer to transfer to:</h5>
         <input asp-for="@Model.Q" />
         <input type="hidden" asp-for="@Model.CustomerId" />
         <input class="custom-btn custom-border-btn btn" type="button" value="Search" id="searchBtn" />
+
+        <div id="customerInfo">
+            <h2 class="header-quote">Transfer to @Model.SelectedFirstName @Model.SelectedLastName</h2>
+            <div class="form-group" id="transferAmount">
+                <label class="primary-color deposit-input" asp-for="TransferAmount">Amount to transfer</label>
+                <input asp-for="TransferAmount" />
+                <span asp-validation-for="TransferAmount" class="text-danger"></span>
+            </div>
+
+            <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Transfer" />
+            <a class="custom-btn custom-border-btn btn mt-5" onclick="window.history.back()">Back</a>
+        </div>
 
         <table class="table customers-table">
             <thead>
@@ -43,66 +57,34 @@
                         <td>@customer.CustomerId</td>
                         <td>@customer.FirstName</td>
                         <td>@customer.LastName</td>
-                        <td><button type="button" class="custom-btn custom-border-btn select-customer" data-customer-id="@customer.CustomerId" data-customer-firstname="@customer.FirstName" data-customer-lastname="@customer.LastName">Select</button></td>
+                        <td>
+                            <form method="post">
+                            <a type="submit" class="custom-btn custom-border-btn select-customer"
+                               asp-page="/Account/Transfer"
+                               asp-route-selectedId="@customer.CustomerId"
+                               asp-route-selectedFirstname="@customer.FirstName"
+                               asp-route-SelectedLastname="@customer.LastName"
+                               asp-route-customerId="@Model.CustomerId"
+                               asp-route-accountId="@Model.AccountId">
+                                Select
+                            </a>
+                            </form>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 
-    <div id="customerInfo" style="display: none;">
-        <h2>Selected Customer Information</h2>
-        <p id="customerName"></p>
-        <h3>Customer Accounts</h3>
-        <ul id="customerAccounts"></ul>
-    </div>
 
-    <div class="form-group" id="transferAmount" style="display: none;">
-        <label class="primary-color deposit-input" asp-for="TransferAmount">Amount to transfer</label>
-        <input asp-for="TransferAmount" />
-        <span asp-validation-for="TransferAmount" class="text-danger"></span>
-    </div>
 
-    <a class="custom-btn custom-border-btn btn mt-5" onclick="goBack()">Back</a>
-    <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Transfer" id="withdrawBtn" style="display: none;" />
+
+
 </form>
 
 <div id="depositSuccessModal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <p>Withdraw is successful</p>
+        <p>Transfer is successful</p>
     </div>
 </div>
-
-<script>
-    document.getElementById('accountSelection').addEventListener('change', function () {
-        document.getElementById('customerSelection').style.display = 'block';
-        document.getElementById('accountSelection').style.display = 'none';
-    });
-
-    document.getElementById('searchBtn').addEventListener('click', function () {
-        document.getElementById('customerSelection').style.display = 'block';
-        document.getElementById('accountSelection').style.display = 'none';
-    });
-
-    var goBack = function () {
-        document.getElementById('customerSelection').style.display = 'none';
-        document.getElementById('accountSelection').style.display = 'block';
-        document.getElementById('transferAmount').style.display = 'none';
-        document.getElementById('withdrawBtn').style.display = 'none';
-        document.getElementById('customerInfo').style.display = 'none';
-    }
-
-    document.querySelectorAll('.select-customer').forEach(item => {
-        item.addEventListener('click', event => {
-            var customerId = item.getAttribute('data-customer-id');
-            var customerFirstName = item.getAttribute('data-customer-firstname');
-            var customerLastName = item.getAttribute('data-customer-lastname');
-
-            document.getElementById('customerName').innerText = "Name: " + customerFirstName + " " + customerLastName;
-
-            document.getElementById('customerInfo').style.display = 'block';
-            document.getElementById('customerSelection').style.display = 'none';
-        });
-    });
-</script>

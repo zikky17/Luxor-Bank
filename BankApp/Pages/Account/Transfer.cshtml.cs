@@ -36,9 +36,16 @@ namespace BankApp.Pages.Account
         public int PageSize { get; set; } = 50;
         public int TotalPages { get; set; }
 
+        public int SelectedId { get; set; }
+        public string SelectedFirstName { get; set; }
+        public string SelectedLastName { get; set; }
 
-        public void OnGet(int customerId, int accountId, string sortColumn, string sortOrder, int pageNumber, string q, string firstName, string lastName)
+
+        public void OnGet(int customerId, int accountId, string sortColumn, string sortOrder, int pageNumber, 
+            string q, string firstName, string lastName, int selectedId, string selectedFirstname, string selectedLastName)
         {
+            CustomerId = customerId;
+            AccountId = accountId;
             Accounts = _customerService.GetAccountInfo(customerId);
             TotalBalance = _customerService.GetBalance(customerId);
             AccountId = accountId;
@@ -48,6 +55,10 @@ namespace BankApp.Pages.Account
             CurrentPage = pageNumber;
             FirstName = firstName;
             LastName = lastName;
+            SelectedId = selectedId;
+            SelectedFirstName = selectedFirstname;
+            SelectedLastName = selectedLastName;
+
 
             if (CurrentPage < 1)
             {
