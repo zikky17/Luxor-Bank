@@ -39,6 +39,7 @@ namespace BankApp.Pages.Account
         public int SelectedId { get; set; }
         public string SelectedFirstName { get; set; }
         public string SelectedLastName { get; set; }
+        public List<AccountViewModel> SelectedAccount { get; set; }
 
 
         public void OnGet(int customerId, int accountId, string sortColumn, string sortOrder, int pageNumber, 
@@ -58,7 +59,7 @@ namespace BankApp.Pages.Account
             SelectedId = selectedId;
             SelectedFirstName = selectedFirstname;
             SelectedLastName = selectedLastName;
-
+            SelectedAccount = _accountService.GetAccountInfo(selectedId);
 
             if (CurrentPage < 1)
             {

@@ -31,6 +31,13 @@
 
         <div id="customerInfo">
             <h2 class="header-quote">Transfer to @Model.SelectedFirstName @Model.SelectedLastName</h2>
+            <h2 class="header-quote">Selected Account for Transfer</h2>
+            <select class="small-margin" asp-for="AccountId">
+                @foreach (var acc in Model.SelectedAccount)
+                {
+                    <option value="@acc.AccountId">@acc.AccountId</option>
+                }
+            </select>
             <div class="form-group" id="transferAmount">
                 <label class="primary-color deposit-input" asp-for="TransferAmount">Amount to transfer</label>
                 <input asp-for="TransferAmount" />
