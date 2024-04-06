@@ -29,7 +29,10 @@
                    asp-route-customerId="@Model.CustomerId"
                    asp-route-accountId="@acc.AccountId"
                    asp-page="/Account/Withdraw">Withdraw</a>
-                <a class="custom-btn custom-border-btn btn account-button">Transfer</a>
+                <a class="custom-btn custom-border-btn btn account-button"
+                   asp-route-customerId="@Model.CustomerId"
+                   asp-route-accountId="@acc.AccountId"
+                   asp-page="/Account/Transfer">Transfer</a>
             </div>
         </div>
 
