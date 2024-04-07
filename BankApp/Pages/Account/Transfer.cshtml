@@ -24,24 +24,32 @@
     <br />
     <br />
     <div id="customerSelection">
-        <h5 class="header-quote">Find customer to transfer to:</h5>
+        @*    <h5 class="header-quote">Find customer to transfer to:</h5>
         <input asp-for="@Model.Q" />
         <input type="hidden" asp-for="@Model.CustomerId" />
-        <input class="custom-btn custom-border-btn btn" type="button" value="Search" id="searchBtn" />
+        <input class="custom-btn custom-border-btn btn" type="button" value="Search" id="searchBtn" /> *@
 
         <div id="customerInfo">
             <h2 class="header-quote">Transfer to @Model.SelectedFirstName @Model.SelectedLastName</h2>
-            <h2 class="header-quote">Selected Account for Transfer</h2>
-            <select class="small-margin" asp-for="AccountId">
-                @foreach (var acc in Model.SelectedAccount)
-                {
-                    <option value="@acc.AccountId">@acc.AccountId</option>
-                }
-            </select>
-            <div class="form-group" id="transferAmount">
-                <label class="primary-color deposit-input" asp-for="TransferAmount">Amount to transfer</label>
+            <hr class="primary-color"/>
+            <div class="flex-item">
+                <h4 class="header-quote">Selected Account for Transfer</h4>
+                <select class="small-margin" asp-for="AccountId">
+                    @foreach (var acc in Model.SelectedAccount)
+                    {
+                        <option value="@acc.AccountId">@acc.AccountId</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group mt-4" id="transferAmount">
+                <label class="primary-color input-style" asp-for="TransferAmount">Amount</label>
                 <input asp-for="TransferAmount" />
                 <span asp-validation-for="TransferAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <label class="primary-color input-style" asp-for="Comment">Comment</label>
+                <input asp-for="Comment" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
             </div>
 
             <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Transfer" />
@@ -66,15 +74,15 @@
                         <td>@customer.LastName</td>
                         <td>
                             <form method="post">
-                            <a type="submit" class="custom-btn custom-border-btn select-customer"
-                               asp-page="/Account/Transfer"
-                               asp-route-selectedId="@customer.CustomerId"
-                               asp-route-selectedFirstname="@customer.FirstName"
-                               asp-route-SelectedLastname="@customer.LastName"
-                               asp-route-customerId="@Model.CustomerId"
-                               asp-route-accountId="@Model.AccountId">
-                                Select
-                            </a>
+                                <a type="submit" class="custom-btn custom-border-btn select-customer"
+                                   asp-page="/Account/Transfer"
+                                   asp-route-selectedId="@customer.CustomerId"
+                                   asp-route-selectedFirstname="@customer.FirstName"
+                                   asp-route-SelectedLastname="@customer.LastName"
+                                   asp-route-customerId="@Model.CustomerId"
+                                   asp-route-accountId="@Model.AccountId">
+                                    Select
+                                </a>
                             </form>
                         </td>
                     </tr>

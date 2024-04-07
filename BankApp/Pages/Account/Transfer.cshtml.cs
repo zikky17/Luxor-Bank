@@ -1,8 +1,11 @@
+using Azure;
 using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using ServiceLibrary.Interfaces;
+using ServiceLibrary.Models;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing.Printing;
 
 namespace BankApp.Pages.Account
@@ -36,14 +39,18 @@ namespace BankApp.Pages.Account
         public int PageSize { get; set; } = 50;
         public int TotalPages { get; set; }
 
+        [Required]
+        [StringLength(100)]
+        public string Comment { get; set; }
+
         public int SelectedId { get; set; }
         public string SelectedFirstName { get; set; }
         public string SelectedLastName { get; set; }
         public List<AccountViewModel> SelectedAccount { get; set; }
 
 
-        public void OnGet(int customerId, int accountId, string sortColumn, string sortOrder, int pageNumber, 
-            string q, string firstName, string lastName, int selectedId, string selectedFirstname, string selectedLastName)
+        public void OnGet(int customerId, int accountId, string sortColumn, string sortOrder, int pageNumber,
+           string q, string firstName, string lastName, int selectedId, string selectedFirstname, string selectedLastName)
         {
             CustomerId = customerId;
             AccountId = accountId;
@@ -59,7 +66,8 @@ namespace BankApp.Pages.Account
             SelectedId = selectedId;
             SelectedFirstName = selectedFirstname;
             SelectedLastName = selectedLastName;
-            SelectedAccount = _accountService.GetAccountInfo(selectedId);
+
+            SelectedAccount = _customerService.GetAccountInfo(selectedId);
 
             if (CurrentPage < 1)
             {
@@ -71,9 +79,30 @@ namespace BankApp.Pages.Account
             TotalPages = totalCustomersCount == 0 ? 1 : (int)Math.Ceiling((double)totalCustomersCount / PageSize);
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
+            if (ModelState.IsValid)
+            {
+                var selectedAccount = _customerService.GetAccountInfo(SelectedId);
 
+                var withdrawTransaction = new Transaction
+                {
+                    AccountId = AccountId,
+                    Date = DateOnly.FromDateTime(DateTime.Now),
+                    Type = "Credit",
+                    Operation = Comment,
+                    Amount = TransferAmount
+                };
+
+                var withdraw = _accountService.Withdraw(withdrawTransaction, AccountId);
+
+                AccountId = selectedAccount.First().AccountId;
+
+                var deposit = _accountService.Deposit(TransferAmount, AccountId, Comment);
+            }
+
+            return RedirectToPage("/Transfer");
         }
+
     }
 }
