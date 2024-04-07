@@ -12,9 +12,15 @@ namespace ServiceLibrary.Interfaces
     {
         List<CustomerViewModel> GetAllCustomers(string sortColumn, string sortOrder, int pageSize, int pageNumber, string q, out int totalCustomersCount);
 
-        (List<CustomerViewModel>, List<AccountViewModel>, decimal) GetCustomerDetails(int customerId);
+        List<CustomerViewModel> GetCustomerDetails(int customerId);
+
+        public List<AccountViewModel> GetAccountInfo(int customerId);
+
+        public decimal GetBalance(int customerId);
 
         public void CreateCustomer(Customer customer);
+
+        public void UpdateCustomer(Customer customer);  
 
     }
 }

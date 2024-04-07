@@ -28,7 +28,10 @@ namespace BankApp.Pages.Customer
 
         public void OnGet(int customerId)
         {
-            (Customers, Accounts, TotalBalance) = _customerService.GetCustomerDetails(customerId);
+
+            Customers = _customerService.GetCustomerDetails(customerId);
+            Accounts = _customerService.GetAccountInfo(customerId);
+            TotalBalance = _customerService.GetBalance(customerId);
         }
     }
 }
