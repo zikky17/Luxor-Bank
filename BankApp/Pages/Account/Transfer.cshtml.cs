@@ -101,7 +101,7 @@ namespace BankApp.Pages.Account
                 var deposit = _accountService.Deposit(TransferAmount, AccountId, Comment);
             }
 
-            return RedirectToPage("/Transfer");
+            return RedirectToPage("Transfer");
         }
 
     }
