@@ -77,9 +77,11 @@
                                asp-page="/Account/Transfer"
                                asp-route-selectedId="@customer.CustomerId"
                                asp-route-selectedFirstname="@customer.FirstName"
-                               asp-route-SelectedLastname="@customer.LastName"
+                               asp-route-selectedLastname="@customer.LastName"
                                asp-route-customerId="@Model.CustomerId"
-                               asp-route-accountId="@Model.AccountId">
+                               asp-route-accountId="@Model.AccountId"
+                               asp-route-firstName="@Model.FirstName"
+                               asp-route-lastName="@Model.LastName">
                                 Select
                             </a>
                         </td>

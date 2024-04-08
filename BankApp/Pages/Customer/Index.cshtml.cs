@@ -40,7 +40,7 @@ namespace BankApp.Pages.Customer
                 CurrentPage = 1;
             }
 
-            Customers = _customerService.GetAllCustomers(sortColumn, sortOrder, PageSize, CurrentPage, q, out int totalCustomersCount);
+            Customers = _customerService.GetAllCustomersSorted(sortColumn, sortOrder, PageSize, CurrentPage, q, out int totalCustomersCount);
 
             TotalPages = totalCustomersCount == 0 ? 1 : (int)Math.Ceiling((double)totalCustomersCount / PageSize);
         }

@@ -21,7 +21,7 @@ namespace ServiceLibrary.Services
             _context = context;
         }
 
-        public List<CustomerViewModel> GetAllCustomers(string sortColumn, string sortOrder, int pageSize, int pageNumber, string q, out int totalCustomersCount)
+        public List<CustomerViewModel> GetAllCustomersSorted(string sortColumn, string sortOrder, int pageSize, int pageNumber, string q, out int totalCustomersCount)
         {
             var query = _context.Customers.Select(c => new CustomerViewModel
             {
@@ -79,6 +79,17 @@ namespace ServiceLibrary.Services
             int skipAmount = (pageNumber - 1) * pageSize;
             query = query.Skip(skipAmount).Take(pageSize);
 
+            return query.ToList();
+        }
+
+        public List<CustomerViewModel> GetAllCustomers()
+        {
+            var query = _context.Customers.Select(c => new CustomerViewModel
+            {
+                CustomerId = c.CustomerId,
+                FirstName = c.Givenname,
+                LastName = c.Surname,
+            });
             return query.ToList();
         }
 
