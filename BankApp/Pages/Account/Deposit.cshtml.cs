@@ -47,18 +47,17 @@ namespace BankApp.Pages
             Accounts = _customerService.GetAccountInfo(customerId);
             TotalBalance = _customerService.GetBalance(customerId);
             AccountId = accountId;
+            DepositResult = StatusMessage.None;
         }
 
         public IActionResult OnPost()
         {
-
             if (ModelState.IsValid)
             {
                 var depositResult = _accountService.Deposit(DepositAmount, AccountId, Comment);
 
                 if (depositResult == StatusMessage.Approved)
                 {
-                    DepositResult = depositResult;
                     return RedirectToPage("Index");
                 }
 
@@ -69,11 +68,9 @@ namespace BankApp.Pages
 
                 if (depositResult == StatusMessage.IncorrectAmount)
                 {
-                    ModelState.AddModelError("DepositAmount", "Please enter a correct amount between 100 - 10.000");
-
+                    ModelState.AddModelError("DepositAmount", "Please enter a correct amount between 100 - 10,000");
                 }
             }
-
 
             return Page();
         }

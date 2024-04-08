@@ -13,6 +13,7 @@ namespace ServiceLibrary.Interfaces
 
     public enum StatusMessage
     {
+        None,
         Approved,
         TooLowBalance,
         IncorrectAmount,

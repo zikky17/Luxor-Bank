@@ -11,9 +11,9 @@ using System.Linq;
 
 namespace BankApp.Pages.Account
 {
-    public class AccountModel : PageModel
+    public class IndexModel : PageModel
     {
-        public AccountModel(IAccountService service)
+        public IndexModel(IAccountService service)
         {
             _accountService = service;
         }
