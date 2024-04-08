@@ -31,7 +31,7 @@
 
         <div id="customerInfo">
             <h2 class="header-quote">Transfer to @Model.SelectedFirstName @Model.SelectedLastName</h2>
-            <hr class="primary-color"/>
+            <hr class="primary-color" />
             <div class="flex-item">
                 <h4 class="header-quote">Selected Account for Transfer</h4>
                 <select class="small-margin" asp-for="AccountId">
@@ -73,17 +73,17 @@
                         <td>@customer.FirstName</td>
                         <td>@customer.LastName</td>
                         <td>
-                            <form method="post">
-                                <a type="submit" class="custom-btn custom-border-btn select-customer"
-                                   asp-page="/Account/Transfer"
-                                   asp-route-selectedId="@customer.CustomerId"
-                                   asp-route-selectedFirstname="@customer.FirstName"
-                                   asp-route-SelectedLastname="@customer.LastName"
-                                   asp-route-customerId="@Model.CustomerId"
-                                   asp-route-accountId="@Model.AccountId">
-                                    Select
-                                </a>
-                            </form>
+                            <a class="custom-btn custom-border-btn select-customer"
+                               asp-page="/Account/Transfer"
+                               asp-route-selectedId="@customer.CustomerId"
+                               asp-route-selectedFirstname="@customer.FirstName"
+                               asp-route-selectedLastname="@customer.LastName"
+                               asp-route-customerId="@Model.CustomerId"
+                               asp-route-accountId="@Model.AccountId"
+                               asp-route-firstName="@Model.FirstName"
+                               asp-route-lastName="@Model.LastName">
+                                Select
+                            </a>
                         </td>
                     </tr>
                 }

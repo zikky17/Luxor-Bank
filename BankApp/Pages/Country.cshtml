@@ -9,27 +9,25 @@
         <hr />
     </h1>
 
-    <table class="table custom-table">
-        <thead>
-            <tr class="index-headers-text">
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Assets</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var customer in Model.TopTenCustomers.Select((value, index) => new { Value = value, Rank = index + 1 }))
-            {
-                <tr>
-                    <td>@customer.Rank</td>
-                    <td>@customer.Value.Key</td>
-                    <td>@customer.Value.Value $</td>
+        <table class="table custom-table country-table">
+            <thead>
+                <tr class="index-headers-text">
+                    <th class="col">Rank</th>
+                    <th class="col">Name</th>
+                    <th class="col">Assets</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model.TopTenCustomers.Select((value, index) => new { Value = value, Rank = index + 1 }))
+                {
+                    <tr>
+                        <td class="col">@customer.Rank</td>
+                        <td class="col">@customer.Value.Key</td>
+                        <td class="col">@customer.Value.Value $</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-
-
-    <a class="custom-btn custom-border-btn btn" asp-page="/Index">Return</a>
+    <a class="custom-btn custom-border-btn btn" asp-page="/Index">Back</a>
 </div>

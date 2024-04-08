@@ -55,7 +55,7 @@ namespace BankApp.Pages.Account
             }
 
 
-            return RedirectToPage("Withdraw");
+            return RedirectToPage("Index");
         }
     }
 }

@@ -32,12 +32,6 @@ namespace BankApp.Pages.Account
         public string LastName { get; set; }
         public decimal TotalBalance { get; set; }
         public decimal TransferAmount { get; set; }
-        public string Q { get; set; }
-        public int CurrentPage { get; set; }
-        public string SortColumn { get; set; }
-        public string SortOrder { get; set; }
-        public int PageSize { get; set; } = 50;
-        public int TotalPages { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -47,20 +41,16 @@ namespace BankApp.Pages.Account
         public string SelectedFirstName { get; set; }
         public string SelectedLastName { get; set; }
         public List<AccountViewModel> SelectedAccount { get; set; }
+        public int TransferAccountId { get; set; }
 
 
-        public void OnGet(int customerId, int accountId, string sortColumn, string sortOrder, int pageNumber,
-           string q, string firstName, string lastName, int selectedId, string selectedFirstname, string selectedLastName)
+        public void OnGet(int customerId, int accountId, string firstName, string lastName, int selectedId, string selectedFirstname, string selectedLastName)
         {
             CustomerId = customerId;
             AccountId = accountId;
             Accounts = _customerService.GetAccountInfo(customerId);
             TotalBalance = _customerService.GetBalance(customerId);
             AccountId = accountId;
-            Q = q;
-            SortColumn = sortColumn;
-            SortOrder = sortOrder;
-            CurrentPage = pageNumber;
             FirstName = firstName;
             LastName = lastName;
             SelectedId = selectedId;
@@ -69,14 +59,8 @@ namespace BankApp.Pages.Account
 
             SelectedAccount = _customerService.GetAccountInfo(selectedId);
 
-            if (CurrentPage < 1)
-            {
-                CurrentPage = 1;
-            }
+            Customers = _customerService.GetAllCustomers();
 
-            Customers = _customerService.GetAllCustomers(sortColumn, sortOrder, PageSize, CurrentPage, q, out int totalCustomersCount);
-
-            TotalPages = totalCustomersCount == 0 ? 1 : (int)Math.Ceiling((double)totalCustomersCount / PageSize);
         }
 
         public IActionResult OnPost()
@@ -89,19 +73,19 @@ namespace BankApp.Pages.Account
                 {
                     AccountId = AccountId,
                     Date = DateOnly.FromDateTime(DateTime.Now),
-                    Type = "Credit",
+                    Type = "Debit",
                     Operation = Comment,
                     Amount = TransferAmount
                 };
 
                 var withdraw = _accountService.Withdraw(withdrawTransaction, AccountId);
 
-                AccountId = selectedAccount.First().AccountId;
+                TransferAccountId = selectedAccount.First().AccountId;
 
-                var deposit = _accountService.Deposit(TransferAmount, AccountId, Comment);
+                var deposit = _accountService.Deposit(TransferAmount, TransferAccountId, Comment);
             }
 
-            return RedirectToPage("/Transfer");
+            return RedirectToPage("Index");
         }
 
     }

@@ -1,6 +1,6 @@
 ﻿@page
 @using BankApp.ViewModels
-@model AccountModel
+@model IndexModel
 @{
 }
 
@@ -32,6 +32,8 @@
                 <a class="custom-btn custom-border-btn btn account-button"
                    asp-route-customerId="@Model.CustomerId"
                    asp-route-accountId="@acc.AccountId"
+                   asp-route-firstName="@Model.FirstName"
+                   asp-route-lastName="@Model.LastName"
                    asp-page="/Account/Transfer">Transfer</a>
             </div>
         </div>
