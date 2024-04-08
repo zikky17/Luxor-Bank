@@ -2,10 +2,12 @@ using BankApp.ViewModels;
 using BankWeb.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ServiceLibrary.Interfaces;
 using ServiceLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 
 namespace BankApp.Pages.Customer
 {
@@ -16,6 +18,7 @@ namespace BankApp.Pages.Customer
         public CustomersModel(ICustomerService customerService)
         {
             _customerService = customerService;
+            PageSize = 50;
         }
 
         public List<CustomerViewModel> Customers { get; set; }
@@ -26,10 +29,14 @@ namespace BankApp.Pages.Customer
         public string SortColumn { get; set; }
         public string SortOrder { get; set; }
         public string Q { get; set; }
-        public int PageSize { get; set; } = 50;
+        [BindProperty(SupportsGet = true)]
+        public int PageSize { get; set; }
+
+
 
         public void OnGet(string sortColumn, string sortOrder, int pageNumber, string q)
         {
+
             Q = q;
             SortColumn = sortColumn;
             SortOrder = sortOrder;
@@ -40,9 +47,15 @@ namespace BankApp.Pages.Customer
                 CurrentPage = 1;
             }
 
+            if (PageSize < 1)
+            {
+                PageSize = 50;
+            }
+
             Customers = _customerService.GetAllCustomersSorted(sortColumn, sortOrder, PageSize, CurrentPage, q, out int totalCustomersCount);
 
             TotalPages = totalCustomersCount == 0 ? 1 : (int)Math.Ceiling((double)totalCustomersCount / PageSize);
         }
+
     }
 }

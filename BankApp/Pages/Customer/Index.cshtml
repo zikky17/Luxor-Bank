@@ -12,7 +12,7 @@
 
     <form method="get" id="paginationForm">
         <label for="pagination">Showing</label>
-        <select name="pagination" id="paginationSelect">
+        <select asp-for="PageSize" id="paginationSelect" name="pagination" onchange="document.getElementById('paginationForm').submit();">
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
