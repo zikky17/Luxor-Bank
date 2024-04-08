@@ -49,7 +49,7 @@ namespace BankApp.Pages.Account
                     Amount = WithdrawAmount,
                 };
 
-                var withdrawResult = _accountService.Withdraw(transaction, AccountId);
+                var withdrawResult = _accountService.Withdraw(transaction);
 
               
             }

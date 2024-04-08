@@ -26,6 +26,6 @@ namespace ServiceLibrary.Interfaces
 
         StatusMessage Deposit(decimal amount, int accountId, string comment);
 
-        StatusMessage Withdraw(Transaction transaction, int accountId);
+        StatusMessage Withdraw(Transaction transaction);
     }
 }

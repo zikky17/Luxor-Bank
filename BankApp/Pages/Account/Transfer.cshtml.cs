@@ -50,7 +50,6 @@ namespace BankApp.Pages.Account
             AccountId = accountId;
             Accounts = _customerService.GetAccountInfo(customerId);
             TotalBalance = _customerService.GetBalance(customerId);
-            AccountId = accountId;
             FirstName = firstName;
             LastName = lastName;
             SelectedId = selectedId;
@@ -78,7 +77,7 @@ namespace BankApp.Pages.Account
                     Amount = TransferAmount
                 };
 
-                var withdraw = _accountService.Withdraw(withdrawTransaction, AccountId);
+                var withdraw = _accountService.Withdraw(withdrawTransaction);
 
                 TransferAccountId = selectedAccount.First().AccountId;
 

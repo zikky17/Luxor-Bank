@@ -76,9 +76,9 @@ namespace ServiceLibrary.Services
 
         }
 
-        public StatusMessage Withdraw(Transaction transaction, int accountId)
+        public StatusMessage Withdraw(Transaction transaction)
         {
-            var account = _context.Accounts.First(a => a.AccountId == accountId);
+            var account = _context.Accounts.First(a => a.AccountId == transaction.AccountId);
 
             if (account.Balance < transaction.Amount)
             {

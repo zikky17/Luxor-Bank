@@ -808,8 +808,20 @@ modal {
     width: 70%;
 }
 
-.country-table th,
-.country-table td {
+    .country-table th,
+    .country-table td {
         width: calc(100% / 3);
         text-align: center;
+    }
+
+.hover-effect {
+    transition: all 0.3s ease;
+}
+
+.hover-effect:hover {
+    transform: scale(1.1);
+}
+
+.customer-details-page {
+    margin-top: 100px;
 }
