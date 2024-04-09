@@ -1,14 +1,9 @@
 ﻿using BankApp.ViewModels;
 using BankWeb.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 using ServiceLibrary.Interfaces;
 using ServiceLibrary.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace ServiceLibrary.Services
 {
@@ -19,6 +14,35 @@ namespace ServiceLibrary.Services
         public CustomerService(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public Dictionary<string, int> GetCustomersPerCountry()
+        {
+            var query = _context.Customers
+                .GroupBy(c => c.Country)
+                .ToDictionary(g => g.Key, g => g.Count());
+            return query;
+        }
+
+        public Dictionary<string, int> GetAccountsPerCountry()
+        {
+            var query = _context.Accounts
+                .Where(a => a.AccountId != null)
+                .SelectMany(a => a.Dispositions)
+                .Select(d => new { d.AccountId, Country = d.Customer.Country })
+                .GroupBy(d => d.Country)
+                .ToDictionary(g => g.Key, g => g.Select(d => d.AccountId).Distinct().Count());
+            return query;
+        }
+
+        public Dictionary<string, decimal> GetBalancePerCountry()
+        {
+            var query = _context.Dispositions
+                .Include(d => d.Account)
+                .Where(d => d.Account.Balance > 0)
+                .GroupBy(d => d.Customer.Country)
+                .ToDictionary(g => g.Key, g => g.Sum(d => d.Account.Balance));
+            return query;
         }
 
         public List<CustomerViewModel> GetAllCustomersSorted(string sortColumn, string sortOrder, int pageSize, int pageNumber, string q, out int totalCustomersCount)

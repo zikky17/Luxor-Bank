@@ -10,6 +10,12 @@ namespace ServiceLibrary.Interfaces
 {
     public interface ICustomerService
     {
+        public Dictionary<string, int> GetCustomersPerCountry();
+
+        public Dictionary<string, int> GetAccountsPerCountry();
+
+            public Dictionary<string, decimal> GetBalancePerCountry();
+
         List<CustomerViewModel> GetAllCustomersSorted(string sortColumn, string sortOrder, int pageSize, int pageNumber, string q, out int totalCustomersCount);
 
         public List<CustomerViewModel> GetAllCustomers();

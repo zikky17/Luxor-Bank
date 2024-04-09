@@ -18,7 +18,6 @@ namespace BankApp.Pages.Customer
         public CustomersModel(ICustomerService customerService)
         {
             _customerService = customerService;
-            PageSize = 50;
         }
 
         public List<CustomerViewModel> Customers { get; set; }
@@ -29,13 +28,22 @@ namespace BankApp.Pages.Customer
         public string SortColumn { get; set; }
         public string SortOrder { get; set; }
         public string Q { get; set; }
-        [BindProperty(SupportsGet = true)]
+        [BindProperty]
         public int PageSize { get; set; }
 
 
 
-        public void OnGet(string sortColumn, string sortOrder, int pageNumber, string q)
+        public void OnGet(string sortColumn, string sortOrder, int pageNumber, string q, int pageSize)
         {
+            if (pageSize > 0)
+            {
+                PageSize = pageSize;
+
+            }
+            if (PageSize == 0)
+            {
+                PageSize = 50;
+            }
 
             Q = q;
             SortColumn = sortColumn;
@@ -46,7 +54,6 @@ namespace BankApp.Pages.Customer
             {
                 CurrentPage = 1;
             }
-            PageSize = PageSize < 0 ? PageSize : 50;
 
             Customers = _customerService.GetAllCustomersSorted(sortColumn, sortOrder, PageSize, CurrentPage, q, out int totalCustomersCount);
 

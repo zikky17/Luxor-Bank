@@ -691,7 +691,7 @@ strong {
 }
 
 .customers-table {
-    margin-top: 120px;
+    margin-top: 90px;
     background-color: rgba(0, 0, 0, 0.8);
     border-collapse: collapse;
 }
@@ -749,6 +749,7 @@ strong {
 .pagination-button {
     background-color: #E07A5F;
     color: black;
+    padding-top: 10px;
 }
 
 .customer-details-row {
