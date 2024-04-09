@@ -155,10 +155,10 @@ strong {
   CUSTOM BUTTON               
 -----------------------------------------*/
 .custom-btn {
-    background: rgba(246, 246, 246, 0.5);
+    background: #3FB32E;
     border: 2px solid transparent;
     border-radius: var(--border-radius-small);
-    color: var(--white-color);
+    color: rgb(246, 246, 246);
     font-size: var(--btn-font-size);
     font-weight: var(--font-weight-medium);
     line-height: normal;
@@ -173,7 +173,7 @@ strong {
 
 .custom-border-btn {
     border: 1px solid var(--secondary-color);
-    color: rgba(246, 246, 246, 0.5) !important;
+    color: rgb(246, 246, 246) !important;
 }
 
     .custom-border-btn:hover {
@@ -489,6 +489,10 @@ strong {
     vertical-align: top;
 }
 
+.white-text {
+    color: rgb(246, 246, 246);
+}
+
 .social-icon-link {
     border-radius: var(--border-radius-large);
     color: var(--white-color);
@@ -622,6 +626,7 @@ strong {
 
 .account-button {
     margin-top: -5px;
+    width: 140px;
 }
 
 .account-menu {
@@ -745,16 +750,23 @@ strong {
     margin-left: 30px;
 }
 
-.pagination-button {
+.next-button {
     background-color: #E07A5F;
     color: black;
-    padding-top: 15px;
+    margin-right: 28px;
+    padding-top: 8px;
+}
+
+.previous-button {
+    background-color: #E07A5F;
+    color: black;
+    padding-top: 8px;
 }
 
 .customer-details-row {
     background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 20px;
-    padding: 20px;
+    padding-top: 5px;
+    padding: 20px 50px 20px 20px;
 }
 
 modal {
@@ -828,4 +840,32 @@ modal {
 
 .readonly-input {
     background-color: #989a9e !important;
+}
+
+.search-input {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    padding: 6px; 
+}
+
+.search-input:focus {
+    border-color: #85b7d9;
+    box-shadow: 0 0 5px rgba(133, 183, 217, 0.5);
+}
+
+.margin-left-20 {
+    margin-left: 20px !important;
+}
+
+#pagination-select {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+#pagination-select:focus {
+    border-color: #85b7d9;
+    box-shadow: 0 0 5px rgba(133, 183, 217, 0.5);
 }
