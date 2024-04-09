@@ -20,22 +20,22 @@ namespace BankApp.Pages.Customer
 
         public string Gender { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Enter a name between 2 - 50 characters.")]
         public string Givenname { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Enter a name between 2 - 50 characters.")]
         public string Surname { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Enter an address between 2 - 50 characters.")]
         public string Streetaddress { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Enter a city between 2 - 50 characters.")]
         public string City { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
+        [StringLength(10, MinimumLength = 2, ErrorMessage = "Enter a ZIP code between 2 - 10 characters.")]
         public string Zipcode { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
+        [Required]
         public string Country { get; set; } = null!;
 
         [StringLength(2)]
@@ -56,7 +56,7 @@ namespace BankApp.Pages.Customer
           
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,10 @@ namespace BankApp.Pages.Customer
                 };
 
                 _customerService.CreateCustomer(customer);
+                return RedirectToPage("Index");
             }
+
+            return Page();
         }
 
     }

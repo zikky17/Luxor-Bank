@@ -18,14 +18,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var customer in Model.TopTenCustomers.Select((value, index) => new { Value = value, Rank = index + 1 }))
-                {
-                    <tr>
-                        <td class="col">@customer.Rank</td>
-                        <td class="col">@customer.Value.Key</td>
-                        <td class="col">@customer.Value.Value $</td>
-                    </tr>
-                }
+            @foreach (var customer in Model.TopTenCustomers.Select((value, index) => new { Value = value, Rank = index + 1 }))
+            {
+                <tr>
+                    <td class="col">@customer.Rank</td>
+                    <td class="col">@customer.Value.FullName</td>
+                    <td class="col">@customer.Value.Balance $</td>
+                    <td><a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.Value.CustomerId" class="custom-btn custom-border-btn">View</a></td>
+                </tr>
+            }
             </tbody>
         </table>
 

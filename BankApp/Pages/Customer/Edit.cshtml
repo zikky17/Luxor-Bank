@@ -45,7 +45,13 @@
     </div>
     <div class="form-group">
         <label class="primary-color input-style" asp-for="@Model.Country">Country</label>
-        <input asp-for="@Model.Country" />
+        <select asp-for="@Model.Country">
+            <option value="" selected disabled>Choose one</option>
+            <option value="Sweden">Sweden</option>
+            <option value="Finland">Finland</option>
+            <option value="Norway">Norway</option>
+            <option value="Denmark">Denmark</option>
+        </select>
         <span asp-validation-for="@Model.Country" class="text-danger"></span>
     </div>
     <div class="form-group">

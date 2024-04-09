@@ -29,6 +29,8 @@ namespace BankApp.Pages
 
         public int AccountId { get; set; }
 
+        public int CustomerId { get; set; }
+
         [Range(100, 10000)]
         public decimal DepositAmount { get; set; }
 
@@ -39,10 +41,9 @@ namespace BankApp.Pages
         public StatusMessage DepositResult { get; set; }
 
 
-
-
         public void OnGet(int customerId, int accountId)
         {
+            CustomerId = customerId;
             Customers = _customerService.GetCustomerDetails(customerId);
             Accounts = _customerService.GetAccountInfo(customerId);
             TotalBalance = _customerService.GetBalance(customerId);
@@ -71,7 +72,7 @@ namespace BankApp.Pages
                     ModelState.AddModelError("DepositAmount", "Please enter a correct amount between 100 - 10,000");
                 }
             }
-
+            TotalBalance = _customerService.GetBalance(CustomerId);
             return Page();
         }
     }

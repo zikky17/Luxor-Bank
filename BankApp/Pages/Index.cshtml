@@ -25,7 +25,7 @@
                 <td>@(Model.AccountsPerCountry.ContainsKey(country.Key) ? Model.AccountsPerCountry[country.Key] : 0)</td>
                 <td>@(Model.BalancePerCountry.ContainsKey(country.Key) ? Model.BalancePerCountry[country.Key] : 0)</td>
                 <td>
-                    <a class="view-country" asp-page="/Country" asp-route-country="@country.Key">View</a>
+                    <a class="custom-btn custom-border-btn" asp-page="/Country" asp-route-country="@country.Key">View</a>
                 </td>
             </tr>
     </div>

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ServiceLibrary.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BankApp.Pages
 {
@@ -10,14 +12,13 @@ namespace BankApp.Pages
     {
         private readonly ApplicationDbContext _context;
 
-        public CountryModel (ApplicationDbContext context)
+        public CountryModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public string Country { get; set; }
-        public Dictionary<string, decimal> TopTenCustomers { get; set; }
-
+        public List<(string FullName, decimal Balance, int CustomerId)> TopTenCustomers { get; set; }
 
         public IActionResult OnGet(string country)
         {
@@ -35,10 +36,11 @@ namespace BankApp.Pages
                 .ToList();
 
             TopTenCustomers = dispositions
-                .GroupBy(d => new { d.Customer.Givenname, d.Customer.Surname })
+                .GroupBy(d => new { d.Customer.Givenname, d.Customer.Surname, d.CustomerId })
                 .OrderByDescending(g => g.Sum(d => d.Account.Balance))
                 .Take(10)
-                .ToDictionary(g => $"{g.Key.Givenname} {g.Key.Surname}", g => g.Sum(d => d.Account.Balance));
+                .Select(g => (FullName: $"{g.Key.Givenname} {g.Key.Surname}", Balance: g.Sum(d => d.Account.Balance), CustomerId: g.Key.CustomerId))
+                .ToList();
 
             return Page();
         }

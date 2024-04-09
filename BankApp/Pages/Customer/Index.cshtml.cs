@@ -46,11 +46,7 @@ namespace BankApp.Pages.Customer
             {
                 CurrentPage = 1;
             }
-
-            if (PageSize < 1)
-            {
-                PageSize = 50;
-            }
+            PageSize = PageSize < 0 ? PageSize : 50;
 
             Customers = _customerService.GetAllCustomersSorted(sortColumn, sortOrder, PageSize, CurrentPage, q, out int totalCustomersCount);
 

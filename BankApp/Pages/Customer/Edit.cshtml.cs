@@ -68,7 +68,7 @@ namespace BankApp.Pages.Customer
 
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             if(ModelState.IsValid)
             {
@@ -90,8 +90,9 @@ namespace BankApp.Pages.Customer
                 };
 
                 _customerService.UpdateCustomer(customer);
+                return RedirectToPage("Index");
             }
-        
+            return Page();
         }
 
     }
