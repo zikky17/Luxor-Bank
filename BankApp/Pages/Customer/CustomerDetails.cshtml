@@ -47,19 +47,26 @@
                             @foreach (var account in Model.Accounts)
                             {
                                 <span>@account.AccountId</span> <br />
-                                <a class="account-button custom-btn custom-border-btn btn" 
-                                asp-page="/Account/Index" 
-                                asp-route-customerId="@c.CustomerId"
-                                asp-route-accountId="@account.AccountId"
-                                asp-route-firstName="@c.FirstName"
-                                asp-route-lastName="@c.LastName">View Account</a>
-                            }                        
-                   </dd>
+                                <a class="account-button custom-btn custom-border-btn btn"
+                                   asp-page="/Account/Index"
+                                   asp-route-customerId="@c.CustomerId"
+                                   asp-route-accountId="@account.AccountId"
+                                   asp-route-firstName="@c.FirstName"
+                                   asp-route-lastName="@c.LastName">
+                                   View Account
+                               </a>
+                            }
+                             <a class="account-button custom-btn custom-border-btn btn"
+                               asp-page="/Account/NewAccount">
+                               New Account
+                           </a>
+                            </div>
+                    </dd>
                     <dt class="col-sm-4">Total Balance:</dt>
                     <dd class="col-sm-8">@Model.TotalBalance</dd>
-
+                    <hr />
                     <div>
                         <a class="custom-btn custom-border-btn btn" onclick="window.history.back()">Back</a>
-                        <a class="custom-btn custom-border-btn btn" asp-page="/Customer/Edit" asp-route-customerId="@c.CustomerId" >Edit</a>
+                        <a class="custom-btn custom-border-btn btn ml-2" asp-page="/Customer/Edit" asp-route-customerId="@c.CustomerId">Edit</a>
                     </div>
                 }

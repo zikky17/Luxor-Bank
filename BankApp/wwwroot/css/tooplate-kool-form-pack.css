@@ -155,7 +155,7 @@ strong {
   CUSTOM BUTTON               
 -----------------------------------------*/
 .custom-btn {
-    background: rgba(31, 154, 12, 0.5);
+    background: rgba(246, 246, 246, 0.5);
     border: 2px solid transparent;
     border-radius: var(--border-radius-small);
     color: var(--white-color);
@@ -172,9 +172,8 @@ strong {
     }
 
 .custom-border-btn {
-    /*background: transparent;*/
     border: 1px solid var(--secondary-color);
-    color: lightgreen;
+    color: rgba(246, 246, 246, 0.5) !important;
 }
 
     .custom-border-btn:hover {
@@ -749,7 +748,7 @@ strong {
 .pagination-button {
     background-color: #E07A5F;
     color: black;
-    padding-top: 10px;
+    padding-top: 15px;
 }
 
 .customer-details-row {
