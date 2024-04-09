@@ -166,16 +166,18 @@ namespace ServiceLibrary.Services
         {
             _context.Customers.Add(customer);
             _context.SaveChanges();
-            CreateAccount(customer.CustomerId);
-        }
 
-        public void CreateAccount(int customerId)
-        {
             var newAccount = new Account
             {
-                Frequency = "Monthly",
+                Frequency = "After Transaction",
                 Created = DateOnly.FromDateTime(DateTime.Now)
             };
+            CreateAccount(customer.CustomerId, newAccount);
+        }
+
+        public void CreateAccount(int customerId, Account newAccount)
+        {
+           
             _context.Accounts.Add(newAccount);
             _context.SaveChanges();
             CreateDisposition(customerId, newAccount.AccountId);

@@ -28,6 +28,8 @@ namespace ServiceLibrary.Interfaces
 
         public void CreateCustomer(Customer customer);
 
+        public void CreateAccount(int customerId, Account newAccount);
+
         public void UpdateCustomer(Customer customer);  
 
     }

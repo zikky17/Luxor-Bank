@@ -2,3 +2,27 @@
 @model BankApp.Pages.Account.NewAccountModel
 @{
 }
+
+<h1 class="margin-class">Create new Account</h1>
+<hr class="primary-color" />
+
+
+<form method="post">
+    <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.Frequency">Frequency</label>
+        <select asp-for="@Model.Frequency">
+            <option value="" selected disabled>Choose one</option>
+            <option value="After Transaction">After Transaction</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Weekly">Weekly</option>
+        </select>
+        <span asp-validation-for="@Model.Frequency" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="primary-color input-style" asp-for="@Model.Balance">Initial deposit</label>
+        <input asp-for="@Model.Balance" />
+        <span asp-validation-for="@Model.Balance" class="text-danger"></span>
+    </div>
+    <a class="custom-btn custom-border-btn btn mt-5" onclick="window.history.back()">Back</a>
+    <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Create" />
+    </form>
