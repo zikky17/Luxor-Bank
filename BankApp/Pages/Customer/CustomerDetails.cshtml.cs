@@ -25,7 +25,6 @@ namespace BankApp.Pages.Customer
         public List<AccountViewModel> Accounts { get; set; }
         public decimal TotalBalance { get; set; }
 
-
         public void OnGet(int customerId)
         {
 

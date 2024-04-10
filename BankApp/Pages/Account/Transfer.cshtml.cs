@@ -38,13 +38,11 @@ namespace BankApp.Pages.Account
         public string Comment { get; set; }
 
         public int SelectedId { get; set; }
-        public string SelectedFirstName { get; set; }
-        public string SelectedLastName { get; set; }
         public List<AccountViewModel> SelectedAccount { get; set; }
         public int TransferAccountId { get; set; }
 
 
-        public void OnGet(int customerId, int accountId, string firstName, string lastName, int selectedId, string selectedFirstname, string selectedLastName, decimal accountBalance)
+        public void OnGet(int customerId, int accountId, string firstName, string lastName, int selectedId, decimal accountBalance)
         {
             CustomerId = customerId;
             AccountId = accountId;
@@ -53,8 +51,6 @@ namespace BankApp.Pages.Account
             FirstName = firstName;
             LastName = lastName;
             SelectedId = selectedId;
-            SelectedFirstName = selectedFirstname;
-            SelectedLastName = selectedLastName;
 
             SelectedAccount = _customerService.GetAccountInfo(selectedId);
 
@@ -66,7 +62,6 @@ namespace BankApp.Pages.Account
         {
             if (ModelState.IsValid)
             {
-                var selectedAccount = _customerService.GetAccountInfo(SelectedId);
 
                 var withdrawTransaction = new Transaction
                 {
@@ -78,8 +73,6 @@ namespace BankApp.Pages.Account
                 };
 
                 var withdraw = _accountService.Withdraw(withdrawTransaction);
-
-                TransferAccountId = selectedAccount.First().AccountId;
 
                 var deposit = _accountService.Deposit(TransferAmount, TransferAccountId, Comment);
             }

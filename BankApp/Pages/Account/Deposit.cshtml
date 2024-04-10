@@ -10,13 +10,8 @@
     <dd class="col-sm-8 personal-text">@Model.AccountBalance</dd>
     <hr />
     <div class="flex-item">
-        <h5 class="header-quote">Choose account:</h5>
-        <select class="small-margin" asp-for="AccountId">
-            @foreach (var acc in Model.Accounts)
-            {
-                <option value="@acc.AccountId">@acc.AccountId</option>
-            }
-        </select>
+        <h4 class="header-quote">Account:</h4>
+        <h6 class="primary-color margin-left-20 mt-1">@Model.AccountId</h6>
     </div>
     <div class="form-group">
         <label class="primary-color input-style" asp-for="DepositAmount">Amount</label>
