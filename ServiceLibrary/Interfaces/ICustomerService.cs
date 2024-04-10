@@ -24,7 +24,9 @@ namespace ServiceLibrary.Interfaces
 
         public List<AccountViewModel> GetAccountInfo(int customerId);
 
-        public decimal GetBalance(int customerId);
+        public decimal GetTotalBalance(int customerId);
+
+        public decimal GetBalance(int accountId);
 
         public void CreateCustomer(Customer customer);
 

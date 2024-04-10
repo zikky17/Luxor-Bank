@@ -8,38 +8,20 @@
 
 <form method="post">
     <dt class="col-sm-4 primary-color">Balance:</dt>
-    <dd class="col-sm-8 personal-text">@Model.TotalBalance $</dd>
+    <dd class="col-sm-8 personal-text">@Model.AccountBalance</dd>
     <hr />
 
     <div class="flex-item" id="accountSelection">
-        <h5 class="header-quote">Choose account to transfer from:</h5>
-        <select class="small-margin" asp-for="AccountId">
-            @foreach (var acc in Model.Accounts)
-            {
-                <option value="@acc.AccountId">@acc.AccountId</option>
-            }
-        </select>
+        <h4 class="header-quote">From account:</h4>
+        <input type="hidden" asp-for="AccountId" />
+        <span>@Model.AccountId</span>
     </div>
-    <br />
-    <br />
-    <br />
     <div id="customerSelection">
-        @*    <h5 class="header-quote">Find customer to transfer to:</h5>
-        <input asp-for="@Model.Q" />
-        <input type="hidden" asp-for="@Model.CustomerId" />
-        <input class="custom-btn custom-border-btn btn" type="button" value="Search" id="searchBtn" /> *@
-
         <div id="customerInfo">
-            <h2 class="header-quote">Transfer to @Model.SelectedFirstName @Model.SelectedLastName</h2>
-            <hr class="primary-color" />
-            <div class="flex-item">
-                <h4 class="header-quote">Selected Account for Transfer</h4>
-                <select class="small-margin" asp-for="AccountId">
-                    @foreach (var acc in Model.SelectedAccount)
-                    {
-                        <option value="@acc.AccountId">@acc.AccountId</option>
-                    }
-                </select>
+            <div class="form-group mt-4" id="transferAmount">
+                <label class="primary-color input-style" asp-for="TransferAccountId">Receiver</label>
+                <input asp-for="TransferAccountId" placeholder="Enter an Account Id" />
+                <span asp-validation-for="TransferAccountId" class="text-danger"></span>
             </div>
             <div class="form-group mt-4" id="transferAmount">
                 <label class="primary-color input-style" asp-for="TransferAmount">Amount</label>
@@ -55,51 +37,5 @@
             <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Transfer" />
             <a class="custom-btn custom-border-btn btn mt-5" onclick="window.history.back()">Back</a>
         </div>
-
-        <table class="table customers-table">
-            <thead>
-                <tr>
-                    <th class="index-headers-text" scope="col">Id</th>
-                    <th class="index-headers-text" scope="col">First Name</th>
-                    <th class="index-headers-text" scope="col">Last Name</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var customer in Model.Customers)
-                {
-                    <tr class="primary-color">
-                        <td>@customer.CustomerId</td>
-                        <td>@customer.FirstName</td>
-                        <td>@customer.LastName</td>
-                        <td>
-                            <a class="custom-btn custom-border-btn select-customer"
-                               asp-page="/Account/Transfer"
-                               asp-route-selectedId="@customer.CustomerId"
-                               asp-route-selectedFirstname="@customer.FirstName"
-                               asp-route-selectedLastname="@customer.LastName"
-                               asp-route-customerId="@Model.CustomerId"
-                               asp-route-accountId="@Model.AccountId"
-                               asp-route-firstName="@Model.FirstName"
-                               asp-route-lastName="@Model.LastName">
-                                Select
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
     </div>
-
-
-
-
-
 </form>
-
-<div id="depositSuccessModal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>Transfer is successful</p>
-    </div>
-</div>

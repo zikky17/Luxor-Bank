@@ -152,12 +152,22 @@ namespace ServiceLibrary.Services
             return accounts;
         }
 
-        public decimal GetBalance(int customerId)
+        public decimal GetTotalBalance(int customerId)
         {
-
             var totalBalance = _context.Dispositions
                 .Where(d => d.CustomerId == customerId)
                 .Select(d => d.Account.Balance)
+                .Sum();
+            return totalBalance;
+        }
+
+
+        public decimal GetBalance(int accountId)
+        {
+
+            var totalBalance = _context.Accounts
+                .Where(a => a.AccountId == accountId)
+                .Select(a => a.Balance)
                 .Sum();
             return totalBalance;
         }

@@ -13,7 +13,7 @@ namespace BankApp.Pages.Account
 
         public List<AccountViewModel> Accounts { get; set; }
 
-        public decimal TotalBalance { get; set; }
+        public decimal AccountBalance { get; set; }
 
         public int AccountId { get; set; }
 
@@ -28,11 +28,11 @@ namespace BankApp.Pages.Account
             _customerService = customerService;
         }
 
-        public void OnGet(int customerId, int accountId)
+        public void OnGet(int customerId, int accountId, decimal accountBalance)
         {
             Customers = _customerService.GetCustomerDetails(customerId);
             Accounts = _customerService.GetAccountInfo(customerId);
-            TotalBalance = _customerService.GetBalance(customerId);
+            AccountBalance = _customerService.GetBalance(accountId);
             AccountId = accountId;
         }
 
@@ -50,7 +50,7 @@ namespace BankApp.Pages.Account
                 };
 
                 var withdrawResult = _accountService.Withdraw(transaction);
-                return RedirectToPage("/Account/Index");
+                return RedirectToPage("Index");
 
 
             }
