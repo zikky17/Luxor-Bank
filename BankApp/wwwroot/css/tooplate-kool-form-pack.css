@@ -626,7 +626,7 @@ strong {
 
 .account-button {
     margin-top: -5px;
-    width: 140px;
+    width: 160px;
 }
 
 .account-menu {
@@ -868,4 +868,8 @@ modal {
 #pagination-select:focus {
     border-color: #85b7d9;
     box-shadow: 0 0 5px rgba(133, 183, 217, 0.5);
+}
+
+.back-button {
+    background-color: #85b7d9;
 }
