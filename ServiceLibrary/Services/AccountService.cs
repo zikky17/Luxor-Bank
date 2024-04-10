@@ -98,6 +98,39 @@ namespace ServiceLibrary.Services
 
             return StatusMessage.Approved;
         }
+
+        public void CreateAccount(int customerId, Account newAccount)
+        {
+
+            _context.Accounts.Add(newAccount);
+            _context.SaveChanges();
+            CreateDisposition(customerId, newAccount.AccountId);
+        }
+
+        public void CreateDisposition(int customerId, int accountId)
+        {
+            var newDisposition = new Disposition
+            {
+                CustomerId = customerId,
+                AccountId = accountId,
+                Type = "Owner"
+            };
+
+            _context.Dispositions.Add(newDisposition);
+            _context.SaveChanges();
+        }
+
+        public void DeleteAccount(int accountId)
+        {
+            var account = _context.Accounts.Where(a => a.AccountId == accountId).First();
+            var disposition = _context.Dispositions.Where(d => d.AccountId == accountId).First();
+            var transactions = _context.Transactions.Where(t => t.AccountId == accountId).First();
+
+            _context.Transactions.Remove(transactions);
+            _context.Dispositions.Remove(disposition);
+            _context.Accounts.Remove(account);
+            _context.SaveChanges();
+        }
     }
 }
 

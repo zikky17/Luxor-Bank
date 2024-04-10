@@ -81,7 +81,9 @@
                     <div class="col-sm-4 mt-3">
                         <a class="account-button custom-btn custom-border-btn btn"
                            asp-page="/Account/NewAccount"
-                           asp-route-customerId="@c.CustomerId">
+                           asp-route-customerId="@c.CustomerId"
+                           asp-route-firstName="@c.FirstName"
+                           asp-route-lastName="@c.LastName">
                             New Account
                             <i class="bi bi-plus-circle ml-1"></i>
                         </a>

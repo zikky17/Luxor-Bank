@@ -14,7 +14,7 @@ namespace ServiceLibrary.Interfaces
 
         public Dictionary<string, int> GetAccountsPerCountry();
 
-            public Dictionary<string, decimal> GetBalancePerCountry();
+        public Dictionary<string, decimal> GetBalancePerCountry();
 
         List<CustomerViewModel> GetAllCustomersSorted(string sortColumn, string sortOrder, int pageSize, int pageNumber, string q, out int totalCustomersCount);
 
@@ -27,8 +27,6 @@ namespace ServiceLibrary.Interfaces
         public decimal GetBalance(int customerId);
 
         public void CreateCustomer(Customer customer);
-
-        public void CreateAccount(int customerId, Account newAccount);
 
         public void UpdateCustomer(Customer customer);  
 

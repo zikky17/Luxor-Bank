@@ -59,7 +59,7 @@ namespace BankApp.Pages
 
                 if (depositResult == StatusMessage.Approved)
                 {
-                    return RedirectToPage("Index");
+                    return RedirectToPage("/Account/Index");
                 }
 
                 if (depositResult == StatusMessage.MessageRequired)

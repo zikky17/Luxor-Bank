@@ -15,14 +15,16 @@ namespace BankApp.Pages.Account
     public class NewAccountModel : PageModel
     {
 
-        private readonly ICustomerService _customerService;
+        private readonly IAccountService _accountService;
 
-        public NewAccountModel(ICustomerService service)
+        public NewAccountModel(IAccountService service)
         {
-            _customerService = service;
+            _accountService = service;
         }
 
         public int CustomerId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public int AccountId { get; set; }
         [Required]
         public string Frequency { get; set; } = null!;
@@ -31,9 +33,11 @@ namespace BankApp.Pages.Account
         public ICollection<Transaction> Transactions { get; set; }
         public decimal Amount { get; set; }
 
-        public void OnGet(int customerId)
+        public void OnGet(int customerId, string firstName, string lastName)
         {
             CustomerId = customerId;
+            FirstName = firstName;
+            LastName = lastName;
         }
 
         public IActionResult OnPost()
@@ -47,13 +51,13 @@ namespace BankApp.Pages.Account
                     Created = DateOnly.FromDateTime(DateTime.Now),
                 };
 
-                _customerService.CreateAccount(CustomerId, account);
-             
-                return RedirectToPage("Index");
+                _accountService.CreateAccount(CustomerId, account);
+
+
+                return RedirectToPage("/Customer/CustomerDetails", new { customerId = CustomerId, firstName = FirstName, lastName = LastName });
             }
 
             return Page();
         }
-
     }
 }

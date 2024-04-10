@@ -80,7 +80,19 @@
         </table>
         <div class="flex-item">
             <a class="custom-btn custom-border-btn btn back-button" onclick="window.history.back()">Back</a>
+            
             <button id="load-more-btn" class="custom-btn custom-border-btn btn">Load More</button>
+
+            <a class="custom-btn custom-border-btn btn delete-button"
+               asp-route-accountId="@acc.AccountId"
+               asp-route-customerId="@Model.CustomerId"
+               asp-route-firstName="@Model.FirstName"
+               asp-route-lastName="@Model.LastName"
+               asp-route-accountBalance="@acc.Balance"
+               asp-page="/Account/DeleteAccount">
+                Delete
+                <i class="bi bi-trash3"></i>
+            </a>
         </div>
     </div>
 }

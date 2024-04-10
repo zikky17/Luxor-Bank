@@ -167,33 +167,6 @@ namespace ServiceLibrary.Services
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
-            var newAccount = new Account
-            {
-                Frequency = "After Transaction",
-                Created = DateOnly.FromDateTime(DateTime.Now)
-            };
-            CreateAccount(customer.CustomerId, newAccount);
-        }
-
-        public void CreateAccount(int customerId, Account newAccount)
-        {
-           
-            _context.Accounts.Add(newAccount);
-            _context.SaveChanges();
-            CreateDisposition(customerId, newAccount.AccountId);
-        }
-
-        public void CreateDisposition(int customerId, int accountId)
-        {
-            var newDisposition = new Disposition
-            {
-                CustomerId = customerId,
-                AccountId = accountId,
-                Type = "Owner"
-            };
-
-            _context.Dispositions.Add(newDisposition);
-            _context.SaveChanges();
         }
 
         public void UpdateCustomer(Customer customer)
