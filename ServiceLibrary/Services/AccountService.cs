@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using ServiceLibrary.Interfaces;
 using ServiceLibrary.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Transaction = ServiceLibrary.Models.Transaction;
 
 namespace ServiceLibrary.Services
@@ -124,10 +125,13 @@ namespace ServiceLibrary.Services
         {
             var account = _context.Accounts.Where(a => a.AccountId == accountId).First();
             var disposition = _context.Dispositions.Where(d => d.AccountId == accountId).First();
-            var transactions = _context.Transactions.Where(t => t.AccountId == accountId).First();
 
-            _context.Transactions.Remove(transactions);
-            _context.Dispositions.Remove(disposition);
+            foreach(var transaction in _context.Transactions.Where(t => t.AccountId == accountId))
+            {
+                _context.Transactions.Remove(transaction);
+            }
+
+            _context.Dispositions.Remove(disposition);          
             _context.Accounts.Remove(account);
             _context.SaveChanges();
         }

@@ -30,7 +30,7 @@ namespace BankApp.Pages.Account
         public int AccountId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public decimal TotalBalance { get; set; }
+        public decimal AccountBalance { get; set; }
         public decimal TransferAmount { get; set; }
 
         [Required]
@@ -44,12 +44,12 @@ namespace BankApp.Pages.Account
         public int TransferAccountId { get; set; }
 
 
-        public void OnGet(int customerId, int accountId, string firstName, string lastName, int selectedId, string selectedFirstname, string selectedLastName)
+        public void OnGet(int customerId, int accountId, string firstName, string lastName, int selectedId, string selectedFirstname, string selectedLastName, decimal accountBalance)
         {
             CustomerId = customerId;
             AccountId = accountId;
             Accounts = _customerService.GetAccountInfo(customerId);
-            TotalBalance = _customerService.GetBalance(customerId);
+            AccountBalance = _customerService.GetBalance(accountId);
             FirstName = firstName;
             LastName = lastName;
             SelectedId = selectedId;

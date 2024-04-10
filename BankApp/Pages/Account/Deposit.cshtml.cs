@@ -25,7 +25,7 @@ namespace BankApp.Pages
 
         public List<AccountViewModel> Accounts { get; set; }
 
-        public decimal TotalBalance { get; set; }
+        public decimal AccountBalance { get; set; }
 
         public int AccountId { get; set; }
 
@@ -46,7 +46,7 @@ namespace BankApp.Pages
             CustomerId = customerId;
             Customers = _customerService.GetCustomerDetails(customerId);
             Accounts = _customerService.GetAccountInfo(customerId);
-            TotalBalance = _customerService.GetBalance(customerId);
+            AccountBalance = _customerService.GetBalance(accountId);
             AccountId = accountId;
             DepositResult = StatusMessage.None;
         }
@@ -59,7 +59,7 @@ namespace BankApp.Pages
 
                 if (depositResult == StatusMessage.Approved)
                 {
-                    return RedirectToPage("/Account/Index");
+                    return RedirectToPage("Index");
                 }
 
                 if (depositResult == StatusMessage.MessageRequired)
@@ -72,7 +72,8 @@ namespace BankApp.Pages
                     ModelState.AddModelError("DepositAmount", "Please enter a correct amount between 100 - 10,000");
                 }
             }
-            TotalBalance = _customerService.GetBalance(CustomerId);
+
+            AccountBalance = _customerService.GetBalance(AccountId);
             return Page();
         }
     }

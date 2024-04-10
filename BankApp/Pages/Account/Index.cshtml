@@ -1,6 +1,5 @@
 ﻿@page
-@using BankApp.ViewModels
-@model IndexModel
+@model BankApp.Pages.Account.IndexModel
 @{
 }
 
@@ -22,25 +21,31 @@
             </div>
             <div class="buttons">
                 <a class="custom-btn custom-border-btn btn account-button"
-                    asp-route-customerId="@Model.CustomerId" 
-                    asp-route-accountId="@acc.AccountId"
-                    asp-page="/Account/Deposit">Deposit
+                   asp-route-customerId="@Model.CustomerId"
+                   asp-route-accountId="@acc.AccountId"
+                   asp-page="/Account/Deposit">
+                    Deposit
                     <i class="bi bi-plus-circle ml-1"></i>
                 </a>
+
                 <a class="custom-btn custom-border-btn btn account-button"
                    asp-route-customerId="@Model.CustomerId"
                    asp-route-accountId="@acc.AccountId"
-                   asp-page="/Account/Withdraw">Withdraw
+                   asp-page="/Account/Withdraw">
+                    Withdraw
                     <i class="fa-light fa-money-simple-from-bracket"></i>
                 </a>
+
                 <a class="custom-btn custom-border-btn btn account-button"
                    asp-route-customerId="@Model.CustomerId"
                    asp-route-accountId="@acc.AccountId"
                    asp-route-firstName="@Model.FirstName"
                    asp-route-lastName="@Model.LastName"
-                   asp-page="/Account/Transfer">Transfer
+                   asp-page="/Account/Transfer">
+                    Transfer
                     <i class="fa-sharp fa-light fa-money-bill-transfer"></i>
                 </a>
+
             </div>
         </div>
 
@@ -80,19 +85,22 @@
         </table>
         <div class="flex-item">
             <a class="custom-btn custom-border-btn btn back-button" onclick="window.history.back()">Back</a>
-            
-            <button id="load-more-btn" class="custom-btn custom-border-btn btn">Load More</button>
 
-            <a class="custom-btn custom-border-btn btn delete-button"
-               asp-route-accountId="@acc.AccountId"
-               asp-route-customerId="@Model.CustomerId"
-               asp-route-firstName="@Model.FirstName"
-               asp-route-lastName="@Model.LastName"
-               asp-route-accountBalance="@acc.Balance"
-               asp-page="/Account/DeleteAccount">
-                Delete
-                <i class="bi bi-trash3"></i>
-            </a>
+            <button id="load-more-btn" class="custom-btn custom-border-btn btn">Load More</button>
+            <form method="post">
+                <input type="hidden" name="accountId" value="@acc.AccountId" />
+                <input type="hidden" name="customerId" value="@Model.CustomerId" />
+                <input type="hidden" name="firstName" value="@Model.FirstName" />
+                <input type="hidden" name="lastName" value="@Model.LastName" />
+                <input type="hidden" name="accountBalance" value="@acc.Balance" />
+
+                <button class="custom-btn custom-border-btn btn delete-button" type="submit">
+                    Delete
+                    <i class="bi bi-trash3"></i>
+                </button>
+                <span asp-validation-for="@acc.Balance" class="text-danger"></span>
+            </form>
+
         </div>
     </div>
 }

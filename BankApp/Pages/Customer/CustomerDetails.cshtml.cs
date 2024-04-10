@@ -31,7 +31,7 @@ namespace BankApp.Pages.Customer
 
             Customers = _customerService.GetCustomerDetails(customerId);
             Accounts = _customerService.GetAccountInfo(customerId);
-            TotalBalance = _customerService.GetBalance(customerId);
+            TotalBalance = _customerService.GetTotalBalance(customerId);
         }
     }
 }
