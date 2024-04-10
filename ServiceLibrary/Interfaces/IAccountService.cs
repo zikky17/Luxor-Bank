@@ -27,5 +27,11 @@ namespace ServiceLibrary.Interfaces
         StatusMessage Deposit(decimal amount, int accountId, string comment);
 
         StatusMessage Withdraw(Transaction transaction);
+
+        public void CreateAccount(int customerId, Account newAccount);
+
+        public void CreateDisposition(int customerId, int accountId);
+
+        public void DeleteAccount(int accountId);
     }
 }

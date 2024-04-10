@@ -4,6 +4,7 @@ using ServiceLibrary.Interfaces;
 using ServiceLibrary.Models;
 using ServiceLibrary.Services;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Principal;
 
 namespace BankApp.Pages.Customer
 {
@@ -11,12 +12,14 @@ namespace BankApp.Pages.Customer
     public class CreateModel : PageModel
     {
 
-        public CreateModel(ICustomerService service)
+        public CreateModel(ICustomerService service, IAccountService accountService)
         {
             _customerService = service;
+            _accountService = accountService;
         }
 
         private readonly ICustomerService _customerService;
+        private readonly IAccountService _accountService;
 
         public string Gender { get; set; } = null!;
 
@@ -78,6 +81,13 @@ namespace BankApp.Pages.Customer
                 };
 
                 _customerService.CreateCustomer(customer);
+                var newAccount = new ServiceLibrary.Models.Account
+                {
+                    Frequency = "AfterTransaction",
+                    Created = DateOnly.FromDateTime(DateTime.Now)
+                };
+                _accountService.CreateAccount(customer.CustomerId, newAccount);
+
                 return RedirectToPage("Index");
             }
 

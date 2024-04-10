@@ -14,7 +14,7 @@ namespace ServiceLibrary.Interfaces
 
         public Dictionary<string, int> GetAccountsPerCountry();
 
-            public Dictionary<string, decimal> GetBalancePerCountry();
+        public Dictionary<string, decimal> GetBalancePerCountry();
 
         List<CustomerViewModel> GetAllCustomersSorted(string sortColumn, string sortOrder, int pageSize, int pageNumber, string q, out int totalCustomersCount);
 

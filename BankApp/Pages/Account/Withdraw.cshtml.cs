@@ -50,9 +50,9 @@ namespace BankApp.Pages.Account
                 };
 
                 var withdrawResult = _accountService.Withdraw(transaction);
-                return RedirectToPage("Index");
+                return RedirectToPage("/Account/Index");
 
-              
+
             }
             return Page();
         }
