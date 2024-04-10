@@ -13,7 +13,7 @@
         <dd class="col-sm-8">@acc.AccountId</dd>
 
         <dt class="col-sm-4">Balance:</dt>
-        <dd class="col-sm-8 personal-text">@acc.Balance $</dd>
+        <dd class="col-sm-8 personal-text">@acc.Balance</dd>
         <hr />
 
         <div class="account-menu">
@@ -24,17 +24,23 @@
                 <a class="custom-btn custom-border-btn btn account-button"
                     asp-route-customerId="@Model.CustomerId" 
                     asp-route-accountId="@acc.AccountId"
-                    asp-page="/Account/Deposit">Deposit</a>
+                    asp-page="/Account/Deposit">Deposit
+                    <i class="bi bi-plus-circle ml-1"></i>
+                </a>
                 <a class="custom-btn custom-border-btn btn account-button"
                    asp-route-customerId="@Model.CustomerId"
                    asp-route-accountId="@acc.AccountId"
-                   asp-page="/Account/Withdraw">Withdraw</a>
+                   asp-page="/Account/Withdraw">Withdraw
+                    <i class="fa-light fa-money-simple-from-bracket"></i>
+                </a>
                 <a class="custom-btn custom-border-btn btn account-button"
                    asp-route-customerId="@Model.CustomerId"
                    asp-route-accountId="@acc.AccountId"
                    asp-route-firstName="@Model.FirstName"
                    asp-route-lastName="@Model.LastName"
-                   asp-page="/Account/Transfer">Transfer</a>
+                   asp-page="/Account/Transfer">Transfer
+                    <i class="fa-sharp fa-light fa-money-bill-transfer"></i>
+                </a>
             </div>
         </div>
 
