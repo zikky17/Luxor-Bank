@@ -87,6 +87,8 @@ namespace BankApp.Pages.Customer
                 };
                 _accountService.CreateAccount(customer.CustomerId, newAccount);
 
+                ViewData["Message"] = "Customer created successfully!";
+
                 return RedirectToPage("Index");
             }
 
