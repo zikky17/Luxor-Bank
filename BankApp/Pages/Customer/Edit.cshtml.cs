@@ -90,7 +90,8 @@ namespace BankApp.Pages.Customer
                 };
 
                 _customerService.UpdateCustomer(customer);
-                return RedirectToPage("Index");
+                ViewData["Message"] = "Customer updated successfully!";
+                return Page();
             }
             return Page();
         }

@@ -70,7 +70,7 @@
         <div>
             <div class="form-group">
                 <label class="primary-color input-style" asp-for="@Model.CountryCode">Country Code</label>
-                <input class="readonly-input" asp-for="@Model.CountryCode" readonly />
+                <input id="countryCode" class="readonly-input" asp-for="@Model.CountryCode" readonly />
                 <span asp-validation-for="@Model.CountryCode" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -83,7 +83,7 @@
             </div>
             <div class="form-group">
                 <label class="primary-color input-style" asp-for="@Model.Telephonecountrycode">Phone Country Code</label>
-                <input class="readonly-input" asp-for="@Model.Telephonecountrycode" readonly />
+                <input id="phoneCountryCode" class="readonly-input" asp-for="@Model.Telephonecountrycode" readonly />
             </div>
             <div class="form-group">
                 <label class="primary-color input-style" asp-for="@Model.Telephonenumber">Phone Number</label>
@@ -97,3 +97,35 @@
         </div>
     </div>
 </form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#Country').change(function () {
+                var selectedCountry = $(this).val();
+                switch (selectedCountry) {
+                    case "Sweden":
+                        $('#countryCode').val("SE");
+                        $('#phoneCountryCode').val("+46");
+                        break;
+                    case "Finland":
+                        $('#countryCode').val("FI");
+                        $('#phoneCountryCode').val("+358");
+                        break;
+                    case "Norway":
+                        $('#countryCode').val("NK");
+                        $('#phoneCountryCode').val("+47");
+                        break;
+                    case "Denmark":
+                        $('#countryCode').val("DK");
+                        $('#phoneCountryCode').val("+45");
+                        break;
+                    default:
+                        $('#countryCode').val("");
+                        $('#phoneCountryCode').val("");
+                        break;
+                }
+            });
+        });
+    </script>
+}

@@ -1,11 +1,19 @@
 ﻿@page
 @model BankApp.Pages.Customer.EditModel
 @{
+    var message = ViewData["Message"]?.ToString();
 }
 
 
 <h1 class="margin-class">Edit @Model.Givenname @Model.Surname</h1>
 <hr class="primary-color" />
+
+@if (!string.IsNullOrWhiteSpace(message))
+{
+    <div class="alert alert-warning" role="alert">
+        @message
+    </div>
+}
 
 <form method="post">
     <div class="form-style">
