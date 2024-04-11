@@ -20,7 +20,7 @@
         <span asp-validation-for="WithdrawAmount" class="text-danger"></span>
     </div>
     <div class="row">
-        <div class="mt-3 success-message">
+        <div class="mt-3">
             @if (!string.IsNullOrWhiteSpace(message))
             {
                 <div class="alert alert-warning success-message text-center" role="alert">
@@ -29,14 +29,14 @@
             }
             else
             {
-                <div class="alert alert-warning text-center invisible" role="alert" style="background-color: transparent; border: none;">
+                <div class="alert alert-warning text-center invisible" role="alert">
                     &nbsp;
                 </div>
             }
         </div>
 
     </div>
-    <a class="custom-btn custom-border-btn btn mt-3 back-button" asp-page="/Account/Index">Back</a>
+    <a class="custom-btn custom-border-btn btn mt-3 back-button" onclick="window.history.back()">Back</a>
     <input class="custom-btn custom-border-btn btn mt-3 button-margin" type="submit" value="Withdraw" />
 </form>
 

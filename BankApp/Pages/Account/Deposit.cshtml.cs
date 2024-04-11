@@ -58,7 +58,7 @@ namespace BankApp.Pages
 
                 if (depositResult == StatusMessage.Approved)
                 {
-                    ViewData["Message"] = "Deposit successful!";
+                    ViewData["Message"] = "Deposit was successful!";
                     AccountBalance = _customerService.GetBalance(AccountId);
                     return Page();
                 }

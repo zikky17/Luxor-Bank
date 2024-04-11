@@ -24,7 +24,7 @@
         <input asp-for="Comment" />
         <span asp-validation-for="Comment" class="text-danger"></span>
         <div class="row">
-            <div class="mt-3 success-message">
+            <div class="mt-3">
                 @if (!string.IsNullOrWhiteSpace(message))
                 {
                     <div class="alert alert-warning success-message text-center" role="alert">
@@ -33,7 +33,7 @@
                 }
                 else
                 {
-                    <div class="alert alert-warning text-center invisible" role="alert" style="background-color: transparent; border: none;">
+                    <div class="alert alert-warning text-center invisible" role="alert">
                         &nbsp;
                     </div>
                 }

@@ -50,7 +50,7 @@ namespace BankApp.Pages.Account
                 };
 
                 _accountService.Withdraw(transaction);
-                ViewData["Message"] = "Withdraw successful!";
+                ViewData["Message"] = "Withdraw was successful!";
                 AccountBalance = _customerService.GetBalance(AccountId);
                 return Page();
 

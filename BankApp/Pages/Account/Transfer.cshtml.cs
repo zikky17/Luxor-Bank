@@ -3,6 +3,7 @@ using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
 using System.ComponentModel.DataAnnotations;
@@ -75,9 +76,12 @@ namespace BankApp.Pages.Account
                 var withdraw = _accountService.Withdraw(withdrawTransaction);
 
                 var deposit = _accountService.Deposit(TransferAmount, TransferAccountId, Comment);
+                ViewData["Message"] = "Transfer was successful!";
+                AccountBalance = _customerService.GetBalance(AccountId);
+                return Page();
             }
 
-            return RedirectToPage("Index");
+            return Page();
         }
 
     }
