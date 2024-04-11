@@ -52,7 +52,7 @@ namespace ServiceLibrary.Services
             account.Balance += amount;
 
             var transaction = new Transaction
-            { 
+            {
                 AccountId = accountId,
                 Date = DateOnly.FromDateTime(DateTime.Now),
                 Type = "Credit",
@@ -117,16 +117,15 @@ namespace ServiceLibrary.Services
             var account = _context.Accounts.Where(a => a.AccountId == accountId).First();
             var disposition = _context.Dispositions.Where(d => d.AccountId == accountId).First();
 
-            foreach(var transaction in _context.Transactions.Where(t => t.AccountId == accountId))
+            foreach (var transaction in _context.Transactions.Where(t => t.AccountId == accountId))
             {
                 _context.Transactions.Remove(transaction);
             }
 
-            _context.Dispositions.Remove(disposition);          
+            _context.Dispositions.Remove(disposition);
             _context.Accounts.Remove(account);
             _context.SaveChanges();
         }
-
     }
 }
 

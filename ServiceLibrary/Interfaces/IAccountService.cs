@@ -33,5 +33,6 @@ namespace ServiceLibrary.Interfaces
         public void CreateDisposition(int customerId, int accountId);
 
         public void DeleteAccount(int accountId);
+
     }
 }

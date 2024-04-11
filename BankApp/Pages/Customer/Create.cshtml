@@ -7,77 +7,84 @@
 <hr class="primary-color" />
 
 <form method="post">
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Givenname">First Name</label>
-        <input asp-for="@Model.Givenname" />
-        <span asp-validation-for="@Model.Givenname" class="text-danger"></span>
+    <div class="form-style">
+        <div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Givenname">First Name</label>
+                <input asp-for="@Model.Givenname" />
+                <span asp-validation-for="@Model.Givenname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Surname">Last Name</label>
+                <input asp-for="@Model.Surname" />
+                <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Gender">Gender</label>
+                <select asp-for="@Model.Gender">
+                    <option value="" selected disabled>Choose one</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Not specified">Not specified</option>
+                </select>
+                <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Streetaddress">Address</label>
+                <input asp-for="@Model.Streetaddress" />
+                <span asp-validation-for="@Model.Streetaddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.City">City</label>
+                <input asp-for="@Model.City" />
+                <span asp-validation-for="@Model.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Zipcode">Zip Code</label>
+                <input asp-for="@Model.Zipcode" />
+                <span asp-validation-for="@Model.Zipcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Country">Country</label>
+                <select asp-for="@Model.Country">
+                    <option value="" selected disabled>Choose one</option>
+                    <option value="Sweden">Sweden</option>
+                    <option value="Finland">Finland</option>
+                    <option value="Norway">Norway</option>
+                    <option value="Denmark">Denmark</option>
+                </select>
+                <span asp-validation-for="@Model.Country" class="text-danger"></span>
+            </div>
+            <a class="custom-btn custom-border-btn btn back-button mt-2" onclick="window.history.back()">Back</a>
+            <input class="custom-btn custom-border-btn btn search-button mt-2" type="submit" value="Create" />
+        </div>
+        <div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.CountryCode">Country Code</label>
+                <input class="readonly-input" asp-for="@Model.CountryCode" readonly />
+                <span asp-validation-for="@Model.CountryCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Birthday">Birthday</label>
+                <input placeholder="(Optional)" asp-for="@Model.Birthday" />
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.NationalId">National Id</label>
+                <input placeholder="(Optional)" asp-for="@Model.NationalId" />
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Telephonecountrycode">Phone Country Code</label>
+                <input class="readonly-input" asp-for="@Model.Telephonecountrycode" readonly />
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Telephonenumber">Phone Number</label>
+                <input placeholder="(Optional)" asp-for="@Model.Telephonenumber" />
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Emailaddress">Email Address</label>
+                <input placeholder="(Optional)" asp-for="@Model.Emailaddress" />
+            </div>
+
+        </div>
     </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Surname">Last Name</label>
-        <input asp-for="@Model.Surname" />
-        <span asp-validation-for="@Model.Surname" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Gender">Gender</label>
-        <select asp-for="@Model.Gender">
-            <option value="" selected disabled>Choose one</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Not specified">Not specified</option>
-        </select>
-        <span asp-validation-for="@Model.Gender" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Streetaddress">Address</label>
-        <input asp-for="@Model.Streetaddress" />
-        <span asp-validation-for="@Model.Streetaddress" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.City">City</label>
-        <input asp-for="@Model.City" />
-        <span asp-validation-for="@Model.City" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Zipcode">Zip Code</label>
-        <input asp-for="@Model.Zipcode" />
-        <span asp-validation-for="@Model.Zipcode" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Country">Country</label>
-        <select asp-for="@Model.Country">
-            <option value="" selected disabled>Choose one</option>
-            <option value="Sweden">Sweden</option>
-            <option value="Finland">Finland</option>
-            <option value="Norway">Norway</option>
-            <option value="Denmark">Denmark</option>
-        </select>
-        <span asp-validation-for="@Model.Country" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.CountryCode">Country Code</label>
-        <input class="readonly-input" asp-for="@Model.CountryCode" readonly />
-        <span asp-validation-for="@Model.CountryCode" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Birthday">Birthday</label>
-        <input placeholder="(Optional)" asp-for="@Model.Birthday" />
-    </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.NationalId">National Id</label>
-        <input placeholder="(Optional)" asp-for="@Model.NationalId" />
-    </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Telephonecountrycode">Phone Country Code</label>
-        <input class="readonly-input" asp-for="@Model.Telephonecountrycode" readonly />
-    </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Telephonenumber">Phone Number</label>
-        <input placeholder="(Optional)" asp-for="@Model.Telephonenumber" />
-    </div>
-    <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Emailaddress">Email Address</label>
-        <input placeholder="(Optional)" asp-for="@Model.Emailaddress" />
-    </div>
-    <a class="custom-btn custom-border-btn btn mt-5" onclick="window.history.back()">Back</a>
-    <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Create" />
 </form>
