@@ -4,7 +4,6 @@ using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Models;
 using ServiceLibrary.Services;
 
 namespace BankApp.Pages

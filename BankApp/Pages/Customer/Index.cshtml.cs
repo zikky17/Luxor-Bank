@@ -1,10 +1,8 @@
 using BankApp.ViewModels;
-using BankWeb.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;

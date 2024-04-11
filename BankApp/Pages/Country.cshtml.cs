@@ -1,8 +1,7 @@
-using BankWeb.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ServiceLibrary.Models;
+using ServiceLibrary.Data;
 using System.Collections.Generic;
 using System.Linq;
 

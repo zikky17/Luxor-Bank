@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ServiceLibrary.Models;
 
-namespace BankWeb.Data;
+namespace ServiceLibrary.Data;
 
 public partial class ApplicationDbContext : IdentityDbContext
 {

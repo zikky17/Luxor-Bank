@@ -1,8 +1,8 @@
 using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Models;
 
 namespace BankApp.Pages.Account
 {

@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
-using BankApp.ViewModels;
-using BankWeb.Data;
+﻿using BankApp.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
+using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using Transaction = ServiceLibrary.Models.Transaction;
+using Transaction = ServiceLibrary.Data.Transaction;
 
 namespace ServiceLibrary.Services
 {
@@ -135,6 +126,7 @@ namespace ServiceLibrary.Services
             _context.Accounts.Remove(account);
             _context.SaveChanges();
         }
+
     }
 }
 

@@ -1,4 +1,4 @@
-﻿using ServiceLibrary.Models;
+﻿using ServiceLibrary.Data;
 
 namespace BankApp.ViewModels
 {

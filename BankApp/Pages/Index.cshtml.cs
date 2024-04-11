@@ -1,4 +1,3 @@
-using BankWeb.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;

@@ -1,8 +1,7 @@
 ﻿using BankApp.ViewModels;
-using BankWeb.Data;
 using Microsoft.EntityFrameworkCore;
+using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Models;
 
 
 namespace ServiceLibrary.Services

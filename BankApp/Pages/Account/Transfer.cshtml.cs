@@ -3,8 +3,8 @@ using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing.Printing;
 

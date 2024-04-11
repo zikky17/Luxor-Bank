@@ -1,11 +1,8 @@
-using BankApp.Data;
 using BankApp.ViewModels;
-using BankWeb.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Models;
 using System.Diagnostics.Metrics;
 using System.Net;
 using System.Reflection.Emit;

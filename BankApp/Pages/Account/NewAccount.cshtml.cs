@@ -1,8 +1,8 @@
 using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Models;
 using ServiceLibrary.Services;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.Metrics;
@@ -44,7 +44,7 @@ namespace BankApp.Pages.Account
         {
             if (ModelState.IsValid)
             {
-                var account = new ServiceLibrary.Models.Account
+                var account = new ServiceLibrary.Data.Account
                 {
                     Frequency = Frequency,
                     Balance = Balance,

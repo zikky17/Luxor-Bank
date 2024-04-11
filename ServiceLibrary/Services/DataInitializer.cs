@@ -1,7 +1,6 @@
-﻿using BankWeb.Data;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using ServiceLibrary.Models;
+using ServiceLibrary.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

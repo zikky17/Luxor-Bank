@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Models;
 using ServiceLibrary.Services;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Principal;
@@ -63,7 +62,7 @@ namespace BankApp.Pages.Customer
         {
             if (ModelState.IsValid)
             {
-                var customer = new ServiceLibrary.Models.Customer
+                var customer = new ServiceLibrary.Data.Customer
                 {
                     Givenname = Givenname,
                     Surname = Surname,
@@ -81,7 +80,7 @@ namespace BankApp.Pages.Customer
                 };
 
                 _customerService.CreateCustomer(customer);
-                var newAccount = new ServiceLibrary.Models.Account
+                var newAccount = new ServiceLibrary.Data.Account
                 {
                     Frequency = "AfterTransaction",
                     Created = DateOnly.FromDateTime(DateTime.Now)

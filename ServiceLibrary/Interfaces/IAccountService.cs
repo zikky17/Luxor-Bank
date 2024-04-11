@@ -1,12 +1,12 @@
 ﻿using BankApp.ViewModels;
-using ServiceLibrary.Models;
+using ServiceLibrary.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
-using Transaction = ServiceLibrary.Models.Transaction;
+using Transaction = ServiceLibrary.Data.Transaction;
 
 namespace ServiceLibrary.Interfaces
 {

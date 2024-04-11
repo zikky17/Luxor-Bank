@@ -72,7 +72,7 @@ namespace BankApp.Pages.Customer
         {
             if(ModelState.IsValid)
             {
-                var customer = new ServiceLibrary.Models.Customer
+                var customer = new ServiceLibrary.Data.Customer
                 {
                     Givenname = Givenname,
                     Surname = Surname,
