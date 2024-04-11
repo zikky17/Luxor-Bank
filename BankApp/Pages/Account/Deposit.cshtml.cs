@@ -58,7 +58,9 @@ namespace BankApp.Pages
 
                 if (depositResult == StatusMessage.Approved)
                 {
-                    return RedirectToPage("Index");
+                    ViewData["Message"] = "Deposit successful!";
+                    AccountBalance = _customerService.GetBalance(AccountId);
+                    return Page();
                 }
 
                 if (depositResult == StatusMessage.MessageRequired)

@@ -803,7 +803,7 @@ modal {
     }
 
 .input-style {
-    width: 140px;
+    width: 180px;
     margin-top: 20px;
 }
 
@@ -860,6 +860,7 @@ modal {
 .delete-button {
     width: 160px;
     background-color: red;
+    margin-left: 30px;
 }
 
 #pagination-select {
@@ -885,4 +886,23 @@ modal {
 
 .form-group {
     margin-bottom: 10px;
+}
+
+.delete-position {
+    margin-top: 30px;
+    margin-left: 200px;
+}
+
+.button-margin {
+    margin-left: 30px;
+}
+
+.input-style-account {
+    width: 120px;
+    margin-top: 20px;
+}
+
+.success-message {
+    background-color: rgba(0, 0, 0, 0.65) !important;
+    width: 300px;
 }

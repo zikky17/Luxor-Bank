@@ -86,8 +86,7 @@ namespace BankApp.Pages.Customer
                     Created = DateOnly.FromDateTime(DateTime.Now)
                 };
                 _accountService.CreateAccount(customer.CustomerId, newAccount);
-
-                ViewData["Message"] = "Customer created successfully!";
+                TempData["CustomerAddedSuccessfully"] = true;
 
                 return RedirectToPage("Index");
             }

@@ -49,8 +49,10 @@ namespace BankApp.Pages.Account
                     Amount = WithdrawAmount,
                 };
 
-                var withdrawResult = _accountService.Withdraw(transaction);
-                return RedirectToPage("Index");
+                _accountService.Withdraw(transaction);
+                ViewData["Message"] = "Withdraw successful!";
+                AccountBalance = _customerService.GetBalance(AccountId);
+                return Page();
 
 
             }

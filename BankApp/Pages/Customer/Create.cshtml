@@ -1,19 +1,22 @@
 ﻿@page
 @model BankApp.Pages.Customer.CreateModel
 @{
-    var message = ViewData["Message"]?.ToString();
+    bool customerAddedSuccessfully = TempData["CustomerAddedSuccessfully"] != null && (bool)TempData["CustomerAddedSuccessfully"];
+    @if (customerAddedSuccessfully)
+    {
+        <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Customer created successfully!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    }
 }
-
 
 <h1 class="margin-class">Create new Customer</h1>
 <hr class="primary-color" />
-
-@if (!string.IsNullOrWhiteSpace(message))
-{
-    <div class="alert alert-warning" role="alert">
-        @message
-    </div>
-}
 
 <form method="post">
     <div class="form-style">

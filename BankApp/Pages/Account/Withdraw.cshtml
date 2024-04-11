@@ -1,6 +1,7 @@
 ﻿@page
 @model WithdrawModel
 @{
+    var message = ViewData["Message"]?.ToString();
 }
 
 <h1 class="margin-class">Withdraw</h1>
@@ -14,19 +15,27 @@
         <h6 class="primary-color margin-left-20 mt-1">@Model.AccountId</h6>
     </div>
     <div class="form-group">
-        <label class="primary-color input-style" asp-for="WithdrawAmount">Amount</label>
+        <label class="primary-color input-style-account" asp-for="WithdrawAmount">Amount</label>
         <input asp-for="WithdrawAmount" />
         <span asp-validation-for="WithdrawAmount" class="text-danger"></span>
     </div>
-    <a class="custom-btn custom-border-btn btn mt-5" onclick="window.history.back()">Back</a>
-    <input class="custom-btn custom-border-btn btn mt-5" type="submit" value="Withdraw" />
-</form>
-
-<div id="depositSuccessModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>Withdraw is successful</p>
+    <div class="row">
+        <div class="success-message">
+            @if (!string.IsNullOrWhiteSpace(message))
+            {
+                <div class="alert alert-warning success-message text-center" role="alert">
+                    @message
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning success-message text-center invisible" role="alert">
+                    &nbsp;
+                </div>
+            }
+        </div>
     </div>
-</div>
-
+    <a class="custom-btn custom-border-btn btn mt-3 back-button" asp-page="/Account/Index">Back</a>
+    <input class="custom-btn custom-border-btn btn mt-3 button-margin" type="submit" value="Withdraw" />
+</form>
 
