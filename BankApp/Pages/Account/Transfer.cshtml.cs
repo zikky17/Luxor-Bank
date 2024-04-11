@@ -61,6 +61,7 @@ namespace BankApp.Pages.Account
 
         public IActionResult OnPost()
         {
+            AccountBalance = _customerService.GetBalance(AccountId);
             if (ModelState.IsValid)
             {
 
