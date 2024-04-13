@@ -1,3 +1,4 @@
+using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceLibrary.Interfaces;
@@ -8,12 +9,16 @@ namespace BankApp.Pages.Customer
     [BindProperties]
     public class EditModel : PageModel
     {
-        public EditModel(ICustomerService service)
+        public EditModel(ICustomerService service, IAccountService accountService)
         {
             _customerService = service;
+            _accountService = accountService;
         }
 
+        private readonly IAccountService _accountService;
         private readonly ICustomerService _customerService;
+
+        public int CustomerId { get; set; }
 
         public string Gender { get; set; } = null!;
 
@@ -48,10 +53,15 @@ namespace BankApp.Pages.Customer
 
         public string? Emailaddress { get; set; }
 
+        public List<AccountViewModel> Accounts { get; set; }
+
+        public List<int> AccountIds { get; set; }
+
         public void OnGet(int customerId)
         {
             var customer = _customerService.GetCustomerDetails(customerId).First();
 
+            CustomerId = customerId;
             Gender = customer.Gender;
             Givenname = customer.FirstName;
             Surname = customer.LastName;
@@ -93,6 +103,18 @@ namespace BankApp.Pages.Customer
                 ViewData["Message"] = "Customer updated successfully!";
                 return Page();
             }
+            return Page();
+        }
+
+        public IActionResult OnPostDelete(int customerId)
+        {
+            Accounts = _customerService.GetAccountInfo(CustomerId);
+            foreach(var account in Accounts)
+            {
+                AccountIds.Add(account.AccountId);
+            }
+            _accountService.DeleteAllAccounts(AccountIds);
+            _customerService.DeleteCustomer(customerId);
             return Page();
         }
 

@@ -160,7 +160,6 @@ namespace ServiceLibrary.Services
             return totalBalance;
         }
 
-
         public decimal GetBalance(int accountId)
         {
 
@@ -183,5 +182,14 @@ namespace ServiceLibrary.Services
             _context.Customers.Update(customer);
             _context.SaveChanges();
         }
+
+        public void DeleteCustomer(int customerId)
+        {
+            var customerToDelete = _context.Customers.Where(c => c.CustomerId == customerId).First();
+
+            _context.Remove(customerToDelete);
+            _context.SaveChanges();
+        }
+
     }
 }

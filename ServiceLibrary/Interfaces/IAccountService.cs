@@ -34,5 +34,7 @@ namespace ServiceLibrary.Interfaces
 
         public void DeleteAccount(int accountId);
 
+        public void DeleteAllAccounts(List<int> accounts);
+
     }
 }

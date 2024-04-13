@@ -126,6 +126,25 @@ namespace ServiceLibrary.Services
             _context.Accounts.Remove(account);
             _context.SaveChanges();
         }
+
+        public void DeleteAllAccounts(List<int> accounts)
+        {
+            foreach (var account in accounts)
+            {
+                var accountToDelete = _context.Accounts.Where(a => a.AccountId == account).First();
+                var disposition = _context.Dispositions.Where(d => d.AccountId == account).First();
+                foreach (var transaction in _context.Transactions.Where(t => t.AccountId == account))
+                {
+                    _context.Transactions.Remove(transaction);
+                }
+
+                _context.Dispositions.Remove(disposition);
+                _context.Accounts.Remove(accountToDelete);
+                _context.SaveChanges();
+            }
+
+
+        }
     }
 }
 
