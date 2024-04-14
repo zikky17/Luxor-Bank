@@ -1,6 +1,7 @@
 using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
@@ -82,21 +83,21 @@ namespace BankApp.Pages.Customer
         {
             if(ModelState.IsValid)
             {
-                var customer = new ServiceLibrary.Data.Customer
+                var customer = _customerService.GetCustomerById(CustomerId);
                 {
-                    Givenname = Givenname,
-                    Surname = Surname,
-                    Gender = Gender,
-                    Streetaddress = Streetaddress,
-                    City = City,
-                    Zipcode = Zipcode,
-                    Country = Country,
-                    CountryCode = CountryCode,
-                    Birthday = Birthday,
-                    NationalId = NationalId,
-                    Telephonecountrycode = Telephonecountrycode,
-                    Telephonenumber = Telephonenumber,
-                    Emailaddress = Emailaddress,
+                    customer.Givenname = Givenname;
+                    customer.Surname = Surname;
+                    customer.Gender = Gender;
+                    customer.Streetaddress = Streetaddress;
+                    customer.City = City;
+                    customer.Zipcode = Zipcode;
+                    customer.Country = Country;
+                    customer.CountryCode = CountryCode;
+                    customer.Birthday = Birthday;
+                    customer.NationalId = NationalId;
+                    customer.Telephonecountrycode = Telephonecountrycode;
+                    customer.Telephonenumber = Telephonenumber;
+                    customer.Emailaddress = Emailaddress;
                 };
 
                 _customerService.UpdateCustomer(customer);
@@ -115,7 +116,8 @@ namespace BankApp.Pages.Customer
             }
             _accountService.DeleteAllAccounts(AccountIds);
             _customerService.DeleteCustomer(customerId);
-            return Page();
+            ViewData["Message"] = "Customer deleted successfully!";
+            return RedirectToPage("Index");
         }
 
     }

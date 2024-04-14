@@ -140,6 +140,12 @@ namespace ServiceLibrary.Services
             return customer;
         }
 
+        public Customer GetCustomerById(int customerId)
+        {
+            var customer = _context.Customers.Where(c => c.CustomerId == customerId).First();
+            return customer;
+        }
+
         public List<AccountViewModel> GetAccountInfo(int customerId)
         {
             var accounts = _context.Dispositions

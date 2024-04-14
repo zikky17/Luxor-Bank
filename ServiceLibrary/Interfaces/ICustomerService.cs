@@ -22,6 +22,8 @@ namespace ServiceLibrary.Interfaces
 
         List<CustomerViewModel> GetCustomerDetails(int customerId);
 
+        public Customer GetCustomerById(int customerId);
+
         public List<AccountViewModel> GetAccountInfo(int customerId);
 
         public decimal GetTotalBalance(int customerId);

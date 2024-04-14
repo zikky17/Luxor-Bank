@@ -41,7 +41,8 @@ namespace BankApp.Pages.Customer
             if (PageSize == 0)
             {
                 PageSize = 50;
-            }   
+            }
+
 
             Q = q;
             SortColumn = sortColumn;

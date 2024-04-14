@@ -10,8 +10,14 @@
 
 @if (!string.IsNullOrWhiteSpace(message))
 {
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert-warning success-message text-center" role="alert">
         @message
+    </div>
+}
+else
+{
+    <div class="alert alert-warning text-center invisible" role="alert">
+        &nbsp;
     </div>
 }
 
@@ -96,3 +102,35 @@
             <input class="custom-btn custom-border-btn btn delete-button delete-position" asp-route-customerId="@Model.CustomerId" asp-page-handler="Delete" type="submit" value="Delete" />
         </div>
 </form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#Country').change(function () {
+                var selectedCountry = $(this).val();
+                switch (selectedCountry) {
+                    case "Sweden":
+                        $('#countryCode').val("SE");
+                        $('#phoneCountryCode').val("+46");
+                        break;
+                    case "Finland":
+                        $('#countryCode').val("FI");
+                        $('#phoneCountryCode').val("+358");
+                        break;
+                    case "Norway":
+                        $('#countryCode').val("NK");
+                        $('#phoneCountryCode').val("+47");
+                        break;
+                    case "Denmark":
+                        $('#countryCode').val("DK");
+                        $('#phoneCountryCode').val("+45");
+                        break;
+                    default:
+                        $('#countryCode').val("");
+                        $('#phoneCountryCode').val("");
+                        break;
+                }
+            });
+        });
+    </script>
+}
