@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApp", "BankApp\BankApp.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceLibrary", "ServiceLibrary\ServiceLibrary.csproj", "{11A7703E-D4D1-46B6-9EDF-3C22CDB9E056}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyLaunderingGuard", "MoneyLaunderingGuard\MoneyLaunderingGuard.csproj", "{41840782-D1B1-4D04-A038-E839939EE902}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyLaunderingGuard", "MoneyLaunderingGuard\MoneyLaunderingGuard.csproj", "{41840782-D1B1-4D04-A038-E839939EE902}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
