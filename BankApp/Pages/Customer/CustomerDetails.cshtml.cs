@@ -10,17 +10,10 @@ using System.Reflection.Emit;
 
 namespace BankApp.Pages.Customer
 {
-    public class CustomerDetailsModel : PageModel
+    public class CustomerDetailsModel(ICustomerService service, IAccountService accountService) : PageModel
     {
-
-        public CustomerDetailsModel(ICustomerService service, IAccountService accountService)
-        {
-            _customerService = service;
-            _accountService = accountService;
-        }
-
-        private readonly ICustomerService _customerService;
-        private readonly IAccountService _accountService;
+        private readonly ICustomerService _customerService = service;
+        private readonly IAccountService _accountService = accountService;
 
         public int AccountId { get; set; }
         public List<CustomerViewModel> Customers { get; set; }

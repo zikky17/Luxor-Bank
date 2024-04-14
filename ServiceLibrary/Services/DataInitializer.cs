@@ -9,16 +9,11 @@ using System.Threading.Tasks;
 
 namespace ServiceLibrary.Services
 {
-    public class DataInitializer
+    public class DataInitializer(ApplicationDbContext dbContext, UserManager<IdentityUser> userManager)
     {
-        private readonly ApplicationDbContext _dbContext;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly ApplicationDbContext _dbContext = dbContext;
+        private readonly UserManager<IdentityUser> _userManager = userManager;
 
-        public DataInitializer(ApplicationDbContext dbContext, UserManager<IdentityUser> userManager)
-        {
-            _dbContext = dbContext;
-            _userManager = userManager;
-        }
         public void SeedData()
         {
             _dbContext.Database.Migrate();

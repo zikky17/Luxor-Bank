@@ -20,6 +20,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddTransient<DataInitializer>();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<ICountryService, CountryService>();
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())

@@ -6,14 +6,9 @@ using Transaction = ServiceLibrary.Data.Transaction;
 
 namespace ServiceLibrary.Services
 {
-    public class AccountService : IAccountService
+    public class AccountService(ApplicationDbContext context) : IAccountService
     {
-        private readonly ApplicationDbContext _context;
-
-        public AccountService(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        private readonly ApplicationDbContext _context = context;
 
         public List<AccountViewModel> GetAccountInfo(int accountId)
         {

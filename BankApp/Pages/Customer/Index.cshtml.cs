@@ -9,14 +9,9 @@ using System.Drawing.Printing;
 
 namespace BankApp.Pages.Customer
 {
-    public class CustomersModel : PageModel
+    public class CustomersModel(ICustomerService customerService) : PageModel
     {
-        private readonly ICustomerService _customerService;
-
-        public CustomersModel(ICustomerService customerService)
-        {
-            _customerService = customerService;
-        }
+        private readonly ICustomerService _customerService = customerService;
 
         public List<CustomerViewModel> Customers { get; set; }
 

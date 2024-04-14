@@ -6,14 +6,9 @@ using ServiceLibrary.Interfaces;
 
 namespace ServiceLibrary.Services
 {
-    public class CustomerService : ICustomerService
+    public class CustomerService(ApplicationDbContext context) : ICustomerService
     {
-        private readonly ApplicationDbContext _context;
-
-        public CustomerService(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        private readonly ApplicationDbContext _context = context;
 
         public Dictionary<string, int> GetCustomersPerCountry()
         {

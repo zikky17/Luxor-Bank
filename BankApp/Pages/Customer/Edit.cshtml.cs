@@ -8,16 +8,10 @@ using System.ComponentModel.DataAnnotations;
 namespace BankApp.Pages.Customer
 {
     [BindProperties]
-    public class EditModel : PageModel
+    public class EditModel(ICustomerService service, IAccountService accountService) : PageModel
     {
-        public EditModel(ICustomerService service, IAccountService accountService)
-        {
-            _customerService = service;
-            _accountService = accountService;
-        }
-
-        private readonly IAccountService _accountService;
-        private readonly ICustomerService _customerService;
+        private readonly IAccountService _accountService = accountService;
+        private readonly ICustomerService _customerService = service;
 
         public int CustomerId { get; set; }
 

@@ -12,17 +12,10 @@ using System.Drawing.Printing;
 namespace BankApp.Pages.Account
 {
     [BindProperties]
-    public class TransferModel : PageModel
+    public class TransferModel(IAccountService service, ICustomerService customerService) : PageModel
     {
-
-        public TransferModel(IAccountService service, ICustomerService customerService)
-        {
-            _accountService = service;
-            _customerService = customerService;
-        }
-
-        private readonly IAccountService _accountService;
-        private readonly ICustomerService _customerService;
+        private readonly IAccountService _accountService = service;
+        private readonly ICustomerService _customerService = customerService;
 
         public List<CustomerViewModel> Customers { get; set; }
         public List<AccountViewModel> Accounts { get; set; }

@@ -8,17 +8,10 @@ using System.Security.Principal;
 namespace BankApp.Pages.Customer
 {
     [BindProperties]
-    public class CreateModel : PageModel
+    public class CreateModel(ICustomerService service, IAccountService accountService) : PageModel
     {
-
-        public CreateModel(ICustomerService service, IAccountService accountService)
-        {
-            _customerService = service;
-            _accountService = accountService;
-        }
-
-        private readonly ICustomerService _customerService;
-        private readonly IAccountService _accountService;
+        private readonly ICustomerService _customerService = service;
+        private readonly IAccountService _accountService = accountService;
 
         public string Gender { get; set; } = null!;
 

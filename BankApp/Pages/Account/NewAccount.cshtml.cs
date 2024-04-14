@@ -12,15 +12,10 @@ using System.Reflection.Emit;
 namespace BankApp.Pages.Account
 {
     [BindProperties]
-    public class NewAccountModel : PageModel
+    public class NewAccountModel(IAccountService service) : PageModel
     {
 
-        private readonly IAccountService _accountService;
-
-        public NewAccountModel(IAccountService service)
-        {
-            _accountService = service;
-        }
+        private readonly IAccountService _accountService = service;
 
         public int CustomerId { get; set; }
         public string FirstName { get; set; }

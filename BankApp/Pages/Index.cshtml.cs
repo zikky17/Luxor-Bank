@@ -6,15 +6,10 @@ using ServiceLibrary.Services;
 
 namespace BankWeb.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel(ICustomerService service) : PageModel
     {
 
-        private readonly ICustomerService _customerService;
-
-        public IndexModel(ICustomerService service)
-        {
-           _customerService = service;
-        }
+        private readonly ICustomerService _customerService = service;
 
         public Dictionary<string, int> CustomersPerCountry { get; set; }
         public Dictionary<string, int> AccountsPerCountry { get; set; }

@@ -7,7 +7,7 @@ using ServiceLibrary.Interfaces;
 namespace BankApp.Pages.Account
 {
     [BindProperties]
-    public class WithdrawModel : PageModel
+    public class WithdrawModel(IAccountService service, ICustomerService customerService) : PageModel
     {
         public List<CustomerViewModel> Customers { get; set; }
 
@@ -19,14 +19,8 @@ namespace BankApp.Pages.Account
 
         public decimal WithdrawAmount { get; set; }
 
-        private readonly IAccountService _accountService;
-        private readonly ICustomerService _customerService;
-
-        public WithdrawModel(IAccountService service, ICustomerService customerService)
-        {
-            _accountService = service;
-            _customerService = customerService;
-        }
+        private readonly IAccountService _accountService = service;
+        private readonly ICustomerService _customerService = customerService;
 
         public void OnGet(int customerId, int accountId, decimal accountBalance)
         {

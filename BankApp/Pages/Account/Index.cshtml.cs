@@ -8,14 +8,9 @@ using System.ComponentModel.DataAnnotations;
 namespace BankApp.Pages.Account
 {
     [BindProperties]
-    public class IndexModel : PageModel
+    public class IndexModel(IAccountService service) : PageModel
     {
-        public IndexModel(IAccountService service)
-        {
-            _accountService = service;
-        }
-
-        private readonly IAccountService _accountService;
+        private readonly IAccountService _accountService = service;
         public List<AccountViewModel> Accounts { get; set; }
         public decimal AccountBalance { get; set; }
         public string FirstName { get; set; }
