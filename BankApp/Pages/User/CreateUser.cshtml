@@ -1,4 +1,43 @@
 ﻿@page
 @model BankApp.Pages.User.CreateUserModel
 @{
+    bool customerAddedSuccessfully = TempData["CustomerAddedSuccessfully"] != null && (bool)TempData["CustomerAddedSuccessfully"];
+    @if (customerAddedSuccessfully)
+    {
+        <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Customer created successfully!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    }
 }
+
+<h1 class="margin-class">Create new User</h1>
+<hr class="primary-color" />
+
+<form method="post">
+    <div class="form-style">
+        <div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.UserName">User Name</label>
+                <input asp-for="@Model.UserName" />
+                <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Password">Password</label>
+                <input asp-for="@Model.Password" />
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.Password">User Role</label>
+                <label class="primary-color" for="cashier">Cashier</label>
+                <input id="cashier" type="radio" name="role" value="Cashier">
+                <label class="margin-left-20 primary-color" for="admin">Admin</label>
+                <input id="admin" type="radio" name="role" value="Admin">
+                <span asp-validation-for="@Model.Role" class="text-danger"></span>
+            </div>
+</form>
+
