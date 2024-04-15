@@ -27,14 +27,17 @@
                     <nav>
                         <ul>
                             <li class="nav-item burger-item">
+                                <a asp-page="/Index" class="custom-btn custom-border-btn nav-button">Home</a>
+                            </li>
+                            <li>
                                 <a asp-page="/User/Index" class="custom-btn custom-border-btn nav-button">Show all Users</a>
                             </li>
 
-                            <li class="nav-item burger-item">
+                            <li>
                                 <a asp-page="/User/CreateUser" class="custom-btn custom-border-btn nav-button">Create new User</a>
                             </li>
 
-                            <li class="nav-item burger-item">
+                            <li>
                                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
                                     <button type="submit" class="custom-btn btn nav-button">Logout</button>
                                 </form>
@@ -61,6 +64,9 @@
                 <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
                     <nav>
                         <ul>
+                            <li class="nav-item burger-item">
+                                <a asp-page="/Index" class="custom-btn custom-border-btn nav-button">Home</a>
+                            </li>
                             <li class="nav-item burger-item">
                                 <a asp-page="/Customer/Index" class="custom-btn custom-border-btn nav-button">Show Customers</a>
                             </li>

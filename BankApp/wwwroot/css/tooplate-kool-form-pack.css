@@ -188,7 +188,7 @@ strong {
 
 .custom-btn-group .link {
     color: var(--white-color);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-normal);
 }
 
     .custom-btn-group .link:hover {
@@ -268,7 +268,7 @@ strong {
             color: var(--white-color);
             font-family: var(--heading-font-family);
             font-size: var(--p-font-size);
-            font-weight: var(--font-weight-medium);
+            font-weight: var(--font-weight-normal);
             display: inline-block;
             margin-top: 5px;
             margin-bottom: 5px;
@@ -919,6 +919,5 @@ modal {
 .nav-button {
     width: 200px;
     text-align: center;
-    font-size: 16px;
     margin-bottom: 20px;
 }

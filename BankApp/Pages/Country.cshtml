@@ -15,7 +15,6 @@
                     <th class="col">Rank</th>
                     <th class="col">Name</th>
                     <th class="col">Assets</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -25,7 +24,6 @@
                     <td class="col">@customer.Rank</td>
                     <td class="col">@customer.Value.FullName</td>
                     <td class="col">@customer.Value.Balance $</td>
-                    <td><a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.Value.CustomerId" class="custom-btn custom-border-btn">View</a></td>
                 </tr>
             }
             </tbody>
