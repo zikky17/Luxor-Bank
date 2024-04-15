@@ -13,5 +13,9 @@ namespace ServiceLibrary.Interfaces
         public void CreateUser(string userName, string password, string[] roles);
 
         public List<UserViewModel> GetUsers();
+
+        public List<UserViewModel> GetUser(string userId);
+
+        public void UpdateUser(IdentityUser user);
     }
 }

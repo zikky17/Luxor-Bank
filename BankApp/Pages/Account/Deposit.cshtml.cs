@@ -15,6 +15,8 @@ namespace BankApp.Pages
         private readonly ICustomerService _customerService = customerService;
 
         public List<CustomerViewModel> Customers { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         public List<AccountViewModel> Accounts { get; set; }
 
@@ -42,6 +44,12 @@ namespace BankApp.Pages
             AccountBalance = _customerService.GetBalance(accountId);
             AccountId = accountId;
             DepositResult = StatusMessage.None;
+
+            foreach (var c in Customers)
+            {
+                FirstName = c.FirstName;
+                LastName = c.LastName;
+            }
         }
 
         public IActionResult OnPost()

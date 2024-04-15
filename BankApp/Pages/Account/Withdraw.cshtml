@@ -36,7 +36,14 @@
         </div>
 
     </div>
-    <a class="custom-btn custom-border-btn btn mt-3 back-button" onclick="window.history.back()">Back</a>
+    <a class="custom-btn custom-border-btn btn back-button mt-3"
+       asp-page="/Account/Index"
+       asp-route-customerId="@Model.CustomerId"
+       asp-route-accountId="@Model.AccountId"
+       asp-route-firstName="@Model.FirstName"
+       asp-route-lastName="@Model.LastName">
+        Back
+    </a>
     <input class="custom-btn custom-border-btn btn mt-3 button-margin" type="submit" value="Withdraw" />
 </form>
 

@@ -42,12 +42,33 @@ namespace ServiceLibrary.Services
                          join role in _dbContext.Roles on userRole.RoleId equals role.Id
                          select new UserViewModel
                          {
+                             UserId = user.Id,
                              UserName = user.UserName,
                              Role = role.Id == "4db3745d-e74c-410e-bdac-56bf52ac56d6" ? "Admin" : "Cashier"
                          }).ToList();
 
             return users;
         }
+
+        public List<UserViewModel> GetUser(string userId)
+        {
+            var user = _dbContext.Users
+                .Where(u => u.Id == userId)
+                .Select(u => new UserViewModel                 
+                {
+                    UserId = u.Id,
+                    UserName = u.UserName
+                }).ToList();      
+
+            return user;
+        }
+
+        public void UpdateUser(IdentityUser user)
+        {
+            _dbContext.Users.Update(user);
+            _dbContext.SaveChanges();
+        }
+
 
     }
 }

@@ -5,12 +5,14 @@
 
 <div class="margin-class">
     <h1>All Users</h1>
-
+    <hr class="primary-color" />
+    <a asp-page="/User/CreateUser" class="custom-btn custom-border-btn btn mt-5">Create new User <i class="bi bi-plus-circle ml-1"></i></i></a>
     <table class="table customers-table">
         <thead>
             <tr>
                 <th class="index-headers-text" scope="col"> User Name</th>                 
                 <th class="index-headers-text" scope="col">Role</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +21,7 @@
                 <tr class="primary-color">
                     <td>@user.UserName</td>
                     <td>@user.Role</td>
+                    <td><a asp-page="/User/EditUser" asp-route-userId="@user.UserId" class="custom-btn custom-border-btn">Edit</a></td>
                 </tr>
             }
         </tbody>

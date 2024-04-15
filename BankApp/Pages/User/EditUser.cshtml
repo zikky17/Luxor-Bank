@@ -1,4 +1,32 @@
 ﻿@page
 @model BankApp.Pages.User.EditUserModel
 @{
+    var message = ViewData["Message"]?.ToString();
 }
+
+<h1 class="margin-class">Edit User</h1>
+<hr class="primary-color" />
+
+<form method="post">
+    <div class="form-style">
+        <div>
+            @if (!string.IsNullOrWhiteSpace(message))
+            {
+                <div class="alert alert-warning success-message text-center" role="alert">
+                    @message
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning text-center invisible" role="alert">
+                    &nbsp;
+                </div>
+            }
+            <div class="form-group">
+                <label class="primary-color input-style" asp-for="@Model.UserName">Email</label>
+                <input asp-for="@Model.UserName" />
+                <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+            </div>                 
+            <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/User/Index">Back</a>
+            <input class="custom-btn custom-border-btn btn search-button mt-2" type="submit" value="Update" />
+</form>
