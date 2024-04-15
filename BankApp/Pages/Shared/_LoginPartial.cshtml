@@ -24,26 +24,17 @@
                 </div>
 
                 <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
-                    <nav>
-                        <ul>
-                            <li class="nav-item burger-item">
-                                <a asp-page="/Index" class="custom-btn custom-border-btn nav-button">Home</a>
-                            </li>
-                            <li>
-                                <a asp-page="/User/Index" class="custom-btn custom-border-btn nav-button">Show all Users</a>
-                            </li>
 
-                            <li>
-                                <a asp-page="/User/CreateUser" class="custom-btn custom-border-btn nav-button">Create new User</a>
-                            </li>
+                    <a asp-page="/Index" class="custom-btn custom-border-btn nav-button">Home</a>
 
-                            <li>
-                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                    <button type="submit" class="custom-btn btn nav-button">Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </nav>
+                    <a asp-page="/User/Index" class="custom-btn custom-border-btn nav-button">Show all Users</a>
+
+                    <a asp-page="/User/CreateUser" class="custom-btn custom-border-btn nav-button">Create new User</a>
+
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                        <button type="submit" class="custom-btn btn nav-button">Logout</button>
+                    </form>
+
                 </div>
             </div>
         }
@@ -62,26 +53,17 @@
                 </div>
 
                 <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
-                    <nav>
-                        <ul>
-                            <li class="nav-item burger-item">
-                                <a asp-page="/Index" class="custom-btn custom-border-btn nav-button">Home</a>
-                            </li>
-                            <li class="nav-item burger-item">
-                                <a asp-page="/Customer/Index" class="custom-btn custom-border-btn nav-button">Show Customers</a>
-                            </li>
 
-                            <li class="nav-item burger-item">
-                                <a asp-page="/Customer/Create" class="custom-btn custom-border-btn nav-button">Create new Customer</a>
-                            </li>
+                    <a asp-page="/Index" class="custom-btn custom-border-btn nav-button">Home</a>
 
-                            <li class="nav-item burger-item">
-                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                    <button type="submit" class="custom-btn custom-border-btn btn nav-button">Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </nav>
+                    <a asp-page="/Customer/Index" class="custom-btn custom-border-btn nav-button">Show Customers</a>
+
+                    <a asp-page="/Customer/Create" class="custom-btn custom-border-btn nav-button">Create new Customer</a>
+
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                        <button type="submit" class="custom-btn custom-border-btn btn nav-button">Logout</button>
+                    </form>
+
                 </div>
             </div>
         }
