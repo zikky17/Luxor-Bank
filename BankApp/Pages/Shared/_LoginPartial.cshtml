@@ -7,35 +7,82 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-
-        <div class="partial-nav">
-            <a asp-page="/Customer/Index" class="custom-btn custom-border-btn btn">Show All Customers</a>
-            <a class="custom-btn custom-border-btn btn" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">User Menu</a>
-        </div>
-
         var user = await UserManager.GetUserAsync(User);
         var userRoles = await UserManager.GetRolesAsync(user);
 
         @if (userRoles.Contains("Admin"))
         {
-            <div class="admin-nav">
-            <li class="nav-item flex-item "style="gap: 20px">
+            <div>
+            <li class="nav-item flex-item " style="gap: 20px">
                 <a class="nav-link personal-text" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-                <a class="custom-btn custom-border-btn btn" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">Admin Menu</a>
+                <a class="custom-btn custom-border-btn btn cashier-button" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">Admin Menu</a>
             </li>
+            </div>
+            <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
+                    <nav>
+                        <ul>
+                            <li class="nav-item burger-item">
+                                <a asp-page="/User/Index" class="custom-btn custom-border-btn nav-button">Show all Users</a>
+                            </li>
+
+                            <li class="nav-item burger-item">
+                                <a asp-page="/User/CreateUser" class="custom-btn custom-border-btn nav-button">Create new User</a>
+                            </li>
+
+                            <li class="nav-item burger-item">
+                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                    <button type="submit" class="custom-btn btn nav-button">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         }
         else if (userRoles.Contains("Cashier"))
         {
-            <div class="cashier-nav">
-                <a data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">Cashier Menu</a>
+            <div>
+            <li class="nav-item flex-item " style="gap: 20px">
+                <a class="nav-link personal-text" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+                <a class="custom-btn custom-border-btn btn cashier-button" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">Cashier Menu</a>
+            </li>
+            </div>
+
+            <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
+                    <nav>
+                        <ul>
+                            <li class="nav-item burger-item">
+                                <a asp-page="/Customer/Index" class="custom-btn custom-border-btn nav-button">Show Customers</a>
+                            </li>
+
+                            <li class="nav-item burger-item">
+                                <a asp-page="/Customer/Create" class="custom-btn custom-border-btn nav-button">Create new Customer</a>
+                            </li>
+
+                            <li class="nav-item burger-item">
+                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                    <button type="submit" class="custom-btn custom-border-btn btn nav-button">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         }
     }
     else
     {
         <div class="partial-nav">
-            <a asp-page="/Customer/Index" class="custom-btn custom-border-btn btn">Show All Customers</a>
             <a asp-page="/Account/Register" asp-area="Identity" class="custom-btn custom-border-btn btn">
                 Register
                 <i class="bi-arrow-right ms-2"></i>
@@ -47,47 +94,3 @@
         </div>
     }
 </ul>
-
-
-
-
-
-
-
-
-
-
-@*
-<ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <div class="partial-nav">
-        <li class="nav-item">
-                @{
-                    var name = User.Identity.Name;
-
-                    <div class="partial-nav">
-                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @name!</a>
-                    </div>
-                }
-
-        </li>
-
-        </div>
-    }
-    else
-    {
-        <div class="partial-nav">
-            <a asp-page="/Customer/Index" class="custom-btn custom-border-btn btn">Show All Customers</a>
-            <a asp-page="/Account/Register" asp-area="Identity" class="custom-btn custom-border-btn btn">
-                Register
-                <i class="bi-arrow-right ms-2"></i>
-            </a>
-            <a asp-page="/Account/Login" asp-area="Identity" class="custom-btn custom-border-btn btn">
-                Log In
-                <i class="bi-arrow-right ms-2"></i>
-            </a>
-
-        </div>
-    }
-</ul> *@

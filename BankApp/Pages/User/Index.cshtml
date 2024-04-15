@@ -2,3 +2,26 @@
 @model BankApp.Pages.User.IndexModel
 @{
 }
+
+<div class="margin-class">
+    <h1>All Users</h1>
+
+    <table class="table customers-table">
+        <thead>
+            <tr>
+                <th class="index-headers-text" scope="col"> User Name</th>                 
+                <th class="index-headers-text" scope="col">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr class="primary-color">
+                    <td>@user.UserName</td>
+                    <td>@user.Role</td>
+                </tr>
+            }
+        </tbody>
+                    
+                  
+                

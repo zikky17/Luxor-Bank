@@ -15,7 +15,7 @@ Bootstrap 5 Form Pack Template
 :root {
     --body-bg-color: #181717;
     --white-color: #ffffff;
-    --primary-color: #E07A5Fcustomers
+    --primary-color: #E07A5F;
     --secondary-color: #F2CC8F;
     --section-bg-color: #f0f8ff;
     --custom-btn-bg-color: #E07A5F;
@@ -120,7 +120,7 @@ a {
 
 b,
 strong {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-normal);
 }
 
 
@@ -160,14 +160,14 @@ strong {
     border-radius: var(--border-radius-small);
     color: rgb(246, 246, 246);
     font-size: var(--btn-font-size);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-normal);
     line-height: normal;
     transition: all 0.3s;
     padding: 7px 18px;
 }
 
     .custom-btn:hover {
-        background: var(--custom-btn-bg-hover-color);
+        background: var(--primary-color);
         color: var(--white-color);
     }
 
@@ -176,11 +176,10 @@ strong {
     color: rgb(246, 246, 246) !important;
 }
 
-    .custom-border-btn:hover {
-        background: var(--secondary-color);
-        border-color: transparent;
+.custom-border-btn:hover {
+        background: var(--primary-color);
         color: var(--white-color);
-    }
+}
 
 .custom-btn-bg-white {
     border-color: var(--white-color);
@@ -911,4 +910,15 @@ modal {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.cashier-button {
+    padding-top: 10px;
+}
+
+.nav-button {
+    width: 200px;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
 }
