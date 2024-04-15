@@ -70,7 +70,7 @@ else
                 </select>
                 <span asp-validation-for="@Model.Country" class="text-danger"></span>
             </div>
-            <a class="custom-btn custom-border-btn btn back-button mt-2" onclick="window.history.back()">Back</a>
+            <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Back</a>
             <input class="custom-btn custom-border-btn btn search-button mt-2" type="submit" value="Update" />
         </div>
         <div>
@@ -88,8 +88,8 @@ else
                 <input placeholder="(Optional)" asp-for="@Model.NationalId" />
             </div>
             <div class="form-group">
-                <label class="primary-color input-style" asp-for="@Model.Telephonecountrycode">Phone Country Code</label>
-                <input class="readonly-input" asp-for="@Model.Telephonecountrycode" readonly />
+                <label class="primary-color input-style" asp-for="@Model.TelephoneCountryCode">Phone Country Code</label>
+                <input class="readonly-input" asp-for="@Model.TelephoneCountryCode" readonly />
             </div>
             <div class="form-group">
                 <label class="primary-color input-style" asp-for="@Model.Telephonenumber">Phone Number</label>
@@ -110,27 +110,28 @@ else
                 var selectedCountry = $(this).val();
                 switch (selectedCountry) {
                     case "Sweden":
-                        $('#countryCode').val("SE");
-                        $('#phoneCountryCode').val("+46");
+                        $('input[name="CountryCode"]').val("SE");
+                        $('input[name="TelephoneCountryCode"]').val("+46");
                         break;
                     case "Finland":
-                        $('#countryCode').val("FI");
-                        $('#phoneCountryCode').val("+358");
+                        $('input[name="CountryCode"]').val("FI");
+                        $('input[name="TelephoneCountryCode"]').val("+358");
                         break;
                     case "Norway":
-                        $('#countryCode').val("NK");
-                        $('#phoneCountryCode').val("+47");
+                        $('input[name="CountryCode"]').val("NK");
+                        $('input[name="TelephoneCountryCode"]').val("+47");
                         break;
                     case "Denmark":
-                        $('#countryCode').val("DK");
-                        $('#phoneCountryCode').val("+45");
+                        $('input[name="CountryCode"]').val("DK");
+                        $('input[name="TelephoneCountryCode"]').val("+45");
                         break;
                     default:
-                        $('#countryCode').val("");
-                        $('#phoneCountryCode').val("");
+                        $('input[name="CountryCode"]').val("");
+                        $('input[name="TelephoneCountryCode"]').val("");
                         break;
                 }
             });
         });
+
     </script>
 }

@@ -42,7 +42,7 @@ namespace BankApp.Pages.Customer
 
         public string? NationalId { get; set; }
 
-        public string? Telephonecountrycode { get; set; }
+        public string? TelephoneCountryCode { get; set; }
 
         public string? Telephonenumber { get; set; }
 
@@ -67,7 +67,7 @@ namespace BankApp.Pages.Customer
             CountryCode = customer.CountryCode;
             Birthday = customer.Birthday;
             NationalId = customer.NationalId;
-            Telephonecountrycode = customer.Telephonecountrycode;
+            TelephoneCountryCode = customer.Telephonecountrycode;
             Telephonenumber = customer.Telephonenumber;
             Emailaddress = customer.Email;
 
@@ -89,7 +89,7 @@ namespace BankApp.Pages.Customer
                     customer.CountryCode = CountryCode;
                     customer.Birthday = Birthday;
                     customer.NationalId = NationalId;
-                    customer.Telephonecountrycode = Telephonecountrycode;
+                    customer.Telephonecountrycode = TelephoneCountryCode;
                     customer.Telephonenumber = Telephonenumber;
                     customer.Emailaddress = Emailaddress;
                 };

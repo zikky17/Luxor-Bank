@@ -24,6 +24,6 @@
         <input asp-for="@Model.Balance" />
         <span asp-validation-for="@Model.Balance" class="text-danger"></span>
     </div>
-    <a class="custom-btn custom-border-btn btn mt-5" onclick="window.history.back()">Back</a>
-    <input class="custom-btn custom-border-btn btn mt-5 margin-left-20" type="submit" value="Create" />
+    <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Back</a>
+    <input class="custom-btn custom-border-btn btn mt-2 margin-left-20" type="submit" value="Create" />
     </form>

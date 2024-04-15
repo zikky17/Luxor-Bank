@@ -753,13 +753,13 @@ strong {
     background-color: #E07A5F;
     color: black;
     margin-right: 28px;
-    padding-top: 8px;
+    padding-top: 11px;
 }
 
 .previous-button {
     background-color: #E07A5F;
     color: black;
-    padding-top: 8px;
+    padding-top: 11px;
 }
 
 .customer-details-row {
@@ -905,4 +905,10 @@ modal {
 .success-message {
     background-color: rgba(0, 0, 0, 0.65) !important;
     width: 335px;
+}
+
+.account-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
