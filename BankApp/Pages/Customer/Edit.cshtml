@@ -5,7 +5,7 @@
 }
 
 
-<h1 class="margin-class">Edit @Model.Givenname @Model.Surname</h1>
+<h1 class="margin-class">Edit @Model.FirstName @Model.LastName</h1>
 <hr class="primary-color" />
 
 @if (!string.IsNullOrWhiteSpace(message))
@@ -23,18 +23,22 @@ else
 
 <form method="post">
     <div class="form-style">
-        <div>
-            <div class="form-group">
-                <label class="primary-color input-style" asp-for="@Model.Givenname">First Name</label>
-                <input asp-for="@Model.Givenname" />
-                <span asp-validation-for="@Model.Givenname" class="text-danger"></span>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label class="primary-color input-style" asp-for="@Model.FirstName">First Name</label>
+                <input asp-for="@Model.FirstName" />
+                <div class="validation-container">
+                    <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="primary-color input-style" asp-for="@Model.Surname">Last Name</label>
-                <input asp-for="@Model.Surname" />
-                <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+            <div class="form-group col-md-6">
+                <label class="primary-color input-style" asp-for="@Model.LastName">Last Name</label>
+                <input asp-for="@Model.LastName" />
+                <div class="validation-container">
+                    <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.Gender">Gender</label>
                 <select asp-for="@Model.Gender">
                     <option value="" selected disabled>Choose one</option>
@@ -42,24 +46,32 @@ else
                     <option value="Female">Female</option>
                     <option value="Not specified">Not specified</option>
                 </select>
-                <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+                <div class="validation-container">
+                    <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.Streetaddress">Address</label>
                 <input asp-for="@Model.Streetaddress" />
-                <span asp-validation-for="@Model.Streetaddress" class="text-danger"></span>
+                <div class="validation-container">
+                    <span asp-validation-for="@Model.Streetaddress" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.City">City</label>
                 <input asp-for="@Model.City" />
-                <span asp-validation-for="@Model.City" class="text-danger"></span>
+                <div class="validation-container">
+                    <span asp-validation-for="@Model.City" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.Zipcode">Zip Code</label>
                 <input asp-for="@Model.Zipcode" />
-                <span asp-validation-for="@Model.Zipcode" class="text-danger"></span>
+                <div class="validation-container">
+                    <span asp-validation-for="@Model.Zipcode" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.Country">Country</label>
                 <select asp-for="@Model.Country">
                     <option value="" selected disabled>Choose one</option>
@@ -68,37 +80,40 @@ else
                     <option value="Norway">Norway</option>
                     <option value="Denmark">Denmark</option>
                 </select>
-                <span asp-validation-for="@Model.Country" class="text-danger"></span>
+                <div class="validation-container">
+                    <span asp-validation-for="@Model.Country" class="text-danger"></span>
+                </div>
             </div>
+            <hr class="primary-color" />
             <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Back</a>
             <input class="custom-btn custom-border-btn btn search-button mt-2" type="submit" value="Update" />
         </div>
-        <div>
-            <div class="form-group">
+        <div class="form-row">
+            <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.CountryCode">Country Code</label>
                 <input class="readonly-input" asp-for="@Model.CountryCode" readonly />
-                <span asp-validation-for="@Model.CountryCode" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.Birthday">Birthday</label>
                 <input placeholder="(Optional)" asp-for="@Model.Birthday" />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.NationalId">National Id</label>
                 <input placeholder="(Optional)" asp-for="@Model.NationalId" />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.TelephoneCountryCode">Phone Country Code</label>
                 <input class="readonly-input" asp-for="@Model.TelephoneCountryCode" readonly />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.Telephonenumber">Phone Number</label>
                 <input placeholder="(Optional)" asp-for="@Model.Telephonenumber" />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.Emailaddress">Email Address</label>
                 <input placeholder="(Optional)" asp-for="@Model.Emailaddress" />
             </div>
+            <hr class="primary-color" style="margin-top: 68px" />
             <input class="custom-btn custom-border-btn btn delete-button delete-position" asp-route-customerId="@Model.CustomerId" asp-page-handler="Delete" type="submit" value="Delete" />
         </div>
 </form>
@@ -134,4 +149,7 @@ else
         });
 
     </script>
+    <partial name="Shared/_ValidationScriptsPartial" />
+
 }
+

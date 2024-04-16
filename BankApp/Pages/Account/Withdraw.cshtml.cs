@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Client;
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace BankApp.Pages.Account
 {

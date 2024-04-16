@@ -86,7 +86,7 @@
         <div class="account-buttons">
             <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Back</a>
 
-            <button id="load-more-btn" class="custom-btn custom-border-btn btn">Load More</button>
+            <a id="load-more-btn" href="javascript:showMore()" class="custom-btn custom-border-btn btn">Show More</a>
             <form method="post">
                 <input type="hidden" name="accountId" value="@acc.AccountId" />
                 <input type="hidden" name="customerId" value="@Model.CustomerId" />
@@ -103,4 +103,24 @@
 
         </div>
     </div>
+}
+
+@section Scripts
+{
+    <script>
+        pageNo = 1;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            showMore();
+        });
+
+        function showMore() {
+            fetch("View?handler=ShowMore&pageNo= " + pageNo + "&personId=@Model.CustomerId")
+                .then((response) => response.json())
+                .then((json) => {
+                    pageNo = pageNo + 1
+                    json.transactions.forEach(drawElements);
+                });
+        }
+    </script>
 }
