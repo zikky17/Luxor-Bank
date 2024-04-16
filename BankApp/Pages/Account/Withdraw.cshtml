@@ -17,7 +17,9 @@
     <div class="form-group">
         <label class="primary-color input-style-account" asp-for="WithdrawAmount">Amount</label>
         <input asp-for="WithdrawAmount" />
-        <span asp-validation-for="WithdrawAmount" class="text-danger"></span>
+        <div class="validation-container">
+            <span asp-validation-for="WithdrawAmount" class="text-danger"></span>
+        </div>
     </div>
     <div class="row">
         <div class="mt-3">
