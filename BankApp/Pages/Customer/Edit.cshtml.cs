@@ -17,22 +17,27 @@ namespace BankApp.Pages.Customer
 
         public string Gender { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
-        public string Givenname { get; set; } = null!;
+        [Required(ErrorMessage = "This field is required.")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Enter a name between 2-50 characters")]
+        public string FirstName { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
-        public string Surname { get; set; } = null!;
+        [Required(ErrorMessage = "This field is required.")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Enter a last name between 2-50 characters")]
+        public string LastName { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
+        [Required(ErrorMessage = "This field is required.")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Enter an address between 2-50 characters")]
         public string Streetaddress { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
+        [Required(ErrorMessage = "This field is required.")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Enter a city between 2-50 characters")]
         public string City { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
+        [Required(ErrorMessage = "This field is required.")]
+        [StringLength(10, MinimumLength = 2, ErrorMessage = "Enter a Zip Code between 2-10 characters")]
         public string Zipcode { get; set; } = null!;
 
-        [StringLength(50, MinimumLength = 2)]
+        [Required(ErrorMessage = "This field is required.")]
         public string Country { get; set; } = null!;
 
         [StringLength(2)]
@@ -58,8 +63,8 @@ namespace BankApp.Pages.Customer
 
             CustomerId = customerId;
             Gender = customer.Gender;
-            Givenname = customer.FirstName;
-            Surname = customer.LastName;
+            FirstName = customer.FirstName;
+            LastName = customer.LastName;
             Streetaddress = customer.Address;
             City = customer.City;
             Zipcode = customer.ZipCode;
@@ -79,8 +84,8 @@ namespace BankApp.Pages.Customer
             {
                 var customer = _customerService.GetCustomerById(CustomerId);
                 {
-                    customer.Givenname = Givenname;
-                    customer.Surname = Surname;
+                    customer.Givenname = FirstName;
+                    customer.Surname = LastName;
                     customer.Gender = Gender;
                     customer.Streetaddress = Streetaddress;
                     customer.City = City;

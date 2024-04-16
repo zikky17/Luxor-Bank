@@ -4,17 +4,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Client;
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace BankApp.Pages.Account
 {
     [BindProperties]
     public class WithdrawModel(IAccountService service, ICustomerService customerService) : PageModel
     {
-        public List<CustomerViewModel> Customers { get; set; }
+        public List<CustomerViewModel> Customer { get; set; }
 
         public int CustomerId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
 
         public List<AccountViewModel> Accounts { get; set; }
 
@@ -22,6 +23,7 @@ namespace BankApp.Pages.Account
 
         public int AccountId { get; set; }
 
+        [Required]
         public decimal WithdrawAmount { get; set; }
 
         private readonly IAccountService _accountService = service;
@@ -29,13 +31,13 @@ namespace BankApp.Pages.Account
 
         public void OnGet(int customerId, int accountId, decimal accountBalance)
         {
-            Customers = _customerService.GetCustomerDetails(customerId);
+            Customer = _customerService.GetCustomerDetails(customerId);
             CustomerId = customerId;
             Accounts = _customerService.GetAccountInfo(customerId);
             AccountBalance = _customerService.GetBalance(accountId);
             AccountId = accountId;
 
-            foreach(var c in Customers)
+            foreach(var c in Customer)
             {
                 FirstName = c.FirstName;
                 LastName = c.LastName;

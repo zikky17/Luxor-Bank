@@ -27,7 +27,9 @@
             <div class="form-group mt-4" id="transferAmount">
                 <label class="primary-color input-style-account" asp-for="TransferAmount">Amount</label>
                 <input asp-for="TransferAmount" />
-                <span asp-validation-for="TransferAmount" class="text-danger"></span>
+                <div class="validation-container">
+                    <span asp-validation-for="TransferAmount" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group mt-4">
                 <label class="primary-color input-style-account" asp-for="Comment">Comment</label>
@@ -49,7 +51,7 @@
                         </div>
                     }
                 </div>
-        </div>
+            </div>
             <a class="custom-btn custom-border-btn btn back-button"
                asp-page="/Account/Index"
                asp-route-customerId="@Model.CustomerId"
@@ -59,5 +61,5 @@
                 Back
             </a>
             <input class="custom-btn custom-border-btn btn search-button" type="submit" value="Transfer" />
-    </div>
+        </div>
 </form>

@@ -1,6 +1,7 @@
 using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using ServiceLibrary.Interfaces;
 using System.ComponentModel.DataAnnotations;
@@ -37,6 +38,27 @@ namespace BankApp.Pages.Account
                 account.Transactions = account.Transactions.OrderByDescending(t => t.Date).ToList();
             }
         }
+
+        //public IActionResult OnGetShowMore(int personId, int pageNo)
+        //{
+        //    var listOfTransactions = _dbContext.Person
+        //        .Where(p => p.Id == personId)
+        //        .SelectMany(p => p.OwnedCars)
+        //        .OrderBy(ca => ca.BoughtDate)
+        //        .GetPaged(pageNo, 5).Results
+        //        .Select(c => new Car
+        //        {
+        //            BoughtDate = c.BoughtDate,
+        //            Id = c.Id,
+        //            Model = c.Model,
+        //            Fuel = c.Fuel,
+        //            Manufacturer = c.Manufacturer,
+        //            Type = c.Type,
+        //            Vin = c.Vin
+        //        }).ToList();
+
+        //    return new JsonResult(new { cars = listOfCars });
+        //}
 
         public IActionResult OnPost(decimal accountBalance)
         {

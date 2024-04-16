@@ -57,6 +57,11 @@ namespace BankApp.Pages.Account
             AccountBalance = _customerService.GetBalance(AccountId);
             if (ModelState.IsValid)
             {
+                if (TransferAmount > AccountBalance)
+                {
+                    ModelState.AddModelError("TransferAmount", "Transfer amount cannot exceed account balance.");
+                    return Page();
+                }
 
                 var withdrawTransaction = new Transaction
                 {

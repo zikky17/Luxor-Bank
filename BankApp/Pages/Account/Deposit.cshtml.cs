@@ -26,10 +26,10 @@ namespace BankApp.Pages
 
         public int CustomerId { get; set; }
 
-        [Range(100, 10000)]
+        [Range(100, 10000, ErrorMessage = "Deposit amount must be between 100 and 100000.")]
         public decimal DepositAmount { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(100)]
         public string Comment { get; set; }
 

@@ -28,6 +28,7 @@
                 <th class="index-headers-text" scope="col">
                     Id
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="Id"
                        asp-route-sortOrder="asc"
@@ -35,6 +36,7 @@
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="Id"
                        asp-route-sortOrder="desc"
@@ -45,6 +47,7 @@
                 <th class="index-headers-text" scope="col">
                     National Id
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="NationalId"
                        asp-route-sortOrder="asc"
@@ -52,6 +55,7 @@
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="NationalId"
                        asp-route-sortOrder="desc"
@@ -62,6 +66,7 @@
                 <th class="index-headers-text" scope="col">
                     First Name
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="FirstName"
                        asp-route-sortOrder="asc"
@@ -69,6 +74,7 @@
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="FirstName"
                        asp-route-sortOrder="desc"
@@ -79,6 +85,7 @@
                 <th class="index-headers-text" scope="col">
                     Last Name
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="LastName"
                        asp-route-sortOrder="asc"
@@ -86,6 +93,7 @@
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="LastName"
                        asp-route-sortOrder="desc"
@@ -96,6 +104,7 @@
                 <th class="index-headers-text" scope="col">
                     Address
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="Address"
                        asp-route-sortOrder="asc"
@@ -103,6 +112,7 @@
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="Address"
                        asp-route-sortOrder="desc"
@@ -113,6 +123,7 @@
                 <th class="index-headers-text" scope="col">
                     City
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="City"
                        asp-route-sortOrder="asc"
@@ -120,6 +131,7 @@
                         <i class="fa-solid fa-angle-up green-color"></i>
                     </a>
                     <a asp-page="/Customer/Index"
+                       asp-route-pageSize="@Model.PageSize"
                        asp-route-q="@Model.Q"
                        asp-route-sortColumn="City"
                        asp-route-sortOrder="desc"
@@ -140,7 +152,7 @@
                     <td>@customer.LastName</td>
                     <td>@customer.Address</td>
                     <td>@customer.City</td>
-                    <td><a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn">View</a></td>
+                    <td><a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn view-button">View</a></td>
                 </tr>
             }
         </tbody>
@@ -153,6 +165,7 @@
                asp-route-sortColumn="@Model.SortColumn"
                asp-route-customerId="@Model.CustomerId"
                asp-route-q="@Model.Q"
+               asp-route-pageSize="@Model.PageSize"
                asp-route-sortOrder="@Model.SortOrder"
                asp-route-pageNumber="@(Model.CurrentPage - 1)"
                class="custom-btn custom-border-btn previous-button">Previous</a>
@@ -164,6 +177,7 @@
                asp-route-sortColumn="@Model.SortColumn"
                asp-route-customerId="@Model.CustomerId"
                asp-route-q="@Model.Q"
+               asp-route-pageSize="@Model.PageSize"
                asp-route-sortOrder="@Model.SortOrder"
                asp-route-pageNumber="@(Model.CurrentPage + 1)"
                class="custom-btn custom-border-btn next-button">Next</a>

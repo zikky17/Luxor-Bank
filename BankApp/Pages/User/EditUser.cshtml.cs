@@ -23,11 +23,11 @@ namespace BankApp.Pages.User
             UserId = userId;
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(string userId)
         {
             if (ModelState.IsValid)
             {
-                var user = _userService.GetUser(UserId).First();
+                var user = _userService.GetUser(userId).First();
                 {
                     user.UserName = UserName;
                 }
