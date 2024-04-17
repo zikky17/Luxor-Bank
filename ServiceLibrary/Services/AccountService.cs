@@ -11,7 +11,7 @@ namespace ServiceLibrary.Services
     {
         private readonly ApplicationDbContext _context = context;
 
-        public List<AccountViewModel> GetAccountInfo(int accountId)
+        public AccountViewModel GetAccountInfo(int accountId)
         {
             var query = _context.Dispositions
                 .Include(d => d.Account)
@@ -22,12 +22,10 @@ namespace ServiceLibrary.Services
                     Created = d.Account.Created,
                     Balance = d.Account.Balance,
                     Transactions = d.Account.Transactions.ToList()
-                });
+                })
+                .First();
 
-
-
-            var sortedAccounts = query.ToList();
-            return sortedAccounts;
+            return query;
         }
 
         public List<TransactionViewModel> GetTransactions(int accountId)

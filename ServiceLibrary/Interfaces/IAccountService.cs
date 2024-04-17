@@ -23,7 +23,7 @@ namespace ServiceLibrary.Interfaces
 
     public interface IAccountService
     {
-        List<AccountViewModel> GetAccountInfo(int accountId);
+        AccountViewModel GetAccountInfo(int accountId);
 
         public List<TransactionViewModel> GetTransactions(int accountId);
 

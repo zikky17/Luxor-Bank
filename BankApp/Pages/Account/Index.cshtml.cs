@@ -12,7 +12,7 @@ namespace BankApp.Pages.Account
     public class IndexModel(IAccountService service) : PageModel
     {
         private readonly IAccountService _accountService = service;
-        public List<AccountViewModel> Account { get; set; }
+        public AccountViewModel Account { get; set; }
         public decimal AccountBalance { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -28,26 +28,28 @@ namespace BankApp.Pages.Account
             AccountId = accountId;
             Account = _accountService.GetAccountInfo(accountId);
 
-            foreach (var account in Account)
-            {
-                AccountBalance = account.Balance;
-            }
+            AccountBalance = Account.Balance;
 
+             Transactions = Account.Transactions.Select(t => new TransactionViewModel
+             {
+                 AccountId = t.AccountId,
+                 Date = t.Date,
+                 Operation = t.Operation,
+                 Type = t.Type,
+                 Amount = t.Amount
+             })
+                .OrderByDescending(t => t.Date).ToList();
 
-            foreach (var account in Account)
-            {
-                account.Transactions = account.Transactions.OrderByDescending(t => t.Date).ToList();
-            }
         }
 
         public IActionResult OnGetShowMore(int accountId, int pageNo)
         {
             var allTransactions = _accountService.GetTransactions(accountId)
                 .Where(t => t.AccountId == accountId)
-                .OrderByDescending(t => t.Date) 
+                .OrderByDescending(t => t.Date)
                 .AsQueryable();
 
-            var pagedTransactions = allTransactions.GetPaged(pageNo, 20); 
+            var pagedTransactions = allTransactions.GetPaged(pageNo, 20);
 
             var listOfTransactions = pagedTransactions.Results
                 .Select(t => new TransactionViewModel

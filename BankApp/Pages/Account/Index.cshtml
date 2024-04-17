@@ -3,16 +3,14 @@
 @{
 }
 
-@foreach (var acc in Model.Account)
-{
     <div class="details">
         <h1>@Model.FirstName @Model.LastName</h1>
 
         <dt class="col-sm-4">Account Number:</dt>
-        <dd class="col-sm-8">@acc.AccountId</dd>
+        <dd class="col-sm-8">@Model.AccountId</dd>
 
         <dt class="col-sm-4">Balance:</dt>
-        <dd class="col-sm-8 personal-text">@acc.Balance</dd>
+        <dd class="col-sm-8 personal-text">@Model.AccountBalance</dd>
         <hr />
 
         <div class="account-menu">
@@ -22,7 +20,7 @@
             <div class="buttons">
                 <a class="custom-btn custom-border-btn btn account-button"
                    asp-route-customerId="@Model.CustomerId"
-                   asp-route-accountId="@acc.AccountId"
+                   asp-route-accountId="@Model.AccountId"
                    asp-page="/Account/Deposit">
                     Deposit
                     <i class="bi bi-plus-circle ml-1"></i>
@@ -30,7 +28,7 @@
 
                 <a class="custom-btn custom-border-btn btn account-button"
                    asp-route-customerId="@Model.CustomerId"
-                   asp-route-accountId="@acc.AccountId"
+                   asp-route-accountId="@Model.AccountId"
                    asp-page="/Account/Withdraw">
                     Withdraw
                     <i class="fa-light fa-money-simple-from-bracket"></i>
@@ -38,7 +36,7 @@
 
                 <a class="custom-btn custom-border-btn btn account-button"
                    asp-route-customerId="@Model.CustomerId"
-                   asp-route-accountId="@acc.AccountId"
+                   asp-route-accountId="@Model.AccountId"
                    asp-route-firstName="@Model.FirstName"
                    asp-route-lastName="@Model.LastName"
                    asp-page="/Account/Transfer">
@@ -49,7 +47,7 @@
             </div>
         </div>
 
-        <table class="table custom-table">
+        <table class="table custom-table mt-2">
             <thead>
                 <tr class="index-headers-text">
                     <td>Date</td>
@@ -69,21 +67,21 @@
             <a id="load-more-btn" href="#" class="custom-btn custom-border-btn btn" onclick="showMore()">Show More</a>
 
             <form method="post">
-                <input type="hidden" name="accountId" value="@acc.AccountId" />
+                <input type="hidden" name="accountId" value="@Model.AccountId" />
                 <input type="hidden" name="customerId" value="@Model.CustomerId" />
                 <input type="hidden" name="firstName" value="@Model.FirstName" />
                 <input type="hidden" name="lastName" value="@Model.LastName" />
-                <input type="hidden" name="accountBalance" value="@acc.Balance" />
+                <input type="hidden" name="accountBalance" value="@Model.AccountBalance" />
 
                 <button class="custom-btn custom-border-btn btn delete-button" type="submit">
                     Delete
                     <i class="bi bi-trash3"></i>
                 </button>
-                <span asp-validation-for="@acc.Balance" class="text-danger"></span>
+                <span asp-validation-for="@Model.AccountBalance" class="text-danger"></span>
             </form>
         </div>
     </div>
-}
+
 
 @section Scripts
 {
@@ -108,22 +106,12 @@
         function drawElements(transaction) {
             const tableRow = document.createElement('tr');
 
-            const dateCell = document.createElement('td');
-            dateCell.textContent = transaction.date;
-            tableRow.appendChild(dateCell);
-
-            const operationCell = document.createElement('td');
-            operationCell.textContent = transaction.operation || "Information is missing";
-            tableRow.appendChild(operationCell);
-
-            const typeCell = document.createElement('td');
-            typeCell.textContent = transaction.type;
-            tableRow.appendChild(typeCell);
-
-            const amountCell = document.createElement('td');
-            amountCell.textContent = transaction.type === "Debit" ? transaction.amount : transaction.amount;
-            amountCell.style.color = transaction.type === "Debit" ? "red" : "green";
-            tableRow.appendChild(amountCell);
+            tableRow.innerHTML = `
+                <td>${transaction.date}</td>
+                <td>${transaction.operation || "Information is missing"}</td>
+                <td>${transaction.type}</td>
+                <td style="color: ${transaction.type === "Debit" ? "red" : "green"}">${transaction.amount}</td>
+            `;
 
             document.querySelector('#transaction-data').appendChild(tableRow);
         }
