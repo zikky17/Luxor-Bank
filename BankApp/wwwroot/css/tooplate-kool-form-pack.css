@@ -954,3 +954,7 @@ modal {
         .validation-container .text-danger:empty {
             display: none;
         }
+
+.password-warning {
+    max-width: 600px;
+}
