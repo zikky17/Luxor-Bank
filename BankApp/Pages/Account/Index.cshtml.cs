@@ -1,10 +1,10 @@
 using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
+using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
-using System.ComponentModel.DataAnnotations;
+using BankApp.Infrastructure.Paging;
+using ServiceLibrary.ViewModels;
 
 namespace BankApp.Pages.Account
 {
@@ -12,12 +12,13 @@ namespace BankApp.Pages.Account
     public class IndexModel(IAccountService service) : PageModel
     {
         private readonly IAccountService _accountService = service;
-        public List<AccountViewModel> Accounts { get; set; }
+        public AccountViewModel Account { get; set; }
         public decimal AccountBalance { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int CustomerId { get; set; }
         public int AccountId { get; set; }
+        public List<TransactionViewModel> Transactions { get; set; }
 
         public void OnGet(int accountId, string firstName, string lastName, int customerId)
         {
@@ -25,40 +26,42 @@ namespace BankApp.Pages.Account
             LastName = lastName;
             CustomerId = customerId;
             AccountId = accountId;
-            Accounts = _accountService.GetAccountInfo(accountId);
+            Account = _accountService.GetAccountInfo(accountId);
 
-            foreach(var account in Accounts)
-            {
-                AccountBalance = account.Balance;
-            }
+            AccountBalance = Account.Balance;
 
+             Transactions = Account.Transactions.Select(t => new TransactionViewModel
+             {
+                 AccountId = t.AccountId,
+                 Date = t.Date,
+                 Operation = t.Operation,
+                 Type = t.Type,
+                 Amount = t.Amount
+             })
+                .OrderByDescending(t => t.Date).ToList();
 
-            foreach (var account in Accounts)
-            {
-                account.Transactions = account.Transactions.OrderByDescending(t => t.Date).ToList();
-            }
         }
 
-        //public IActionResult OnGetShowMore(int personId, int pageNo)
-        //{
-        //    var listOfTransactions = _dbContext.Person
-        //        .Where(p => p.Id == personId)
-        //        .SelectMany(p => p.OwnedCars)
-        //        .OrderBy(ca => ca.BoughtDate)
-        //        .GetPaged(pageNo, 5).Results
-        //        .Select(c => new Car
-        //        {
-        //            BoughtDate = c.BoughtDate,
-        //            Id = c.Id,
-        //            Model = c.Model,
-        //            Fuel = c.Fuel,
-        //            Manufacturer = c.Manufacturer,
-        //            Type = c.Type,
-        //            Vin = c.Vin
-        //        }).ToList();
+        public IActionResult OnGetShowMore(int accountId, int pageNo)
+        {
+            var allTransactions = _accountService.GetTransactions(accountId)
+                .Where(t => t.AccountId == accountId)
+                .OrderByDescending(t => t.Date)
+                .AsQueryable();
 
-        //    return new JsonResult(new { cars = listOfCars });
-        //}
+            var pagedTransactions = allTransactions.GetPaged(pageNo, 20);
+
+            var listOfTransactions = pagedTransactions.Results
+                .Select(t => new TransactionViewModel
+                {
+                    Date = t.Date,
+                    Operation = t.Operation,
+                    Type = t.Type,
+                    Amount = t.Amount
+                }).ToList();
+
+            return new JsonResult(new { transactions = listOfTransactions });
+        }
 
         public IActionResult OnPost(decimal accountBalance)
         {

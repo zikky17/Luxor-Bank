@@ -22,8 +22,8 @@ namespace BankApp.Pages.Account
 
         public int CustomerId { get; set; }
         public int AccountId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
         public decimal AccountBalance { get; set; }
         public decimal TransferAmount { get; set; }
 

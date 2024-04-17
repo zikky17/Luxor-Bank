@@ -1,5 +1,6 @@
 ﻿using BankApp.ViewModels;
 using ServiceLibrary.Data;
+using ServiceLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,9 @@ namespace ServiceLibrary.Interfaces
 
     public interface IAccountService
     {
-        List<AccountViewModel> GetAccountInfo(int accountId);
+        AccountViewModel GetAccountInfo(int accountId);
+
+        public List<TransactionViewModel> GetTransactions(int accountId);
 
         StatusMessage Deposit(decimal amount, int accountId, string comment);
 
