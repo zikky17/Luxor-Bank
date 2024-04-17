@@ -3,7 +3,7 @@
 @{
 }
 
-@foreach (var acc in Model.Accounts)
+@foreach (var acc in Model.Account)
 {
     <div class="details">
         <h1>@Model.FirstName @Model.LastName</h1>
@@ -50,43 +50,24 @@
         </div>
 
         <table class="table custom-table">
-            <tr class="index-headers-text">
-                <td>Date</td>
-                <td>Operation</td>
-                <td>Type</td>
-                <td>
-                    Amount
-
-                </td>
-            </tr>
-
-            <hr />
-
-            @foreach (var transaction in acc.Transactions)
-            {
-                <tr>
-                    <td>
-                        @transaction.Date.ToShortDateString()
-                    </td>
-                    <td>
-                        @(string.IsNullOrEmpty(transaction.Operation) ? "Information is missing" : transaction.Operation)
-                    </td>
-                    <td>@transaction.Type</td>
-                    @if (transaction.Type == "Debit")
-                    {
-                        <td style="color: red">@transaction.Amount</td>
-                    }
-                    else
-                    {
-                        <td style="color: green">@transaction.Amount</td>
-                    }
+            <thead>
+                <tr class="index-headers-text">
+                    <td>Date</td>
+                    <td>Operation</td>
+                    <td>Type</td>
+                    <td>Amount</td>
                 </tr>
-            }
+            </thead>
+            <tbody id="transaction-data">
+
+            </tbody>
         </table>
+
         <div class="account-buttons">
             <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Back</a>
 
-            <a id="load-more-btn" href="javascript:showMore()" class="custom-btn custom-border-btn btn">Show More</a>
+            <a id="load-more-btn" href="#" class="custom-btn custom-border-btn btn" onclick="showMore()">Show More</a>
+
             <form method="post">
                 <input type="hidden" name="accountId" value="@acc.AccountId" />
                 <input type="hidden" name="customerId" value="@Model.CustomerId" />
@@ -100,7 +81,6 @@
                 </button>
                 <span asp-validation-for="@acc.Balance" class="text-danger"></span>
             </form>
-
         </div>
     </div>
 }
@@ -108,19 +88,44 @@
 @section Scripts
 {
     <script>
-        pageNo = 1;
+        let pageNo = 1;
+        let accountId = @Model.AccountId;
 
         document.addEventListener("DOMContentLoaded", function () {
             showMore();
         });
 
         function showMore() {
-            fetch("View?handler=ShowMore&pageNo= " + pageNo + "&personId=@Model.CustomerId")
+            event.preventDefault();
+            fetch(`/Account/Index?handler=ShowMore&pageNo=${pageNo}&accountId=${accountId}`)
                 .then((response) => response.json())
                 .then((json) => {
-                    pageNo = pageNo + 1
+                    pageNo++;
                     json.transactions.forEach(drawElements);
                 });
+        }
+
+        function drawElements(transaction) {
+            const tableRow = document.createElement('tr');
+
+            const dateCell = document.createElement('td');
+            dateCell.textContent = transaction.date;
+            tableRow.appendChild(dateCell);
+
+            const operationCell = document.createElement('td');
+            operationCell.textContent = transaction.operation || "Information is missing";
+            tableRow.appendChild(operationCell);
+
+            const typeCell = document.createElement('td');
+            typeCell.textContent = transaction.type;
+            tableRow.appendChild(typeCell);
+
+            const amountCell = document.createElement('td');
+            amountCell.textContent = transaction.type === "Debit" ? transaction.amount : transaction.amount;
+            amountCell.style.color = transaction.type === "Debit" ? "red" : "green";
+            tableRow.appendChild(amountCell);
+
+            document.querySelector('#transaction-data').appendChild(tableRow);
         }
     </script>
 }

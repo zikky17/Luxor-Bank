@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
+using ServiceLibrary.ViewModels;
 using Transaction = ServiceLibrary.Data.Transaction;
 
 namespace ServiceLibrary.Services
@@ -27,6 +28,26 @@ namespace ServiceLibrary.Services
 
             var sortedAccounts = query.ToList();
             return sortedAccounts;
+        }
+
+        public List<TransactionViewModel> GetTransactions(int accountId)
+        {
+            var transactions = _context.Dispositions
+                .Include(d => d.Account)
+                .ThenInclude(a => a.Transactions)
+                .Where(d => d.AccountId == accountId)
+                .SelectMany(d => d.Account.Transactions)
+                .Select(t => new TransactionViewModel
+                {
+                    AccountId = t.AccountId,
+                    Date = t.Date,
+                    Operation = t.Operation,
+                    Type = t.Type,
+                    Amount = t.Amount
+                })
+                .ToList();
+
+            return transactions;
         }
 
         public StatusMessage Deposit(decimal amount, int accountId, string comment)

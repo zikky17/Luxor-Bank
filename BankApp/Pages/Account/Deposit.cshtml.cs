@@ -15,8 +15,8 @@ namespace BankApp.Pages
         private readonly ICustomerService _customerService = customerService;
 
         public List<CustomerViewModel> Customers { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
 
         public List<AccountViewModel> Accounts { get; set; }
 

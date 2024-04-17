@@ -36,10 +36,6 @@ namespace MoneyLaunderingGuard
 
             Accounts = _context.Accounts.ToList();
 
-            foreach (var account in Accounts)
-            {
-                if(account.Transactions.)
-            }
-                
+        }
     }
 }
