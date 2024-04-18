@@ -1,3 +1,5 @@
+using AutoMapper;
+using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceLibrary.Interfaces;
@@ -8,10 +10,11 @@ using System.Security.Principal;
 namespace BankApp.Pages.Customer
 {
     [BindProperties]
-    public class CreateModel(ICustomerService service, IAccountService accountService) : PageModel
+    public class CreateModel(ICustomerService service, IAccountService accountService, IMapper mapper) : PageModel
     {
         private readonly ICustomerService _customerService = service;
         private readonly IAccountService _accountService = accountService;
+        private readonly IMapper _mapper = mapper;
 
         public string Gender { get; set; } = null!;
 
@@ -52,6 +55,8 @@ namespace BankApp.Pages.Customer
 
         public string? Emailaddress { get; set; }
 
+        public CustomerViewModel Customer { get; set; }
+
         public void OnGet()
         {
           
@@ -61,22 +66,25 @@ namespace BankApp.Pages.Customer
         {
             if (ModelState.IsValid)
             {
-                var customer = new ServiceLibrary.Data.Customer
-                {
-                    Givenname = FirstName,
-                    Surname = LastName,
-                    Gender = Gender,
-                    Streetaddress = Streetaddress,
-                    City = City,
-                    Zipcode = Zipcode,
-                    Country = Country,
-                    CountryCode = CountryCode,
-                    Birthday = Birthday,
-                    NationalId = NationalId,
-                    Telephonecountrycode = Telephonecountrycode,
-                    Telephonenumber = Telephonenumber,
-                    Emailaddress = Emailaddress,
-                };
+                //var customer = new ServiceLibrary.Data.Customer
+                //{
+                //    Givenname = FirstName,
+                //    Surname = LastName,
+                //    Gender = Gender,
+                //    Streetaddress = Streetaddress,
+                //    City = City,
+                //    Zipcode = Zipcode,
+                //    Country = Country,
+                //    CountryCode = CountryCode,
+                //    Birthday = Birthday,
+                //    NationalId = NationalId,
+                //    Telephonecountrycode = Telephonecountrycode,
+                //    Telephonenumber = Telephonenumber,
+                //    Emailaddress = Emailaddress,
+                //};
+
+                var customer = new ServiceLibrary.Data.Customer();
+                //_mapper.Map(CustomerViewModel, customer);
 
                 _customerService.CreateCustomer(customer);
                 var newAccount = new ServiceLibrary.Data.Account

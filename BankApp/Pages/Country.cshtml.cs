@@ -9,6 +9,8 @@ using System.Linq;
 
 namespace BankApp.Pages
 {
+    [ResponseCache(Duration = 60, VaryByQueryKeys = new[] { "country" })]
+
     public class CountryModel(ICountryService service) : PageModel
     {
 
