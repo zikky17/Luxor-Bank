@@ -150,7 +150,7 @@
                     <td> @(string.IsNullOrEmpty(customer.NationalId) ? "Not specified" : customer.NationalId)</td>
                     <td>@customer.FirstName</td>
                     <td>@customer.LastName</td>
-                    <td>@customer.Address</td>
+                    <td>@customer.Streetaddress</td>
                     <td>@customer.City</td>
                     <td><a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn view-button">View</a></td>
                 </tr>

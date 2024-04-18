@@ -9,6 +9,5 @@ namespace BankApp.ViewModels
         public DateOnly Created { get; set; }
         public decimal Balance { get; set; }
         public ICollection<Transaction> Transactions { get; set; }
-        public decimal Amount { get; set; }
     }
 }
