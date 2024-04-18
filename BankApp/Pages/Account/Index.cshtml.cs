@@ -42,6 +42,22 @@ namespace BankApp.Pages.Account
 
         }
 
+        public IActionResult OnPost(decimal accountBalance)
+        {
+            AccountBalance = accountBalance;
+
+                if (AccountBalance > 0)
+                {
+                    ModelState.AddModelError(string.Empty, "Account balance must be 0 before deleting the account.");
+                    return Page();
+                }
+
+                _accountService.DeleteAccount(AccountId);
+                return RedirectToPage("/Customer/CustomerDetails", new { customerId = CustomerId, firstName = FirstName, lastName = LastName });
+
+            return Page();
+        }
+
         public IActionResult OnGetShowMore(int accountId, int pageNo)
         {
             var allTransactions = _accountService.GetTransactions(accountId)
@@ -63,23 +79,6 @@ namespace BankApp.Pages.Account
             return new JsonResult(new { transactions = listOfTransactions });
         }
 
-        public IActionResult OnPost(decimal accountBalance)
-        {
-            AccountBalance = accountBalance;
-
-            if (ModelState.IsValid)
-            {
-                if (AccountBalance > 0)
-                {
-                    ModelState.AddModelError(string.Empty, "Account balance must be 0 before deleting the account.");
-                    return Page();
-                }
-
-                _accountService.DeleteAccount(AccountId);
-                return RedirectToPage("/Customer/CustomerDetails", new { customerId = CustomerId, firstName = FirstName, lastName = LastName });
-            }
-
-            return Page();
-        }
+        
     }
 }

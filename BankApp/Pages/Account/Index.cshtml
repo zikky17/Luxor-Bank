@@ -73,7 +73,7 @@
                 <input type="hidden" name="lastName" value="@Model.LastName" />
                 <input type="hidden" name="accountBalance" value="@Model.AccountBalance" />
 
-                <button class="custom-btn custom-border-btn btn delete-button" type="submit">
+                <button class="custom-btn custom-border-btn btn delete-button" asp-route-accountBalance="@Model.AccountBalance" type="submit">
                     Delete
                     <i class="bi bi-trash3"></i>
                 </button>

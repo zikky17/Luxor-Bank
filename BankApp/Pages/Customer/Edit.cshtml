@@ -125,28 +125,29 @@ else
                 var selectedCountry = $(this).val();
                 switch (selectedCountry) {
                     case "Sweden":
-                        $('input[name="CountryCode"]').val("SE");
-                        $('input[name="TelephoneCountryCode"]').val("+46");
+                        $('#countryCode').val("SE");
+                        $('#phoneCountryCode').val("+46");
                         break;
                     case "Finland":
-                        $('input[name="CountryCode"]').val("FI");
-                        $('input[name="TelephoneCountryCode"]').val("+358");
+                        $('#countryCode').val("FI");
+                        $('#phoneCountryCode').val("+358");
                         break;
                     case "Norway":
-                        $('input[name="CountryCode"]').val("NK");
-                        $('input[name="TelephoneCountryCode"]').val("+47");
+                        $('#countryCode').val("NK");
+                        $('#phoneCountryCode').val("+47");
                         break;
                     case "Denmark":
-                        $('input[name="CountryCode"]').val("DK");
-                        $('input[name="TelephoneCountryCode"]').val("+45");
+                        $('#countryCode').val("DK");
+                        $('#phoneCountryCode').val("+45");
                         break;
                     default:
-                        $('input[name="CountryCode"]').val("");
-                        $('input[name="TelephoneCountryCode"]').val("");
+                        $('#countryCode').val("");
+                        $('#phoneCountryCode').val("");
                         break;
                 }
             });
         });
+
 
     </script>
     <partial name="Shared/_ValidationScriptsPartial" />

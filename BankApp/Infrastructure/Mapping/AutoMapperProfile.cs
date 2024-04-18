@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BankApp.ViewModels;
 using ServiceLibrary.Data;
+using ServiceLibrary.ViewModels;
 
 namespace BankApp.Infrastructure.Mapping
 {
@@ -13,6 +14,15 @@ namespace BankApp.Infrastructure.Mapping
             .ForMember(dest => dest.Givenname, opt => opt.MapFrom(src => src.FirstName))
             .ForMember(dest => dest.Surname, opt => opt.MapFrom(src => src.LastName))
             .ReverseMap();
+
+            //CreateMap<AccountViewModel, Account>()
+            //    .ReverseMap();
+
+            //CreateMap<TransactionViewModel, Transaction>()
+            //    .ReverseMap();
+
+            //CreateMap<UserViewModel, User>()
+            //    .ReverseMap();
         }
 
     }
