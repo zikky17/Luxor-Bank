@@ -17,5 +17,7 @@ namespace ServiceLibrary.Interfaces
         public List<UserViewModel> GetUser(string userId);
 
         public void UpdateUser(IdentityUser user);
+
+        public void DeleteUser(string userId);
     }
 }

@@ -47,7 +47,7 @@ namespace ServiceLibrary.Services
                 NationalId = c.NationalId,
                 FirstName = c.Givenname,
                 LastName = c.Surname,
-                Address = c.Streetaddress,
+                Streetaddress = c.Streetaddress,
                 City = c.City
             });
 
@@ -88,7 +88,7 @@ namespace ServiceLibrary.Services
                     query = sortOrder == "asc" ? query.OrderBy(s => s.NationalId) : query.OrderByDescending(s => s.NationalId);
                     break;
                 case "Address":
-                    query = sortOrder == "asc" ? query.OrderBy(s => s.Address) : query.OrderByDescending(s => s.Address);
+                    query = sortOrder == "asc" ? query.OrderBy(s => s.Streetaddress) : query.OrderByDescending(s => s.Streetaddress);
                     break;
             }
 
@@ -121,15 +121,15 @@ namespace ServiceLibrary.Services
                     FirstName = c.Givenname,
                     LastName = c.Surname,
                     Gender = c.Gender,
-                    Address = c.Streetaddress,
+                    Streetaddress = c.Streetaddress,
                     City = c.City,
-                    ZipCode = c.Zipcode,
+                    Zipcode = c.Zipcode,
                     Country = c.Country,
                     CountryCode = c.CountryCode,
                     Birthday = c.Birthday,
                     Telephonecountrycode = c.Telephonecountrycode,
                     Telephonenumber = c.Telephonenumber,
-                    Email = c.Emailaddress
+                    Emailaddress = c.Emailaddress
                 }).ToList();
 
             return customer;

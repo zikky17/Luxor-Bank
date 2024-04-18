@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
@@ -6,6 +7,7 @@ using ServiceLibrary.Services;
 
 namespace BankWeb.Pages
 {
+   
     public class IndexModel(ICustomerService service) : PageModel
     {
 
@@ -24,8 +26,6 @@ namespace BankWeb.Pages
 
             BalancePerCountry = _customerService.GetBalancePerCountry();
 
-            Response.Headers[HeaderNames.CacheControl] = "public,max-age=60";
-            Response.Headers[HeaderNames.Vary] = "Accept-Encoding,User-Agent,Country";
         }
 
 

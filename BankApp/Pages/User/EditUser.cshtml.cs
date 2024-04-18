@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Identity.Client;
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
+using ServiceLibrary.Services;
 using ServiceLibrary.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace BankApp.Pages.User
 {
@@ -15,6 +18,16 @@ namespace BankApp.Pages.User
         public string UserName { get; set; }
 
         public string UserId { get; set; }
+
+        [Required(ErrorMessage = "You must choose a role.")]
+        public string[] Role { get; set; }
+
+
+        [Required(ErrorMessage = "Password is required")]
+        [DataType(DataType.Password)]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$", ErrorMessage = "Password must be at least 8 characters long, start with an uppercase letter, and contain at least one special character")]
+        public string Password { get; set; }
+
 
         public void OnGet(string userId)
         {
@@ -45,6 +58,12 @@ namespace BankApp.Pages.User
             return Page();
         }
 
+        public IActionResult OnPostDelete(string userId)
+        {
+            _userService.DeleteUser(userId);
+            ViewData["Message"] = "User deleted successfully!";
+            return RedirectToPage("Index");
+        }
 
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
 using ServiceLibrary.Services;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,9 @@ builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ICountryService, CountryService>();
+builder.Services.AddResponseCaching();
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
@@ -50,5 +54,6 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.UseResponseCaching();
 
 app.Run();
