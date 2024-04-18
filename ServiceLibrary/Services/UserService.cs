@@ -69,6 +69,13 @@ namespace ServiceLibrary.Services
             _dbContext.SaveChanges();
         }
 
+        public void DeleteUser(string userId)
+        {
+            var userToDelete = _dbContext.Users.Where(u => u.Id == userId).First();
+            _dbContext.Remove(userToDelete);
+            _dbContext.SaveChanges();
+        }
+
 
     }
 }

@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Identity.Client;
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
+using ServiceLibrary.Services;
 using ServiceLibrary.ViewModels;
 using System.ComponentModel.DataAnnotations;
 
@@ -56,6 +58,12 @@ namespace BankApp.Pages.User
             return Page();
         }
 
+        public IActionResult OnPostDelete(string userId)
+        {
+            _userService.DeleteUser(userId);
+            ViewData["Message"] = "User deleted successfully!";
+            return RedirectToPage("Index");
+        }
 
     }
 }
