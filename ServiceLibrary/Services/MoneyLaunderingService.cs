@@ -4,9 +4,19 @@ using ServiceLibrary.Interfaces;
 
 namespace ServiceLibrary.Services
 {
-    public class MoneyLaunderingService(ApplicationDbContext context) : IMoneyLaunderingService
+    public class MoneyLaunderingService : IMoneyLaunderingService
     {
-        private readonly ApplicationDbContext _context = context;
+        private readonly ApplicationDbContext _context;
+
+        public MoneyLaunderingService()
+        {
+            
+        }
+
+        public MoneyLaunderingService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         public List<Customer> GetCustomersSortedByCountry(string country)
         {

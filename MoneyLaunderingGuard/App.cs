@@ -1,13 +1,19 @@
 ﻿
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
+using ServiceLibrary.Services;
 
 namespace MoneyLaunderingGuard
 {
-    public class App()
+    public class App
     {
-        private readonly IAccountService _accountService;
         private readonly IMoneyLaunderingService _moneyLaunderingService;
+
+        public App(IMoneyLaunderingService moneyLaunderingService)
+        {
+
+            _moneyLaunderingService = moneyLaunderingService;
+        }
 
         public List<Transaction> SuspiciousSingleTransactions { get; set; }
 
@@ -48,6 +54,25 @@ namespace MoneyLaunderingGuard
             SuspiciousTransactionsNorway = _moneyLaunderingService.GetSuspiciousTransactionsThreeLastDays(TransactionsNorway);
             SuspiciousTransactionsFinland = _moneyLaunderingService.GetSuspiciousTransactionsThreeLastDays(TransactionsFinland);
 
+
+            var directoryPath = "SuspiciousTransactions";
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            var filePath = Path.Combine(directoryPath, "SuspiciousTransactions.txt");
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                foreach (var transaction in SuspiciousSingleTransactions)
+                {
+                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
+                    writer.WriteLine($"Account Number: {transaction.AccountId}");
+                    writer.WriteLine();
+                }
+            }
+
+            Console.WriteLine($"Suspicious transactions saved to: {filePath}");
         }
     }
 }
