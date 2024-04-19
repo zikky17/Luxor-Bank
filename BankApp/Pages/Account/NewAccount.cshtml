@@ -10,19 +10,19 @@
 
 <form method="post">
     <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Frequency">Frequency</label>
-        <select asp-for="@Model.Frequency">
+        <label class="primary-color input-style" asp-for="@Model.AccountVM.Frequency">Frequency</label>
+        <select asp-for="@Model.AccountVM.Frequency">
             <option value="" selected disabled>Choose one</option>
             <option value="AfterTransaction">After Transaction</option>
             <option value="Monthly">Monthly</option>
             <option value="Weekly">Weekly</option>
         </select>
-        <span asp-validation-for="@Model.Frequency" class="text-danger"></span>
+        <span asp-validation-for="@Model.AccountVM.Frequency" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label class="primary-color input-style" asp-for="@Model.Balance">Deposit</label>
-        <input asp-for="@Model.Balance" />
-        <span asp-validation-for="@Model.Balance" class="text-danger"></span>
+        <label class="primary-color input-style" asp-for="@Model.AccountVM.Balance">Deposit</label>
+        <input asp-for="@Model.AccountVM.Balance" />
+        <span asp-validation-for="@Model.AccountVM.Balance" class="text-danger"></span>
     </div>
     <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Back</a>
     <input class="custom-btn custom-border-btn btn mt-2 margin-left-20" type="submit" value="Create" />

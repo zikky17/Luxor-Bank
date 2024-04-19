@@ -1,3 +1,4 @@
+using AutoMapper;
 using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,20 +13,25 @@ using System.Reflection.Emit;
 namespace BankApp.Pages.Account
 {
     [BindProperties]
-    public class NewAccountModel(IAccountService service) : PageModel
+    public class NewAccountModel(IAccountService service, IMapper mapper) : PageModel
     {
 
         private readonly IAccountService _accountService = service;
+        private readonly IMapper _mapper = mapper;
 
         public int CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int AccountId { get; set; }
-        [Required]
-        public string Frequency { get; set; } = null!;
-        public DateOnly Created { get; set; }
-        public decimal Balance { get; set; }
-        public ICollection<Transaction> Transactions { get; set; }
+
+
+        public AccountViewModel AccountVM { get; set; }
+        //public int AccountId { get; set; }
+        //[Required]
+        //public string Frequency { get; set; } = null!;
+        //public DateOnly Created { get; set; }
+        //public decimal Balance { get; set; }
+        //public ICollection<Transaction> Transactions { get; set; }
+
         public decimal Amount { get; set; }
 
         public void OnGet(int customerId, string firstName, string lastName)
@@ -39,12 +45,8 @@ namespace BankApp.Pages.Account
         {
             if (ModelState.IsValid)
             {
-                var account = new ServiceLibrary.Data.Account
-                {
-                    Frequency = Frequency,
-                    Balance = Balance,
-                    Created = DateOnly.FromDateTime(DateTime.Now),
-                };
+                var account = new ServiceLibrary.Data.Account();
+                _mapper.Map(AccountVM, account);
 
                 _accountService.CreateAccount(CustomerId, account);
 

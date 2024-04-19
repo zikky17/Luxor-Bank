@@ -13,7 +13,7 @@ namespace BankApp.Pages.Account
     {
         private readonly IAccountService _accountService = service;
         public AccountViewModel Account { get; set; }
-        public decimal AccountBalance { get; set; }
+        public decimal? AccountBalance { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int CustomerId { get; set; }
@@ -25,20 +25,13 @@ namespace BankApp.Pages.Account
             FirstName = firstName;
             LastName = lastName;
             CustomerId = customerId;
+
             AccountId = accountId;
             Account = _accountService.GetAccountInfo(accountId);
 
             AccountBalance = Account.Balance;
 
-             Transactions = Account.Transactions.Select(t => new TransactionViewModel
-             {
-                 AccountId = t.AccountId,
-                 Date = t.Date,
-                 Operation = t.Operation,
-                 Type = t.Type,
-                 Amount = t.Amount
-             })
-                .OrderByDescending(t => t.Date).ToList();
+            Transactions = _accountService.GetTransactions(accountId);
 
         }
 
@@ -46,14 +39,14 @@ namespace BankApp.Pages.Account
         {
             AccountBalance = accountBalance;
 
-                if (AccountBalance > 0)
-                {
-                    ModelState.AddModelError(string.Empty, "Account balance must be 0 before deleting the account.");
-                    return Page();
-                }
+            if (AccountBalance > 0)
+            {
+                ModelState.AddModelError("AccountBalance", "Account balance must be 0 before deleting the account. Make a withdraw or a transfer.");
+                return Page();
+            }
 
-                _accountService.DeleteAccount(AccountId);
-                return RedirectToPage("/Customer/CustomerDetails", new { customerId = CustomerId, firstName = FirstName, lastName = LastName });
+            _accountService.DeleteAccount(AccountId);
+            return RedirectToPage("/Customer/CustomerDetails", new { customerId = CustomerId, firstName = FirstName, lastName = LastName });
 
             return Page();
         }
@@ -79,6 +72,6 @@ namespace BankApp.Pages.Account
             return new JsonResult(new { transactions = listOfTransactions });
         }
 
-        
+
     }
 }

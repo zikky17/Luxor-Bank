@@ -1,13 +1,9 @@
-using Azure;
 using BankApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Data.SqlClient;
-using Microsoft.Identity.Client;
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
 using System.ComponentModel.DataAnnotations;
-using System.Drawing.Printing;
 
 namespace BankApp.Pages.Account
 {
@@ -25,15 +21,19 @@ namespace BankApp.Pages.Account
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public decimal AccountBalance { get; set; }
+
+        [Required(ErrorMessage = "Enter an receiving account Id.")]
+        public int TransferAccountId { get; set; }
+
+        [Required(ErrorMessage = "This field is required.")]
         public decimal TransferAmount { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(100)]
         public string Comment { get; set; }
 
         public int SelectedId { get; set; }
         public List<AccountViewModel> SelectedAccount { get; set; }
-        public int TransferAccountId { get; set; }
 
 
         public void OnGet(int customerId, int accountId, string firstName, string lastName, int selectedId, decimal accountBalance)
@@ -72,9 +72,9 @@ namespace BankApp.Pages.Account
                     Amount = TransferAmount
                 };
 
-                var withdraw = _accountService.Withdraw(withdrawTransaction);
+                _accountService.Withdraw(withdrawTransaction);
 
-                var deposit = _accountService.Deposit(TransferAmount, TransferAccountId, Comment);
+                _accountService.Deposit(TransferAmount, TransferAccountId, Comment);
                 ViewData["Message"] = "Transfer was successful!";
                 AccountBalance = _customerService.GetBalance(AccountId);
                 return Page();

@@ -3,84 +3,86 @@
 @{
 }
 
-    <div class="details">
-        <h1>@Model.FirstName @Model.LastName</h1>
+<div class="details">
+    <h1>@Model.FirstName @Model.LastName</h1>
 
-        <dt class="col-sm-4">Account Number:</dt>
-        <dd class="col-sm-8">@Model.AccountId</dd>
+    <dt class="col-sm-4">Account Number:</dt>
+    <dd class="col-sm-8">@Model.AccountId</dd>
 
-        <dt class="col-sm-4">Balance:</dt>
-        <dd class="col-sm-8 personal-text">@Model.AccountBalance</dd>
-        <hr />
+    <dt class="col-sm-4">Balance:</dt>
+    <dd class="col-sm-8 personal-text">@Model.AccountBalance</dd>
+    <div class="validation-container" style="bottom: 0.8em">
+        <span asp-validation-for="@Model.AccountBalance" class="text-danger"></span>
+    </div>
+    <hr />
 
-        <div class="account-menu">
-            <div class="transactions">
-                <h3>Transactions</h3>
-            </div>
-            <div class="buttons">
-                <a class="custom-btn custom-border-btn btn account-button"
-                   asp-route-customerId="@Model.CustomerId"
-                   asp-route-accountId="@Model.AccountId"
-                   asp-page="/Account/Deposit">
-                    Deposit
-                    <i class="bi bi-plus-circle ml-1"></i>
-                </a>
-
-                <a class="custom-btn custom-border-btn btn account-button"
-                   asp-route-customerId="@Model.CustomerId"
-                   asp-route-accountId="@Model.AccountId"
-                   asp-page="/Account/Withdraw">
-                    Withdraw
-                    <i class="fa-light fa-money-simple-from-bracket"></i>
-                </a>
-
-                <a class="custom-btn custom-border-btn btn account-button"
-                   asp-route-customerId="@Model.CustomerId"
-                   asp-route-accountId="@Model.AccountId"
-                   asp-route-firstName="@Model.FirstName"
-                   asp-route-lastName="@Model.LastName"
-                   asp-page="/Account/Transfer">
-                    Transfer
-                    <i class="fa-sharp fa-light fa-money-bill-transfer"></i>
-                </a>
-
-            </div>
+    <div class="account-menu">
+        <div class="transactions">
+            <h3>Transactions</h3>
         </div>
+        <div class="buttons">
+            <a class="custom-btn custom-border-btn btn account-button"
+               asp-route-customerId="@Model.CustomerId"
+               asp-route-accountId="@Model.AccountId"
+               asp-page="/Account/Deposit">
+                Deposit
+                <i class="bi bi-plus-circle ml-1"></i>
+            </a>
 
-        <table class="table custom-table mt-2">
-            <thead>
-                <tr class="index-headers-text">
-                    <td>Date</td>
-                    <td>Operation</td>
-                    <td>Type</td>
-                    <td>Amount</td>
-                </tr>
-            </thead>
-            <tbody id="transaction-data">
+            <a class="custom-btn custom-border-btn btn account-button"
+               asp-route-customerId="@Model.CustomerId"
+               asp-route-accountId="@Model.AccountId"
+               asp-page="/Account/Withdraw">
+                Withdraw
+                <i class="fa-light fa-money-simple-from-bracket"></i>
+            </a>
 
-            </tbody>
-        </table>
+            <a class="custom-btn custom-border-btn btn account-button"
+               asp-route-customerId="@Model.CustomerId"
+               asp-route-accountId="@Model.AccountId"
+               asp-route-firstName="@Model.FirstName"
+               asp-route-lastName="@Model.LastName"
+               asp-page="/Account/Transfer">
+                Transfer
+                <i class="fa-sharp fa-light fa-money-bill-transfer"></i>
+            </a>
 
-        <div class="account-buttons">
-            <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Back</a>
-
-            <a id="load-more-btn" href="#" class="custom-btn custom-border-btn btn" onclick="showMore()">Show More</a>
-
-            <form method="post">
-                <input type="hidden" name="accountId" value="@Model.AccountId" />
-                <input type="hidden" name="customerId" value="@Model.CustomerId" />
-                <input type="hidden" name="firstName" value="@Model.FirstName" />
-                <input type="hidden" name="lastName" value="@Model.LastName" />
-                <input type="hidden" name="accountBalance" value="@Model.AccountBalance" />
-
-                <button class="custom-btn custom-border-btn btn delete-button" asp-route-accountBalance="@Model.AccountBalance" type="submit">
-                    Delete
-                    <i class="bi bi-trash3"></i>
-                </button>
-                <span asp-validation-for="@Model.AccountBalance" class="text-danger"></span>
-            </form>
         </div>
     </div>
+
+    <table class="table custom-table mt-2">
+        <thead>
+            <tr class="index-headers-text">
+                <td>Date</td>
+                <td>Operation</td>
+                <td>Type</td>
+                <td>Amount</td>
+            </tr>
+        </thead>
+        <tbody id="transaction-data">
+        </tbody>
+    </table>
+
+    <div class="account-buttons">
+        <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Back</a>
+
+        <a id="load-more-btn" href="#" class="custom-btn custom-border-btn btn" onclick="showMore()">Show More</a>
+
+        <form method="post">
+            <input type="hidden" name="accountId" value="@Model.AccountId" />
+            <input type="hidden" name="customerId" value="@Model.CustomerId" />
+            <input type="hidden" name="firstName" value="@Model.FirstName" />
+            <input type="hidden" name="lastName" value="@Model.LastName" />
+            <input type="hidden" name="accountBalance" value="@Model.AccountBalance" />
+
+            <button class="custom-btn custom-border-btn btn delete-button" asp-route-accountBalance="@Model.AccountBalance" type="submit">
+                Delete
+                <i class="bi bi-trash3"></i>
+            </button>
+      
+        </form>
+    </div>
+</div>
 
 
 @section Scripts
@@ -107,11 +109,11 @@
             const tableRow = document.createElement('tr');
 
             tableRow.innerHTML = `
-                <td>${transaction.date}</td>
-                <td>${transaction.operation || "Information is missing"}</td>
-                <td>${transaction.type}</td>
-                <td style="color: ${transaction.type === "Debit" ? "red" : "green"}">${transaction.amount}</td>
-            `;
+                                <td>${transaction.date}</td>
+                                <td>${transaction.operation || "Information is missing"}</td>
+                                <td>${transaction.type}</td>
+                                <td style="color: ${transaction.type === "Debit" ? "red" : "green"}">${transaction.amount}</td>
+                            `;
 
             document.querySelector('#transaction-data').appendChild(tableRow);
         }

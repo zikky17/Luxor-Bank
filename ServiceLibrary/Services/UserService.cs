@@ -50,7 +50,7 @@ namespace ServiceLibrary.Services
             return users;
         }
 
-        public List<UserViewModel> GetUser(string userId)
+        public List<UserViewModel> GetUserVM(string userId)
         {
             var user = _dbContext.Users
                 .Where(u => u.Id == userId)
@@ -63,9 +63,22 @@ namespace ServiceLibrary.Services
             return user;
         }
 
-        public void UpdateUser(IdentityUser user)
+        public IdentityUser GetUser(string userId)
         {
-            _dbContext.Users.Update(user);
+            var user = _dbContext.Users.Where(u => u.Id == userId).First();
+            return user;
+        }
+
+        public void UpdateUser(string userId, string userName, string[] roles)
+        {
+            var user = _userManager.FindByIdAsync(userId).Result;
+            if (user == null) return;
+
+            user.UserName = userName;
+            var currentRoles = _userManager.GetRolesAsync(user).Result;
+            _userManager.RemoveFromRolesAsync(user, currentRoles).Wait();
+            _userManager.AddToRolesAsync(user, roles).Wait();
+
             _dbContext.SaveChanges();
         }
 
