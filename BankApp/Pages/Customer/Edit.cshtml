@@ -114,7 +114,14 @@ else
                 <input placeholder="(Optional)" asp-for="@Model.CustomerVM.Emailaddress" />
             </div>
             <hr class="primary-color" style="margin-top: 68px" />
-            <input class="custom-btn custom-border-btn btn delete-button delete-position" asp-route-customerId="@Model.CustomerVM.CustomerId" asp-page-handler="Delete" type="submit" value="Delete" />
+
+            <a class="custom-btn custom-border-btn btn delete-button delete-position"
+               asp-route-customerId="@Model.CustomerVM.CustomerId"
+               asp-route-firstName="@Model.CustomerVM.FirstName"
+               asp-route-lastName="@Model.CustomerVM.LastName"
+               asp-page="/Customer/ConfirmDelete">
+                Delete
+            </a>
         </div>
 </form>
 

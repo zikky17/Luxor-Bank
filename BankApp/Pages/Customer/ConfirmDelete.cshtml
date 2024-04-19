@@ -1,0 +1,21 @@
+﻿@page
+@model BankApp.Pages.Customer.ConfirmDeleteModel
+@{
+}
+
+<h1 class="margin-class">Confirm Delete</h1>
+<hr class="primary-color" />
+
+<form method="post">
+    <div class="form-style">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <h3 class="primary-color">Are you sure you want to delete this customer?</h3>
+                <br />
+                <br />
+                <h6 class="primary-color"> Customer Id: @Model.CustomerId</h6>
+                <h6 class="primary-color"> Name: @Model.FirstName @Model.LastName</h6>
+            </div>
+            <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Cancel</a>
+            <button class="custom-btn custom-border-btn btn delete-button" type="submit" asp-page-handler="Delete" asp-route-customerId="@Model.CustomerId">Delete</button>
+</form>

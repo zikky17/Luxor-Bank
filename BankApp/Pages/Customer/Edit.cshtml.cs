@@ -45,19 +45,5 @@ namespace BankApp.Pages.Customer
             }
             return Page();
         }
-
-        public IActionResult OnPostDelete(int customerId)
-        {
-            Accounts = _customerService.GetAccountInfo(customerId);
-            foreach (var account in Accounts)
-            {
-                AccountIds.Add(account.AccountId);
-            }
-            _accountService.DeleteAllAccounts(AccountIds);
-            _customerService.DeleteCustomer(customerId);
-            ViewData["Message"] = "Customer deleted successfully!";
-            return RedirectToPage("Index");
-        }
-
     }
 }
