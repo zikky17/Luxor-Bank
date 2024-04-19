@@ -14,9 +14,11 @@ namespace ServiceLibrary.Interfaces
 
         public List<UserViewModel> GetUsers();
 
-        public List<UserViewModel> GetUser(string userId);
+        public List<UserViewModel> GetUserVM(string userId);
 
-        public void UpdateUser(IdentityUser user);
+        public IdentityUser GetUser(string userId);
+
+        public void UpdateUser(string userId, string userName, string[] roles);
 
         public void DeleteUser(string userId);
     }

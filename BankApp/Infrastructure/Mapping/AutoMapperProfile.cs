@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BankApp.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using ServiceLibrary.Data;
 using ServiceLibrary.ViewModels;
 
@@ -21,7 +22,7 @@ namespace BankApp.Infrastructure.Mapping
             CreateMap<TransactionViewModel, Transaction>()
                 .ReverseMap();
 
-            CreateMap<UserViewModel, User>()
+            CreateMap<UserViewModel, IdentityUser>()
                 .ReverseMap();
         }
 
