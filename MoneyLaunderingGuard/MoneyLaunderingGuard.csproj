@@ -11,4 +11,8 @@
     <ProjectReference Include="..\ServiceLibrary\ServiceLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SuspiciousTransactions\" />
+  </ItemGroup>
+
 </Project>

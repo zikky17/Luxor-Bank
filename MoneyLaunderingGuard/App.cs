@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
 using ServiceLibrary.Services;
@@ -7,13 +8,7 @@ namespace MoneyLaunderingGuard
 {
     public class App
     {
-        private readonly IMoneyLaunderingService _moneyLaunderingService;
-
-        public App(IMoneyLaunderingService moneyLaunderingService)
-        {
-
-            _moneyLaunderingService = moneyLaunderingService;
-        }
+        private readonly ApplicationDbContext _context = MoneyLaunderingService.GetDbContext();
 
         public List<Transaction> SuspiciousSingleTransactions { get; set; }
 
@@ -37,25 +32,25 @@ namespace MoneyLaunderingGuard
         public void Run()
         {
             var maxSingleTransaction = 15000;
-            SuspiciousSingleTransactions = _moneyLaunderingService.GetSuspiciousSingleTransaction(maxSingleTransaction);
+            SuspiciousSingleTransactions = GetSuspiciousSingleTransaction(maxSingleTransaction);
             
-            CustomersSweden = _moneyLaunderingService.GetCustomersSortedByCountry("Sweden");
-            CustomersNorway = _moneyLaunderingService.GetCustomersSortedByCountry("Norway");
-            CustomersFinland = _moneyLaunderingService.GetCustomersSortedByCountry("Finland");
-            CustomersDenmark = _moneyLaunderingService.GetCustomersSortedByCountry("Denmark");
+            CustomersSweden = GetCustomersSortedByCountry("Sweden");
+            CustomersNorway = GetCustomersSortedByCountry("Norway");
+            CustomersFinland = GetCustomersSortedByCountry("Finland");
+            CustomersDenmark = GetCustomersSortedByCountry("Denmark");
 
-            TransactionsSweden = _moneyLaunderingService.GetTransactionsByCountry(CustomersSweden);
-            TransactionsNorway = _moneyLaunderingService.GetTransactionsByCountry(CustomersNorway);
-            TransactionsFinland = _moneyLaunderingService.GetTransactionsByCountry(CustomersFinland);
-            TransactionsDenmark = _moneyLaunderingService.GetTransactionsByCountry(CustomersDenmark);
+            TransactionsSweden = GetTransactionsByCountry(CustomersSweden);
+            TransactionsNorway = GetTransactionsByCountry(CustomersNorway);
+            TransactionsFinland = GetTransactionsByCountry(CustomersFinland);
+            TransactionsDenmark = GetTransactionsByCountry(CustomersDenmark);
 
-            SuspiciousTransactionsSweden = _moneyLaunderingService.GetSuspiciousTransactionsThreeLastDays(TransactionsSweden);
-            SuspiciousTransactionsDenmark = _moneyLaunderingService.GetSuspiciousTransactionsThreeLastDays(TransactionsDenmark);
-            SuspiciousTransactionsNorway = _moneyLaunderingService.GetSuspiciousTransactionsThreeLastDays(TransactionsNorway);
-            SuspiciousTransactionsFinland = _moneyLaunderingService.GetSuspiciousTransactionsThreeLastDays(TransactionsFinland);
+            SuspiciousTransactionsSweden = GetSuspiciousTransactionsThreeLastDays(TransactionsSweden);
+            SuspiciousTransactionsDenmark = GetSuspiciousTransactionsThreeLastDays(TransactionsDenmark);
+            SuspiciousTransactionsNorway = GetSuspiciousTransactionsThreeLastDays(TransactionsNorway);
+            SuspiciousTransactionsFinland = GetSuspiciousTransactionsThreeLastDays(TransactionsFinland);
 
 
-            var directoryPath = "SuspiciousTransactions";
+            var directoryPath = "../../../SuspiciousTransactions";
             if (!Directory.Exists(directoryPath))
             {
                 Directory.CreateDirectory(directoryPath);
@@ -73,6 +68,48 @@ namespace MoneyLaunderingGuard
             }
 
             Console.WriteLine($"Suspicious transactions saved to: {filePath}");
+        }
+
+        public List<Customer> GetCustomersSortedByCountry(string country)
+        {
+            var customers = _context.Customers.Where(c => c.Country == country).ToList();
+            return customers;
+        }
+
+        public List<Transaction> GetSuspiciousSingleTransaction(int maxAmount)
+        {
+            var transactions = _context.Transactions.Where(t => t.Amount > maxAmount).ToList();
+            return transactions;
+        }
+
+        public List<Transaction> GetTransactionsByCountry(List<Customer> customers)
+        {
+            foreach (var customer in customers)
+            {
+                var transactions = _context.Dispositions
+                 .Where(d => customers.Select(c => c.CustomerId).Contains(d.CustomerId))
+                 .SelectMany(d => d.Account.Transactions)
+                 .ToList();
+                return transactions;
+
+            }
+            return null;
+        }
+
+        public List<Transaction> GetSuspiciousTransactionsThreeLastDays(List<Transaction> transactions)
+        {
+            var maxTotalTransactions = 23000;
+            var today = DateOnly.FromDateTime(DateTime.Today);
+            var threeDaysAgo = today.AddDays(-3);
+
+            var suspiciousTransactions = transactions
+            .Where(t => t.Date >= threeDaysAgo)
+                .GroupBy(t => t.AccountId)
+                .Where(group => group.Sum(t => t.Amount) > maxTotalTransactions)
+                .SelectMany(group => group)
+                .ToList();
+
+            return suspiciousTransactions;
         }
     }
 }

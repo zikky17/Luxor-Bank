@@ -9,10 +9,11 @@ namespace ServiceLibrary.Interfaces
 {
     public interface IMoneyLaunderingService
     {
-        public List<Customer> GetCustomersSortedByCountry(string country);
-        public List<Transaction> GetSuspiciousSingleTransaction(int maxAmount);
-        public List<Transaction> GetTransactionsByCountry(List<Customer> customers);
-        public List<Transaction> GetSuspiciousTransactionsThreeLastDays(List<Transaction> transactions);
+        public static ApplicationDbContext GetDbContext()
+        {
+            return new ApplicationDbContext();
+        }
+
 
     }
 }

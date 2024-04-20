@@ -2,10 +2,8 @@
 using MoneyLaunderingGuard;
 using ServiceLibrary.Services;
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Gathering all the data for suspicious transactions...");
 
-var moneyLaunderingService = new MoneyLaunderingService();
-
-var app = new App(moneyLaunderingService);
+var app = new App();
 
 app.Run();
