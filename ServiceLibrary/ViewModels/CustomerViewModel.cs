@@ -35,14 +35,17 @@ namespace BankApp.ViewModels
 
         public string CountryCode { get; set; }
 
+        [DataType(DataType.Date)]
         public DateOnly? Birthday { get; set; }
 
         public string? NationalId { get; set; }
 
         public string? Telephonecountrycode { get; set; }
 
+        [DataType(DataType.PhoneNumber)]
         public string? Telephonenumber { get; set; }
 
+        [EmailAddress]
         public string? Emailaddress { get; set; }
     }
 }

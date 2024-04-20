@@ -67,7 +67,52 @@ namespace MoneyLaunderingGuard
                 }
             }
 
-            Console.WriteLine($"Suspicious transactions saved to: {filePath}");
+            var filePathSweden = Path.Combine(directoryPath, "Sweden.txt");
+            using (StreamWriter writer = new StreamWriter(filePathSweden))
+            {
+                foreach (var transaction in SuspiciousTransactionsSweden)
+                {
+                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
+                    writer.WriteLine($"Account Number: {transaction.AccountId}");
+                    writer.WriteLine();
+                }
+            }
+
+            var filePathDenmark = Path.Combine(directoryPath, "Denmark.txt");
+            using (StreamWriter writer = new StreamWriter(filePathDenmark))
+            {
+                foreach (var transaction in SuspiciousTransactionsDenmark)
+                {
+                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
+                    writer.WriteLine($"Account Number: {transaction.AccountId}");
+                    writer.WriteLine();
+                }
+            }
+
+            var filePathNorway = Path.Combine(directoryPath, "Norway.txt");
+            using (StreamWriter writer = new StreamWriter(filePathNorway))
+            {
+                foreach (var transaction in SuspiciousTransactionsNorway)
+                {
+                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
+                    writer.WriteLine($"Account Number: {transaction.AccountId}");
+                    writer.WriteLine();
+                }
+            }
+
+            var filePathFinland = Path.Combine(directoryPath, "Finland.txt");
+            using (StreamWriter writer = new StreamWriter(filePathFinland))
+            {
+                foreach (var transaction in SuspiciousTransactionsFinland)
+                {
+                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
+                    writer.WriteLine($"Account Number: {transaction.AccountId}");
+                    writer.WriteLine();
+                }
+            }
+
+
+            Console.WriteLine($"Suspicious transactions saved to: {directoryPath}");
         }
 
         public List<Customer> GetCustomersSortedByCountry(string country)
