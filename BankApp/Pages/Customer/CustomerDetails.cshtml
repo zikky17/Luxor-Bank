@@ -39,11 +39,22 @@
 
                     <hr />
                     <div class="flex-item">
-                        <a class="custom-btn custom-border-btn btn back-button" asp-page="Index">Back</a>
+                        <a class="custom-btn custom-border-btn btn back-button" asp-page="Index">            
+                            Back
+                            <i class="fa-light fa-arrow-turn-down-left"></i>
+                        </a>
                         <a class="custom-btn custom-border-btn btn margin-left-20" asp-page="/Customer/Edit" 
                         asp-route-customerId="@c.CustomerId">
                         Edit
                             <i class="bi bi-pencil ml-1"></i>
+                        </a>
+                        <a class="custom-btn custom-border-btn btn delete-button"
+                           asp-route-customerId="@c.CustomerId"
+                           asp-route-firstName="@c.FirstName"
+                           asp-route-lastName="@c.LastName"
+                           asp-page="/Customer/ConfirmDelete">
+                            Delete
+                            <i class="fa-light fa-trash-can"></i>
                         </a>
                     </div>
                 }

@@ -862,9 +862,8 @@ modal {
 }
 
 .delete-button {
-    width: 160px;
     background-color: red;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 #pagination-select {
@@ -885,7 +884,7 @@ modal {
 
 .form-style {
     display: flex;
-    gap: 50px;
+    gap: 30px;
 }
 
 .form-group {

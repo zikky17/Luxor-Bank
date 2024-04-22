@@ -29,17 +29,28 @@ namespace BankApp.Pages.Customer
             CustomerId = customerId;
         }
 
-        public IActionResult OnPost(int customerId)
+        public IActionResult OnPost(int customerId, string firstName, string lastName)
         {
-            Accounts = _customerService.GetAccountInfo(customerId);
-            foreach (var account in Accounts)
+            try
             {
-                AccountIds.Add(account.AccountId);
+                Accounts = _customerService.GetAccountInfo(customerId);
+                foreach (var account in Accounts)
+                {
+                    AccountIds.Add(account.AccountId);
+                }
+                _accountService.DeleteAllAccounts(AccountIds);
+                _customerService.DeleteCustomer(customerId);
+                ViewData["Message"] = "Customer deleted successfully!";
+                return RedirectToPage("Index");
             }
-            _accountService.DeleteAllAccounts(AccountIds);
-            _customerService.DeleteCustomer(customerId);
-            ViewData["Message"] = "Customer deleted successfully!";
-            return RedirectToPage("Index");
+            catch (InvalidOperationException ex)
+            {
+                ViewData["ErrorMessage"] = ex.Message;
+                FirstName = firstName;
+                LastName = lastName;
+                CustomerId = customerId;
+                return Page();
+            }
         }
     }
 }

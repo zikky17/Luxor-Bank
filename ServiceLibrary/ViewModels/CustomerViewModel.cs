@@ -43,6 +43,7 @@ namespace BankApp.ViewModels
         public string? Telephonecountrycode { get; set; }
 
         [DataType(DataType.PhoneNumber)]
+        [MinLength(5, ErrorMessage = "Minimum 5 numbers required.")]
         public string? Telephonenumber { get; set; }
 
         [EmailAddress]

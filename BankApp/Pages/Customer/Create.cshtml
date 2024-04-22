@@ -19,7 +19,7 @@ else
         &nbsp;
     </div>
 }
-
+        
 <form method="post">
     <div class="form-style">
         <div class="form-row">
@@ -70,6 +70,11 @@ else
                     <span asp-validation-for="@Model.CustomerVM.Zipcode" class="text-danger"></span>
                 </div>
             </div>
+          
+            <a class="custom-btn custom-border-btn btn back-button mt-3" asp-page="Index">Back</a>
+            <input class="custom-btn custom-border-btn btn search-button mt-3" type="submit" value="Create" />
+        </div>
+        <div class="form-row">
             <div class="form-group col-md-6">
                 <label class="primary-color input-style" asp-for="@Model.CustomerVM.Country">Country</label>
                 <select id="Country" asp-for="@Model.CustomerVM.Country">
@@ -83,10 +88,6 @@ else
                     <span asp-validation-for="@Model.CustomerVM.Country" class="text-danger"></span>
                 </div>
             </div>
-            <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="Index">Back</a>
-            <input class="custom-btn custom-border-btn btn search-button mt-2" type="submit" value="Create" />
-        </div>
-        <div class="form-row">
             <div class="form-group col-md-6">
                 <label class="primary-color input-style-second" asp-for="@Model.CustomerVM.CountryCode">Country Code</label>
                 <input id="countryCode" class="readonly-input" asp-for="@Model.CustomerVM.CountryCode" readonly />
@@ -105,11 +106,17 @@ else
             </div>
             <div class="form-group col-md-6">
                 <label class="primary-color input-style-second" asp-for="@Model.CustomerVM.Telephonenumber">Phone Number</label>
-                <input placeholder="(Optional)" asp-for="@Model.CustomerVM.Telephonenumber" />
+                <input placeholder="(Optional)" type="number" asp-for="@Model.CustomerVM.Telephonenumber" />
+                <div class="validation-container">
+                    <span asp-validation-for="@Model.CustomerVM.Telephonenumber" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group col-md-6">
                 <label class="primary-color input-style-second" asp-for="@Model.CustomerVM.Emailaddress">Email Address</label>
                 <input placeholder="(Optional)" asp-for="@Model.CustomerVM.Emailaddress" />
+                <div class="validation-container">
+                    <span asp-validation-for="@Model.CustomerVM.Emailaddress" class="text-danger"></span>
+                </div>
             </div>
 
         </div>

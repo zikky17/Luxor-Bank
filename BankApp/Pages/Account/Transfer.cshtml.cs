@@ -36,7 +36,7 @@ namespace BankApp.Pages.Account
         public List<AccountViewModel> SelectedAccount { get; set; }
 
 
-        public void OnGet(int customerId, int accountId, string firstName, string lastName, int selectedId, decimal accountBalance)
+        public void OnGet(int customerId, int accountId, string firstName, string lastName, int selectedId)
         {
             CustomerId = customerId;
             AccountId = accountId;

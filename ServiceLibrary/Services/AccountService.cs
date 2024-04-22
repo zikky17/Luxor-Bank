@@ -1,4 +1,5 @@
-﻿using BankApp.ViewModels;
+﻿using Azure;
+using BankApp.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
@@ -53,11 +54,6 @@ namespace ServiceLibrary.Services
 
             var account = _context.Accounts.First(a => a.AccountId == accountId);
 
-            if (amount < 100 || amount > 10000)
-            {
-                return StatusMessage.IncorrectAmount;
-            }
-
             if (comment == null)
             {
                 return StatusMessage.MessageRequired;
@@ -86,17 +82,12 @@ namespace ServiceLibrary.Services
         {
             var account = _context.Accounts.First(a => a.AccountId == transaction.AccountId);
 
-            if (account.Balance < transaction.Amount)
+            if (transaction.Amount > 0)
             {
-                return StatusMessage.TooLowBalance;
+                transaction.Amount = -transaction.Amount;
             }
 
-            if (transaction.Amount < 100 || transaction.Amount > 10000)
-            {
-                return StatusMessage.IncorrectAmount;
-            }
-
-            account.Balance -= transaction.Amount;
+            account.Balance += transaction.Amount;
 
             _context.Transactions.Add(transaction);
 
@@ -145,20 +136,42 @@ namespace ServiceLibrary.Services
         {
             foreach (var account in accounts)
             {
-                var accountToDelete = _context.Accounts.Where(a => a.AccountId == account).First();
-                var disposition = _context.Dispositions.Where(d => d.AccountId == account).First();
-                foreach (var transaction in _context.Transactions.Where(t => t.AccountId == account))
+                var accountToDelete = _context.Accounts.FirstOrDefault(a => a.AccountId == account);
+
+                if (accountToDelete != null)
                 {
-                    _context.Transactions.Remove(transaction);
+                    if (accountToDelete.Balance > 0)
+                    {
+                        throw new InvalidOperationException($"Cannot delete account {accountToDelete.AccountId}. Make sure the balance is set to 0 first.");
+                    }
+
+                    var disposition = _context.Dispositions.FirstOrDefault(d => d.AccountId == account);
+                    if (disposition != null)
+                    {
+                        foreach (var transaction in _context.Transactions.Where(t => t.AccountId == account))
+                        {
+                            _context.Transactions.Remove(transaction);
+                        }
+
+                        _context.Dispositions.Remove(disposition);
+                        _context.Accounts.Remove(accountToDelete);
+                        _context.SaveChanges();
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException($"Disposition not found for account {accountToDelete.AccountId}.");
+                    }
                 }
-
-                _context.Dispositions.Remove(disposition);
-                _context.Accounts.Remove(accountToDelete);
-                _context.SaveChanges();
+                else
+                {
+                    throw new InvalidOperationException($"Account {account} not found.");
+                }
             }
-
-
         }
+
+
+
     }
 }
+
 
