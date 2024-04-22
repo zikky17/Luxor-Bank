@@ -136,16 +136,34 @@ namespace ServiceLibrary.Services
         {
             foreach (var account in accounts)
             {
-                var accountToDelete = _context.Accounts.FirstOrDefault(a => a.AccountId == account);
+                var accountToDelete = _context.Accounts.First(a => a.AccountId == account);
 
                 if (accountToDelete != null)
                 {
-                    if (accountToDelete.Balance > 0)
+                    if (accountToDelete.Balance > 1)
                     {
                         throw new InvalidOperationException($"Cannot delete account {accountToDelete.AccountId}. Make sure the balance is set to 0 first.");
                     }
 
-                    var disposition = _context.Dispositions.FirstOrDefault(d => d.AccountId == account);
+                    if (_context.PermenentOrders.Where(p => p.AccountId == account).Count() > 0)
+                    {
+                        var permanentOrders = _context.PermenentOrders.Where(p => p.AccountId == account).ToList();
+                        foreach (var order in permanentOrders)
+                        {
+                            _context.PermenentOrders.Remove(order);
+                        }
+                    }
+
+                    if (_context.Loans.Where(p => p.AccountId == account).Count() > 0)
+                    {
+                        var loans = _context.Loans.Where(p => p.AccountId == account).ToList();
+                        foreach (var loan in loans)
+                        {
+                            _context.Loans.Remove(loan);
+                        }
+                    }
+
+                    var disposition = _context.Dispositions.First(d => d.AccountId == account);
                     if (disposition != null)
                     {
                         foreach (var transaction in _context.Transactions.Where(t => t.AccountId == account))

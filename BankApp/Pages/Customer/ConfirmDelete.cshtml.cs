@@ -41,6 +41,7 @@ namespace BankApp.Pages.Customer
                 _accountService.DeleteAllAccounts(AccountIds);
                 _customerService.DeleteCustomer(customerId);
                 ViewData["Message"] = "Customer deleted successfully!";
+                TempData["Message"] = ViewData["Message"];
                 return RedirectToPage("Index");
             }
             catch (InvalidOperationException ex)

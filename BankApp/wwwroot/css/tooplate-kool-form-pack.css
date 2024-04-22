@@ -752,13 +752,14 @@ strong {
     background-color: #E07A5F;
     color: black;
     margin-right: 28px;
-    padding-top: 11px;
+    padding-top: 5px;
 }
+
 
 .previous-button {
     background-color: #E07A5F;
     color: black;
-    padding-top: 11px;
+    padding-top: 5px;
 }
 
 .customer-details-row {
@@ -909,6 +910,17 @@ modal {
     background-color: rgba(0, 0, 0, 0.65) !important;
     width: 335px;
 }
+
+.delete-message {
+    background-color: rgba(0, 0, 0, 0.65) !important;
+    position: fixed;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    color: red;
+}
+
 
 .account-buttons {
     display: flex;

@@ -20,6 +20,13 @@
         </select>
     </form>
 
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-warning delete-message text-center" id="delete-message">
+            @TempData["Message"]
+        </div>
+    }
+
     <a asp-page="/Customer/Create" class="custom-btn custom-border-btn btn mt-5">Create new customer <i class="bi bi-plus-circle ml-1"></i></i></a>
 
     <table class="table customers-table">
@@ -183,8 +190,12 @@
                class="custom-btn custom-border-btn next-button">Next</a>
         }
 
-      
+
 
     </div>
 
 </div>
+
+<script>
+    getElementById("delete-message").delay(3000).fadeOut(1000);
+</script>
