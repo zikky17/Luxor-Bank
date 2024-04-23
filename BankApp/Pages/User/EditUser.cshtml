@@ -10,18 +10,6 @@
 <form method="post">
     <div class="form-style">
         <div>
-            @if (!string.IsNullOrWhiteSpace(message))
-            {
-                <div class="alert alert-warning success-message text-center" role="alert">
-                    @message
-                </div>
-            }
-            else
-            {
-                <div class="alert alert-warning text-center invisible" role="alert">
-                    &nbsp;
-                </div>
-            }
             <div class="form-group">
                 <label class="primary-color input-style" asp-for="@Model.UserName">Email</label>
                 <input asp-for="@Model.UserName" type="email" />
@@ -32,16 +20,17 @@
             <div class="form-group">
                 <label class="primary-color input-style" asp-for="@Model.Role">User Role</label>
                 <label class="primary-color" for="cashier">Cashier</label>
-                <input id="cashier" type="radio" name="role" value="Cashier">
+                <input id="cashier" type="radio" name="role" value="Cashier" checked>
                 <label class="margin-left-20 primary-color" for="admin">Admin</label>
                 <input id="admin" type="radio" name="role" value="Admin">
                 <div class="validation-container">
                     <span asp-validation-for="@Model.Role" class="text-danger"></span>
                 </div>
             </div>
+
             <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/User/Index">Back</a>
             <input class="custom-btn custom-border-btn btn search-button mt-2" type="submit" value="Update" />
-            <input class="custom-btn custom-border-btn btn delete-button delete-position" asp-route-userId="@Model.UserId" asp-page-handler="Delete" type="submit" value="Delete" />
+            <input class="custom-btn custom-border-btn btn delete-button delete-user" asp-route-userId="@Model.UserId" asp-page-handler="Delete" type="submit" value="Delete" />
 </form>
 
 <partial name="Shared/_ValidationScriptsPartial" />

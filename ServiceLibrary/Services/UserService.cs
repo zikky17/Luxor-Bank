@@ -18,8 +18,6 @@ namespace ServiceLibrary.Services
         private readonly UserManager<IdentityUser> _userManager = manager;
         private readonly IdentityDbContext _dbContext = dbContext;
 
-        public string Role { get; set; }
-
         public void CreateUser(string userName, string password, string[] roles)
         {
             if (_userManager.FindByEmailAsync(userName).Result != null) return;
@@ -43,7 +41,7 @@ namespace ServiceLibrary.Services
                          select new UserViewModel
                          {
                              UserId = user.Id,
-                             UserName = user.UserName,
+                             UserName = user.UserName,                  
                              Role = role.Id == "4db3745d-e74c-410e-bdac-56bf52ac56d6" ? "Admin" : "Cashier"
                          }).ToList();
 

@@ -22,12 +22,13 @@ namespace BankApp.Pages.User
         public string UserId { get; set; }
 
         [Required(ErrorMessage = "You must choose a role.")]
-        public string[] Role { get; set; }
+        public string Role { get; set; }
 
         public void OnGet(string userId)
         {
             var user = _userService.GetUserVM(userId).First();
             UserName = user.UserName;
+            Role = user.Role;
             UserId = userId;
         }
 
@@ -36,7 +37,7 @@ namespace BankApp.Pages.User
             if (ModelState.IsValid)
             {
 
-                var roles = Role;
+                var roles = new[] { Role };
                 _userService.UpdateUser(userId, UserName, roles);
 
                 ViewData["Message"] = "User updated successfully!";

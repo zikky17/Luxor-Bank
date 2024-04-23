@@ -897,6 +897,11 @@ modal {
     margin-left: 230px;
 }
 
+.delete-user {
+    margin-top: 10px;
+    margin-left: 115px;
+}
+
 .button-margin {
     margin-left: 30px;
 }
