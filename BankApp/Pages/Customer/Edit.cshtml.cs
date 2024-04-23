@@ -41,7 +41,8 @@ namespace BankApp.Pages.Customer
 
                 _customerService.UpdateCustomer(customer);
                 ViewData["Message"] = "Customer updated successfully!";
-                return Page();
+                TempData["Message"] = ViewData["Message"];
+                return RedirectToPage("Index"); ;
             }
             return Page();
         }

@@ -6,19 +6,6 @@
 
 <h1 class="margin-class">Create new Customer</h1>
 <hr class="primary-color" />
-
-@if (!string.IsNullOrWhiteSpace(message))
-{
-    <div class="alert alert-warning success-message text-center" role="alert">
-        @message
-    </div>
-}
-else
-{
-    <div class="alert alert-warning text-center invisible" role="alert">
-        &nbsp;
-    </div>
-}
         
 <form method="post">
     <div class="form-style">
@@ -43,7 +30,7 @@ else
                     <option value="" selected disabled>Choose one</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
-                    <option value="Not specified">Not specified</option>
+                    <option value="Other">Not specified</option>
                 </select>
                 <div class="validation-container">
                     <span asp-validation-for="@Model.CustomerVM.Gender" class="text-danger"></span>
