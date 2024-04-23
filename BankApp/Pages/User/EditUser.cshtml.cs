@@ -40,7 +40,8 @@ namespace BankApp.Pages.User
                 _userService.UpdateUser(userId, UserName, roles);
 
                 ViewData["Message"] = "User updated successfully!";
-                return Page();
+                TempData["Message"] = ViewData["Message"];
+                return RedirectToPage("Index"); ;
             }
             return Page();
         }
@@ -49,6 +50,7 @@ namespace BankApp.Pages.User
         {
             _userService.DeleteUser(userId);
             ViewData["Message"] = "User deleted successfully!";
+            TempData["Message"] = ViewData["Message"];
             return RedirectToPage("Index");
         }
 

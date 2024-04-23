@@ -49,7 +49,8 @@ namespace BankApp.Pages.User
                 _userService.CreateUser(userName, password, role);
 
                 ViewData["Message"] = "User created successfully!";
-                return Page();
+                TempData["Message"] = ViewData["Message"];
+                return RedirectToPage("Index");
             }
             return Page();
         }

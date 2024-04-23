@@ -3,6 +3,13 @@
 @{
 }
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning delete-message text-center" id="edit-message">
+        @TempData["Message"]
+    </div>
+}
+
 <div class="margin-class">
     <h1>All Users</h1>
     <hr class="primary-color" />
@@ -10,7 +17,7 @@
     <table class="table customers-table">
         <thead>
             <tr>
-                <th class="index-headers-text" scope="col"> User Name</th>                 
+                <th class="index-headers-text" scope="col"> User Name</th>
                 <th class="index-headers-text" scope="col">Role</th>
                 <th></th>
             </tr>
@@ -25,6 +32,12 @@
                 </tr>
             }
         </tbody>
-                    
-                  
-                
+    </table>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#edit-message").delay(3000).fadeOut(1000);
+    });
+</script>
