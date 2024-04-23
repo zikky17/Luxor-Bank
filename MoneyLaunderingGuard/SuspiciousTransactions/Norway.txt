@@ -1,4 +1,6 @@
 Customer Name: Virpi Paananen
-Transaction ID: 1060202, Amount: 50000,00, Date: 2024-04-22
+Transaction ID: 1060202
+Amount: 50000,00
+Date: 2024-04-22
 Account Number: 11135
 

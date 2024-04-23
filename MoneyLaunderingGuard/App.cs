@@ -32,7 +32,7 @@ namespace MoneyLaunderingGuard
                 Directory.CreateDirectory(directoryPath);
             }
 
-            WriteTransactionsToFile(SuspiciousSingleTransactions, directoryPath, "SuspiciousTransactions.txt");
+            //WriteTransactionsToFile(SuspiciousSingleTransactions, directoryPath, "SuspiciousTransactions.txt");
 
             WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersSweden)), directoryPath, "Sweden.txt");
             WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersNorway)), directoryPath, "Norway.txt");
@@ -51,7 +51,9 @@ namespace MoneyLaunderingGuard
                 {
                     var customer = GetCustomerByAccountId(transaction.AccountId);
                     writer.WriteLine($"Customer Name: {customer.Givenname} {customer.Surname}");
-                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
+                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}");
+                    writer.WriteLine($"Amount: {transaction.Amount}");
+                    writer.WriteLine($"Date: {transaction.Date}");
                     writer.WriteLine($"Account Number: {transaction.AccountId}");
                     writer.WriteLine();
                 }

@@ -1,16 +1,24 @@
 Customer Name: Henri Myller
-Transaction ID: 1060207, Amount: 10000,00, Date: 2024-04-22
+Transaction ID: 1060207
+Amount: 10000,00
+Date: 2024-04-22
 Account Number: 5
 
 Customer Name: Henri Myller
-Transaction ID: 1060209, Amount: 10000,00, Date: 2024-04-22
+Transaction ID: 1060209
+Amount: 10000,00
+Date: 2024-04-22
 Account Number: 5
 
 Customer Name: Henri Myller
-Transaction ID: 1060216, Amount: 5000,00, Date: 2024-04-22
+Transaction ID: 1060216
+Amount: 5000,00
+Date: 2024-04-22
 Account Number: 5
 
 Customer Name: Silas Kristensen
-Transaction ID: 1060201, Amount: 60000,00, Date: 2024-04-22
+Transaction ID: 1060201
+Amount: 60000,00
+Date: 2024-04-22
 Account Number: 11328
 
