@@ -11,44 +11,20 @@ namespace MoneyLaunderingGuard
         private readonly ApplicationDbContext _context = MoneyLaunderingService.GetDbContext();
 
         public List<Transaction> SuspiciousSingleTransactions { get; set; }
-
-        public List<Account> Accounts { get; set; }
         public List<Customer> CustomersSweden { get; set; }
         public List<Customer> CustomersNorway { get; set; }
         public List<Customer> CustomersFinland { get; set; }
         public List<Customer> CustomersDenmark { get; set; }
 
-        public List<Transaction> TransactionsSweden { get; set; }
-        public List<Transaction> TransactionsNorway { get; set; }
-        public List<Transaction> TransactionsFinland { get; set; }
-        public List<Transaction> TransactionsDenmark { get; set; }
-
-        public List<Transaction> SuspiciousTransactionsSweden { get; set; }
-        public List<Transaction> SuspiciousTransactionsNorway { get; set; }
-        public List<Transaction> SuspiciousTransactionsFinland { get; set; }
-        public List<Transaction> SuspiciousTransactionsDenmark { get; set; }
-
-
         public void Run()
         {
             var maxSingleTransaction = 15000;
             SuspiciousSingleTransactions = GetSuspiciousSingleTransaction(maxSingleTransaction);
-            
+
             CustomersSweden = GetCustomersSortedByCountry("Sweden");
             CustomersNorway = GetCustomersSortedByCountry("Norway");
             CustomersFinland = GetCustomersSortedByCountry("Finland");
             CustomersDenmark = GetCustomersSortedByCountry("Denmark");
-
-            TransactionsSweden = GetTransactionsByCountry(CustomersSweden);
-            TransactionsNorway = GetTransactionsByCountry(CustomersNorway);
-            TransactionsFinland = GetTransactionsByCountry(CustomersFinland);
-            TransactionsDenmark = GetTransactionsByCountry(CustomersDenmark);
-
-            SuspiciousTransactionsSweden = GetSuspiciousTransactionsThreeLastDays(TransactionsSweden);
-            SuspiciousTransactionsDenmark = GetSuspiciousTransactionsThreeLastDays(TransactionsDenmark);
-            SuspiciousTransactionsNorway = GetSuspiciousTransactionsThreeLastDays(TransactionsNorway);
-            SuspiciousTransactionsFinland = GetSuspiciousTransactionsThreeLastDays(TransactionsFinland);
-
 
             var directoryPath = "../../../SuspiciousTransactions";
             if (!Directory.Exists(directoryPath))
@@ -56,63 +32,30 @@ namespace MoneyLaunderingGuard
                 Directory.CreateDirectory(directoryPath);
             }
 
-            var filePath = Path.Combine(directoryPath, "SuspiciousTransactions.txt");
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
-                foreach (var transaction in SuspiciousSingleTransactions)
-                {
-                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
-                    writer.WriteLine($"Account Number: {transaction.AccountId}");
-                    writer.WriteLine();
-                }
-            }
+            WriteTransactionsToFile(SuspiciousSingleTransactions, directoryPath, "SuspiciousTransactions.txt");
 
-            var filePathSweden = Path.Combine(directoryPath, "Sweden.txt");
-            using (StreamWriter writer = new StreamWriter(filePathSweden))
-            {
-                foreach (var transaction in SuspiciousTransactionsSweden)
-                {
-                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
-                    writer.WriteLine($"Account Number: {transaction.AccountId}");
-                    writer.WriteLine();
-                }
-            }
-
-            var filePathDenmark = Path.Combine(directoryPath, "Denmark.txt");
-            using (StreamWriter writer = new StreamWriter(filePathDenmark))
-            {
-                foreach (var transaction in SuspiciousTransactionsDenmark)
-                {
-                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
-                    writer.WriteLine($"Account Number: {transaction.AccountId}");
-                    writer.WriteLine();
-                }
-            }
-
-            var filePathNorway = Path.Combine(directoryPath, "Norway.txt");
-            using (StreamWriter writer = new StreamWriter(filePathNorway))
-            {
-                foreach (var transaction in SuspiciousTransactionsNorway)
-                {
-                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
-                    writer.WriteLine($"Account Number: {transaction.AccountId}");
-                    writer.WriteLine();
-                }
-            }
-
-            var filePathFinland = Path.Combine(directoryPath, "Finland.txt");
-            using (StreamWriter writer = new StreamWriter(filePathFinland))
-            {
-                foreach (var transaction in SuspiciousTransactionsFinland)
-                {
-                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
-                    writer.WriteLine($"Account Number: {transaction.AccountId}");
-                    writer.WriteLine();
-                }
-            }
-
+            WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersSweden)), directoryPath, "Sweden.txt");
+            WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersNorway)), directoryPath, "Norway.txt");
+            WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersFinland)), directoryPath, "Finland.txt");
+            WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersDenmark)), directoryPath, "Denmark.txt");
 
             Console.WriteLine($"Suspicious transactions saved to: {directoryPath}");
+        }
+
+        private void WriteTransactionsToFile(List<Transaction> transactions, string directoryPath, string fileName)
+        {
+            var filePath = Path.Combine(directoryPath, fileName);
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                foreach (var transaction in transactions)
+                {
+                    var customer = GetCustomerByAccountId(transaction.AccountId);
+                    writer.WriteLine($"Customer Name: {customer.Givenname} {customer.Surname}");
+                    writer.WriteLine($"Transaction ID: {transaction.TransactionId}, Amount: {transaction.Amount}, Date: {transaction.Date}");
+                    writer.WriteLine($"Account Number: {transaction.AccountId}");
+                    writer.WriteLine();
+                }
+            }
         }
 
         public List<Customer> GetCustomersSortedByCountry(string country)
@@ -155,6 +98,17 @@ namespace MoneyLaunderingGuard
                 .ToList();
 
             return suspiciousTransactions;
+        }
+
+        public Customer GetCustomerByAccountId(int accountId)
+        {
+            var customer = _context.Dispositions
+            .Include(d => d.Customer)
+            .Where(d => d.AccountId == accountId)
+            .Select(d => d.Customer)
+            .First();
+
+            return customer;
         }
     }
 }
