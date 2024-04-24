@@ -21,24 +21,8 @@
             <span asp-validation-for="WithdrawAmount" class="text-danger"></span>
         </div>
     </div>
-    <div class="row">
-        <div class="mt-3">
-            @if (!string.IsNullOrWhiteSpace(message))
-            {
-                <div class="alert alert-warning success-message text-center" role="alert">
-                    @message
-                </div>
-            }
-            else
-            {
-                <div class="alert alert-warning text-center invisible" role="alert">
-                    &nbsp;
-                </div>
-            }
-        </div>
-
-    </div>
-    <a class="custom-btn custom-border-btn btn back-button mt-3"
+   
+    <a class="custom-btn custom-border-btn btn back-button mt-5"
        asp-page="/Account/Index"
        asp-route-customerId="@Model.CustomerId"
        asp-route-accountId="@Model.AccountId"
@@ -47,7 +31,7 @@
         Back
         <i class="fa-light fa-arrow-turn-down-left"></i>
     </a>
-    <button class="custom-btn custom-border-btn btn mt-3 button-margin" type="submit">
+    <button class="custom-btn custom-border-btn btn mt-5 button-margin" type="submit">
         Withdraw <i class="fa-light fa-money-simple-from-bracket"></i>
     </button>
 </form>

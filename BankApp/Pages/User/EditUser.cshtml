@@ -28,7 +28,10 @@
                 </div>
             </div>
 
-            <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/User/Index">Back</a>
+            <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/User/Index">
+                Back
+                <i class="fa-light fa-arrow-turn-down-left"></i>
+                </a>
             <input class="custom-btn custom-border-btn btn search-button mt-2" type="submit" value="Update" />
             <input class="custom-btn custom-border-btn btn delete-button delete-user" asp-route-userId="@Model.UserId" asp-page-handler="Delete" type="submit" value="Delete" />
 </form>

@@ -15,7 +15,7 @@ Bootstrap 5 Form Pack Template
 :root {
     --body-bg-color: #181717;
     --white-color: #ffffff;
-    --primary-color: #E07A5F;
+    --primary-color: #C35F44;
     --secondary-color: #F2CC8F;
     --section-bg-color: #f0f8ff;
     --custom-btn-bg-color: #E07A5F;
@@ -169,6 +169,7 @@ strong {
     .custom-btn:hover {
         background: var(--primary-color);
         color: var(--white-color);
+        box-shadow: 0 0 10px limegreen;
     }
 
 .custom-border-btn {
@@ -293,7 +294,7 @@ strong {
 }
 
 .hero-bg {
-    background-image: url('../images/people-practicing-social-integration.jpg');
+    background-image: url('../images/aug 10.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -669,12 +670,11 @@ strong {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url('/images/pexels-fauxels-3184436.jpg');
+    background-image: url('/images/9.png');
     background-size: 100% 100%;
-    z-index: -1;
-    opacity: 0.1;
+    z-index: -2;
+    object-fit: cover;
 }
-
 
 .margin-container {
     margin-top: 90px !important;
@@ -751,15 +751,15 @@ strong {
 .next-button {
     background-color: #E07A5F;
     color: black;
-    margin-right: 28px;
-    padding-top: 5px;
+    margin-right: 23px;
+    padding: 7px 18px;
 }
 
 
 .previous-button {
     background-color: #E07A5F;
     color: black;
-    padding-top: 5px;
+    padding: 7px 18px;
 }
 
 .customer-details-row {
@@ -816,8 +816,12 @@ modal {
     margin-left: 10px;
 }
 
+.ml-3 {
+    margin-left: 20px;
+}
+
 .personal-text {
-    color: green !important;
+    color: #3FB32E !important;
 }
 
 .country-table {
@@ -899,7 +903,7 @@ modal {
 
 .delete-user {
     margin-top: 10px;
-    margin-left: 115px;
+    margin-left: 60px;
 }
 
 .button-margin {
@@ -973,4 +977,8 @@ modal {
 
 .password-warning {
     max-width: 600px;
+}
+
+.move-down {
+    margin-top: 800px !important;
 }

@@ -18,6 +18,7 @@ namespace BankApp.Pages.Customer
         public int CustomerId { get; set; }
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
+        public int AmountOfCustomers { get; set; }
         public string SortColumn { get; set; }
         public string SortOrder { get; set; }
         public string Q { get; set; }
@@ -50,7 +51,7 @@ namespace BankApp.Pages.Customer
             }
 
             Customers = _customerService.GetAllCustomersSorted(sortColumn, sortOrder, PageSize, CurrentPage, q, out int totalCustomersCount);
-
+            AmountOfCustomers = _customerService.GetNumberOfCustomers();
             TotalPages = totalCustomersCount == 0 ? 1 : (int)Math.Ceiling((double)totalCustomersCount / PageSize);
         }
 

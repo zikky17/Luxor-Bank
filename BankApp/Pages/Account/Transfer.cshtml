@@ -40,34 +40,20 @@
                     <span asp-validation-for="Comment" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row">
-                <div class="mt-3">
-                    @if (!string.IsNullOrWhiteSpace(message))
-                    {
-                        <div class="alert alert-warning success-message text-center" role="alert">
-                            @message
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="alert alert-warning text-center invisible" role="alert">
-                            &nbsp;
-                        </div>
-                    }
-                </div>
+            <div class="mt-5">
+                <a class="custom-btn custom-border-btn btn back-button"
+                   asp-page="/Account/Index"
+                   asp-route-customerId="@Model.CustomerId"
+                   asp-route-accountId="@Model.AccountId"
+                   asp-route-firstName="@Model.FirstName"
+                   asp-route-lastName="@Model.LastName">
+                    Back
+                    <i class="fa-light fa-arrow-turn-down-left"></i>
+                </a>
+                <button class="custom-btn custom-border-btn btn button-margin" type="submit">
+                    Transfer <i class="fa-sharp fa-light fa-money-bill-transfer"></i>
+                </button>
             </div>
-            <a class="custom-btn custom-border-btn btn back-button"
-               asp-page="/Account/Index"
-               asp-route-customerId="@Model.CustomerId"
-               asp-route-accountId="@Model.AccountId"
-               asp-route-firstName="@Model.FirstName"
-               asp-route-lastName="@Model.LastName">
-                Back
-                <i class="fa-light fa-arrow-turn-down-left"></i>
-            </a>
-            <button class="custom-btn custom-border-btn btn button-margin" type="submit">
-                Transfer <i class="fa-sharp fa-light fa-money-bill-transfer"></i>
-            </button>
         </div>
 </form>
 

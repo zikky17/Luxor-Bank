@@ -4,10 +4,11 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<h1 class="margin-class" style="text-align:center">Banking made easy</h1>
+<hr class="primary-color" />
+
+
 <div class="margin-container">
-    <h1 class="hover-effect">Empowering</h1>
-    <br />
-    <h1 class="empovering hover-effect">Your Financial Future</h1>
     <table class="table custom-table index-table-margin">
         <tr class="index-headers-text">
             <td>Country</td>
@@ -25,7 +26,10 @@
                 <td>@(Model.AccountsPerCountry.ContainsKey(country.Key) ? Model.AccountsPerCountry[country.Key] : 0)</td>
                 <td>@(Model.BalancePerCountry.ContainsKey(country.Key) ? Model.BalancePerCountry[country.Key] : 0)</td>
                 <td>
-                    <a class="custom-btn custom-border-btn" asp-page="/Country" asp-route-country="@country.Key">View</a>
+                    <a class="custom-btn custom-border-btn" asp-page="/Country" asp-route-country="@country.Key">
+                        View
+                        <i class="bi bi-eye ml-1"></i>
+                        </a>
                 </td>
             </tr>
     </div>

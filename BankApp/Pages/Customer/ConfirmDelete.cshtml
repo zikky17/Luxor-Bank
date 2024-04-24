@@ -29,7 +29,9 @@
         asp-route-customerId="@Model.CustomerId"
         asp-route-firstName="@Model.FirstName"
         asp-route-lastName="@Model.LastName">
-        Delete</button>
+        Delete
+            <i class="fa-light fa-trash-can"></i>
+        </button>
         @if (ViewData["ErrorMessage"] != null)
         {
             <div class="alert alert-danger success-message text-center mt-2">

@@ -38,8 +38,14 @@
                         <span asp-validation-for="@Model.Role" class="text-danger"></span>
                     </div>
                 </div>
-                <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/User/Index">Back</a>
-                <input class="custom-btn custom-border-btn btn search-button mt-2" type="submit" value="Create" />
+                <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/User/Index">
+                    Back
+                    <i class="fa-light fa-arrow-turn-down-left"></i>
+                </a>
+                <button class="custom-btn custom-border-btn btn search-button mt-2" type="submit">
+                    Create <i class="fa-solid fa-person-circle-plus"></i>
+                </button>
+
 </form>
 
 

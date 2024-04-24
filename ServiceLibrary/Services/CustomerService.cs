@@ -39,6 +39,12 @@ namespace ServiceLibrary.Services
             return query;
         }
 
+        public int GetNumberOfCustomers()
+        {
+           var customers = _context.Customers.Count();
+           return customers;
+        }
+
         public List<CustomerViewModel> GetAllCustomersSorted(string sortColumn, string sortOrder, int pageSize, int pageNumber, string q, out int totalCustomersCount)
         {
             var query = _context.Customers.Select(c => new CustomerViewModel
