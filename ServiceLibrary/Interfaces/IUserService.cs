@@ -10,7 +10,7 @@ namespace ServiceLibrary.Interfaces
 {
     public interface IUserService
     {
-        public void CreateUser(string userName, string password, string[] roles);
+        public bool CreateUser(string userName, string password, string[] roles);
 
         public List<UserViewModel> GetUsers();
 

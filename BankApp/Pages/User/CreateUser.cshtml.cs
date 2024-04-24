@@ -32,6 +32,8 @@ namespace BankApp.Pages.User
         [Required(ErrorMessage = "You must choose a role.")]
         public string[] Role { get; set; }
 
+        public bool CreateStatus { get; set; }
+
         public void OnGet()
         {
 
@@ -46,11 +48,18 @@ namespace BankApp.Pages.User
                 var password = Password;
                 var role = Role;
 
-                _userService.CreateUser(userName, password, role);
+                var status = _userService.CreateUser(userName, password, role);
 
-                ViewData["Message"] = "User created successfully!";
-                TempData["Message"] = ViewData["Message"];
-                return RedirectToPage("Index");
+                    switch (status)
+                {
+                    case false:
+                        ModelState.AddModelError("CreateStatus", "User with this email already exists.");
+                        return Page();
+                    case true:
+                        ViewData["Message"] = "User created successfully!";
+                        TempData["Message"] = ViewData["Message"];
+                        return RedirectToPage("Index");
+                }      
             }
             return Page();
         }

@@ -18,9 +18,9 @@ namespace ServiceLibrary.Services
         private readonly UserManager<IdentityUser> _userManager = manager;
         private readonly IdentityDbContext _dbContext = dbContext;
 
-        public void CreateUser(string userName, string password, string[] roles)
+        public bool CreateUser(string userName, string password, string[] roles)
         {
-            if (_userManager.FindByEmailAsync(userName).Result != null) return;
+            if (_userManager.FindByEmailAsync(userName).Result != null) return false;
 
             var user = new IdentityUser
             {
@@ -31,6 +31,7 @@ namespace ServiceLibrary.Services
 
             _userManager.CreateAsync(user, password).Wait();
             _userManager.AddToRolesAsync(user, roles).Wait();
+            return true;
         }
 
         public List<UserViewModel> GetUsers()

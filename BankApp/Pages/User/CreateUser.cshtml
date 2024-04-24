@@ -45,6 +45,9 @@
                 <button class="custom-btn custom-border-btn btn search-button mt-2" type="submit">
                     Create <i class="fa-solid fa-person-circle-plus"></i>
                 </button>
+                <div class="validation-container">
+                    <span asp-validation-for="@Model.CreateStatus" class="text-danger"></span>
+                </div>
 
 </form>
 
