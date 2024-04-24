@@ -52,7 +52,12 @@ namespace ServiceLibrary.Services
         public StatusMessage Deposit(decimal amount, int accountId, string comment)
         {
 
-            var account = _context.Accounts.First(a => a.AccountId == accountId);
+            var account = _context.Accounts.Find(accountId);
+
+            if(account == null)
+            {
+                return StatusMessage.CantFindAccount;
+            }
 
             if (comment == null)
             {

@@ -58,22 +58,27 @@ namespace BankApp.Pages
             {
                 var depositResult = _accountService.Deposit(DepositAmount, AccountId, Comment);
 
-                if (depositResult == StatusMessage.Approved)
+                switch (depositResult)
                 {
-                    ViewData["Message"] = "Deposit was successful!";
-                    AccountBalance = _customerService.GetBalance(AccountId);
-                    return Page();
+                    case StatusMessage.CantFindAccount:
+                        ModelState.AddModelError("Comment", "Unknown account number.");
+                        break;
+
+                    case StatusMessage.Approved:
+                        ViewData["Message"] = "Deposit was successful!";
+                        TempData["Message"] = ViewData["Message"];
+                        AccountBalance = _customerService.GetBalance(AccountId);
+                        return Page();
+
+                    case StatusMessage.MessageRequired:
+                        ModelState.AddModelError("Comment", "Please enter a comment for this deposit.");
+                        break;
+
+                    case StatusMessage.IncorrectAmount:
+                        ModelState.AddModelError("DepositAmount", "Please enter a correct amount between 100 - 10,000");
+                        break;
                 }
 
-                if (depositResult == StatusMessage.MessageRequired)
-                {
-                    ModelState.AddModelError("Comment", "Please enter a comment for this deposit.");
-                }
-
-                if (depositResult == StatusMessage.IncorrectAmount)
-                {
-                    ModelState.AddModelError("DepositAmount", "Please enter a correct amount between 100 - 10,000");
-                }
             }
 
             AccountBalance = _customerService.GetBalance(AccountId);

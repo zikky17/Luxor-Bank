@@ -32,7 +32,7 @@ namespace MoneyLaunderingGuard
                 Directory.CreateDirectory(directoryPath);
             }
 
-            //WriteTransactionsToFile(SuspiciousSingleTransactions, directoryPath, "SuspiciousTransactions.txt");
+            WriteTransactionsToFile(SuspiciousSingleTransactions, directoryPath, "SuspiciousTransactions.txt");
 
             WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersSweden)), directoryPath, "Sweden.txt");
             WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersNorway)), directoryPath, "Norway.txt");

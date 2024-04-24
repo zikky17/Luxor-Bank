@@ -18,7 +18,8 @@ namespace ServiceLibrary.Interfaces
         Approved,
         TooLowBalance,
         IncorrectAmount,
-        MessageRequired
+        MessageRequired,
+        CantFindAccount
     }
 
     public interface IAccountService

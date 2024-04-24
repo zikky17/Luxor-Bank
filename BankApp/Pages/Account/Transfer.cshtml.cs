@@ -72,16 +72,30 @@ namespace BankApp.Pages.Account
                     Amount = TransferAmount
                 };
 
+                var message = _accountService.Deposit(TransferAmount, TransferAccountId, Comment);
+
+                if (message == StatusMessage.CantFindAccount)
+                {
+                    ModelState.AddModelError("TransferAccountId", "Unknown account number.");
+                    return Page();
+                }
+                else if (message != StatusMessage.Approved)
+                {
+                    ModelState.AddModelError("Comment", "Transfer was not successful.");
+                    return Page();
+                }
+
                 _accountService.Withdraw(withdrawTransaction);
 
-                _accountService.Deposit(TransferAmount, TransferAccountId, Comment);
                 ViewData["Message"] = "Transfer was successful!";
+                TempData["Message"] = ViewData["Message"];
                 AccountBalance = _customerService.GetBalance(AccountId);
                 return Page();
             }
 
             return Page();
         }
+
 
     }
 }

@@ -1,15 +1,21 @@
 ﻿@page
 @model WithdrawModel
 @{
-    var message = ViewData["Message"]?.ToString();
+
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning delete-message text-center" id="delete-message">
+        @TempData["Message"]
+    </div>
 }
 
 <h1 class="margin-class">Withdraw</h1>
 <hr class="primary-color" />
 <form method="post">
-    <dt class="col-sm-4 primary-color">Balance:</dt>
-    <dd class="col-sm-8 personal-text">@Model.AccountBalance</dd>
-    <hr />
+    <dd class="col-sm-4 mt-2 primary-color">Balance: <span class="small-margin personal-text">@Model.AccountBalance SEK</span></dd>
+    <hr class="primary-color" />
     <div class="flex-item">
         <h4 class="header-quote">Account:</h4>
         <h6 class="primary-color margin-left-20 mt-1">@Model.AccountId</h6>
@@ -35,5 +41,11 @@
         Withdraw <i class="fa-light fa-money-simple-from-bracket"></i>
     </button>
 </form>
+
+<script>
+    $(document).ready(function () {
+        $("#delete-message").delay(3000).fadeOut(1000);
+    });
+</script>
 
 <partial name="Shared/_ValidationScriptsPartial" />

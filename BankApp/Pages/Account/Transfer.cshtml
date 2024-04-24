@@ -1,16 +1,22 @@
 ﻿@page
 @model BankApp.Pages.Account.TransferModel
 @{
-    var message = ViewData["Message"]?.ToString();
+
 }
 
 <h1 class="margin-class">Transfer</h1>
 <hr class="primary-color" />
 
 <form method="post">
-    <dt class="col-sm-4 primary-color">Balance:</dt>
-    <dd class="col-sm-8 personal-text">@Model.AccountBalance</dd>
-    <hr />
+    <dd class="col-sm-4 mt-2 primary-color">Balance: <span class="small-margin personal-text">@Model.AccountBalance SEK</span></dd>
+    <hr class="primary-color" />
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-warning delete-message text-center" id="delete-message">
+            @TempData["Message"]
+        </div>
+    }
 
     <div class="flex-item" id="accountSelection">
         <h4 class="header-quote">From account:</h4>
@@ -56,5 +62,11 @@
             </div>
         </div>
 </form>
+
+<script>
+    $(document).ready(function () {
+        $("#delete-message").delay(3000).fadeOut(1000);
+    });
+</script>
 
 <partial name="Shared/_ValidationScriptsPartial" />
