@@ -8,7 +8,7 @@ namespace MoneyLaunderingGuard
 {
     public class App
     {
-        private readonly ApplicationDbContext _context = MoneyLaunderingService.GetDbContext();
+        private readonly ApplicationDbContext _context = DatabaseService.GetDbContext();
 
         public List<Transaction> SuspiciousSingleTransactions { get; set; }
         public List<Customer> CustomersSweden { get; set; }
