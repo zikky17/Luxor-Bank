@@ -1,5 +1,4 @@
-﻿using BankAPI.Models;
-using BankApp.ViewModels;
+﻿using BankApp.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLibrary.Data;
