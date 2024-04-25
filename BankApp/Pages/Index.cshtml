@@ -4,12 +4,14 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<h1 class="margin-class" style="text-align:center">Banking made easy</h1>
+<h1 class="landing-page-margin">Banking made easy</h1>
 <hr class="primary-color" />
+<div class="background-image2"></div>
 
-
+<h2 class="landing-page-margin">Manage your transactions in a very nordic bank</h2>
+<hr class="primary-color" />
 <div class="margin-container">
-    <table class="table custom-table index-table-margin">
+    <table class="table custom-table">
         <tr class="index-headers-text">
             <td>Country</td>
             <td>Customers</td>
@@ -21,10 +23,10 @@
         {
             <div>
             <tr class="fade-in">
-                <td>@country.Key</td>
-                <td>@country.Value</td>
-                <td>@(Model.AccountsPerCountry.ContainsKey(country.Key) ? Model.AccountsPerCountry[country.Key] : 0)</td>
-                <td>@(Model.BalancePerCountry.ContainsKey(country.Key) ? Model.BalancePerCountry[country.Key] : 0)</td>
+                <td class="landing-table">@country.Key</td>
+                <td class="landing-table">@country.Value</td>
+                <td class="landing-table">@(Model.AccountsPerCountry.ContainsKey(country.Key) ? Model.AccountsPerCountry[country.Key] : 0)</td>
+                <td class="landing-table">@(Model.BalancePerCountry.ContainsKey(country.Key) ? Model.BalancePerCountry[country.Key] : 0)</td>
                 <td>
                     <a class="custom-btn custom-border-btn" asp-page="/Country" asp-route-country="@country.Key">
                         View

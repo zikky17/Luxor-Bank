@@ -172,10 +172,10 @@ strong {
         box-shadow: 0 0 10px limegreen;
     }
 
-    .custom-border-btn:hover {
-        background: var(--primary-color);
-        color: var(--white-color);
-    }
+.custom-border-btn:hover {
+    background: var(--primary-color);
+    color: var(--white-color);
+}
 
 .custom-btn-bg-white {
     border-color: var(--white-color);
@@ -672,6 +672,33 @@ strong {
     object-fit: cover;
 }
 
+@keyframes buildUp {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+.background-image2 {
+    background-image: url('/images/bank-manager-working-woman-office-38557021.jpg.webp');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 600px;
+    position: relative;
+    bottom: 80px;
+    animation: buildUp 1.5s ease forwards; 
+    opacity: 0; 
+    z-index: 1;
+}
+
+
 .margin-container {
     margin-top: 90px !important;
     color: #E07A5F;
@@ -683,10 +710,6 @@ strong {
     border-radius: var(--border-radius-small);
     border-collapse: collapse;
     color: #E07A5F;
-}
-
-.index-table-margin {
-    margin-top: 60px;
 }
 
 .customers-table {
@@ -703,6 +726,12 @@ strong {
 .margin-class {
     margin-top: 90px;
     color: #E07A5F;
+}
+
+.landing-page-margin {
+    margin-top: 70px;
+    color: #E07A5F;
+    text-align: center;
 }
 
 .show-all-customers {
