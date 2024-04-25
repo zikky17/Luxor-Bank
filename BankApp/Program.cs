@@ -23,7 +23,7 @@ builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ICountryService, CountryService>();
-builder.Services.AddTransient<IDatabaseService, IDatabaseService>();
+builder.Services.AddTransient<IDatabaseService, DatabaseService>();
 builder.Services.AddResponseCaching();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());

@@ -172,11 +172,6 @@ strong {
         box-shadow: 0 0 10px limegreen;
     }
 
-.custom-border-btn {
-    border: 1px solid var(--secondary-color);
-    color: rgb(246, 246, 246) !important;
-}
-
     .custom-border-btn:hover {
         background: var(--primary-color);
         color: var(--white-color);
@@ -211,6 +206,7 @@ strong {
 
     .site-header .container {
         margin-top: 0 !important;
+        border-radius: var(--border-radius-small);
         background-color: rgba(0, 0, 0, 0.65);
         padding: 15px 25px;
         max-height: 70px;
@@ -683,7 +679,8 @@ strong {
 }
 
 .custom-table {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: var(--border-radius-small);
     border-collapse: collapse;
     color: #E07A5F;
 }

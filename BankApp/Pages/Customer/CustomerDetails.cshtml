@@ -5,103 +5,104 @@
     <div class="row details customer-details-page">
         <h1 class="top-text">Customer Details</h1>
         <hr />
-
-        <div class="col-md-5 customer-details-row">
-            <dl class="row">
-                @foreach (var c in Model.Customers)
-                {
-                    <dt class="col-sm-4">Customer Id:</dt>
-                    <dd class="col-sm-8">@c.CustomerId</dd>
-
-                    <dt class="col-sm-4">First Name:</dt>
-                    <dd class="col-sm-8 white-text">@c.FirstName</dd>
-
-                    <dt class="col-sm-4">Last Name:</dt>
-                    <dd class="col-sm-8 white-text">@c.LastName</dd>
-
-                    <dt class="col-sm-4">Address:</dt>
-                    <dd class="col-sm-8">@c.Streetaddress</dd>
-
-                    <dt class="col-sm-4">City:</dt>
-                    <dd class="col-sm-8">@c.City</dd>
-
-                    <dt class="col-sm-4">Zip Code:</dt>
-                    <dd class="col-sm-8">@c.Zipcode</dd>
-
-                    <dt class="col-sm-4">Country:</dt>
-                    <dd class="col-sm-8">@c.Country</dd>
-
-                    <dt class="col-sm-4">Birthday:</dt>
-                    <dd class="col-sm-8">@c.Birthday</dd>
-
-                    <dt class="col-sm-4">Email:</dt>
-                    <dd class="col-sm-8">@c.Emailaddress</dd>
-
-                    <hr />
-                    <div class="flex-item">
-                        <a class="custom-btn custom-border-btn btn back-button" asp-page="Index">            
-                            Back
-                            <i class="fa-light fa-arrow-turn-down-left"></i>
-                        </a>
-                        <a class="custom-btn custom-border-btn btn margin-left-20" asp-page="/Customer/Edit" 
-                        asp-route-customerId="@c.CustomerId">
-                        Edit
-                            <i class="bi bi-pencil ml-1"></i>
-                        </a>
-                        <a class="custom-btn custom-border-btn btn delete-button"
-                           asp-route-customerId="@c.CustomerId"
-                           asp-route-firstName="@c.FirstName"
-                           asp-route-lastName="@c.LastName"
-                           asp-page="/Customer/ConfirmDelete">
-                            Delete
-                            <i class="fa-light fa-trash-can"></i>
-                        </a>
-                    </div>
-                }
-            </dl>
-            <div>
-            </div>
-        </div>
-
-        <div class="col-md-5 customer-details-row">
-            <dl class="row">
-                <dt class="col-sm-5">Total Balance:</dt>
-                <dd class="col-sm-5 green-color">@Model.TotalBalance</dd>
-                <hr />
-                @foreach (var c in Model.Customers)
-                {
-                    @foreach (var account in Model.Accounts)
+        <div class="flex-item" style="justify-content: center">
+            <div class="col-md-6 customer-details-row">
+                <dl class="row">
+                    @foreach (var c in Model.Customers)
                     {
-                        <dt class="col-sm-4">Account Nr:</dt>
-                        <dd class="col-sm-8">@account.AccountId</dd>
-                        <div class="row">
-                            <div class="col-sm-4 mt-3">
-                                <a class="account-button custom-btn custom-border-btn btn mb-3"
-                                   asp-page="/Account/Index"
-                                   asp-route-customerId="@c.CustomerId"
-                                   asp-route-accountId="@account.AccountId"
-                                   asp-route-firstName="@c.FirstName"
-                                   asp-route-lastName="@c.LastName">
-                                    View Account
-                                    <i class="bi bi-eye ml-1"></i>
-                                </a>
-                            </div>
+                        <dt class="col-sm-4">Customer Id:</dt>
+                        <dd class="col-sm-8">@c.CustomerId</dd>
+
+                        <dt class="col-sm-4">First Name:</dt>
+                        <dd class="col-sm-8 white-text">@c.FirstName</dd>
+
+                        <dt class="col-sm-4">Last Name:</dt>
+                        <dd class="col-sm-8 white-text">@c.LastName</dd>
+
+                        <dt class="col-sm-4">Address:</dt>
+                        <dd class="col-sm-8">@c.Streetaddress</dd>
+
+                        <dt class="col-sm-4">City:</dt>
+                        <dd class="col-sm-8">@c.City</dd>
+
+                        <dt class="col-sm-4">Zip Code:</dt>
+                        <dd class="col-sm-8">@c.Zipcode</dd>
+
+                        <dt class="col-sm-4">Country:</dt>
+                        <dd class="col-sm-8">@c.Country</dd>
+
+                        <dt class="col-sm-4">Birthday:</dt>
+                        <dd class="col-sm-8">@c.Birthday</dd>
+
+                        <dt class="col-sm-4">Email:</dt>
+                        <dd class="col-sm-8">@c.Emailaddress</dd>
+
+                        <hr />
+                        <div class="flex-item">
+                            <a class="custom-btn custom-border-btn btn back-button" asp-page="Index">
+                                Back
+                                <i class="fa-light fa-arrow-turn-down-left"></i>
+                            </a>
+                            <a class="custom-btn custom-border-btn btn margin-left-20" asp-page="/Customer/Edit"
+                               asp-route-customerId="@c.CustomerId">
+                                Edit
+                                <i class="bi bi-pencil ml-1"></i>
+                            </a>
+                            <a class="custom-btn custom-border-btn btn delete-button"
+                               asp-route-customerId="@c.CustomerId"
+                               asp-route-firstName="@c.FirstName"
+                               asp-route-lastName="@c.LastName"
+                               asp-page="/Customer/ConfirmDelete">
+                                Delete
+                                <i class="fa-light fa-trash-can"></i>
+                            </a>
                         </div>
                     }
-                    <hr />
-                    <div class="col-sm-4 mt-2">
-                        <a class="account-button custom-btn custom-border-btn btn"
-                           asp-page="/Account/NewAccount"
-                           asp-route-customerId="@c.CustomerId"
-                           asp-route-firstName="@c.FirstName"
-                           asp-route-lastName="@c.LastName">
-                            New Account
-                            <i class="bi bi-plus-circle ml-1"></i>
-                        </a>
-                    </div>
+                </dl>
+                <div>
+                </div>
+            </div>
 
-                }
-            </dl>
+            <div class="col-md-6 customer-details-row">
+                <dl class="row">
+                    <dt class="col-sm-5">Total Balance:</dt>
+                    <dd class="col-sm-5 green-color">@Model.TotalBalance</dd>
+                    <hr />
+                    @foreach (var c in Model.Customers)
+                    {
+                        @foreach (var account in Model.Accounts)
+                        {
+                            <dt class="col-sm-4">Account Nr:</dt>
+                            <dd class="col-sm-8">@account.AccountId</dd>
+                            <div class="row">
+                                <div class="col-sm-4 mt-3">
+                                    <a class="account-button custom-btn custom-border-btn btn mb-3"
+                                       asp-page="/Account/Index"
+                                       asp-route-customerId="@c.CustomerId"
+                                       asp-route-accountId="@account.AccountId"
+                                       asp-route-firstName="@c.FirstName"
+                                       asp-route-lastName="@c.LastName">
+                                        View Account
+                                        <i class="bi bi-eye ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <hr />
+                        <div class="col-sm-4 mt-2">
+                            <a class="account-button custom-btn custom-border-btn btn"
+                               asp-page="/Account/NewAccount"
+                               asp-route-customerId="@c.CustomerId"
+                               asp-route-firstName="@c.FirstName"
+                               asp-route-lastName="@c.LastName">
+                                New Account
+                                <i class="bi bi-plus-circle ml-1"></i>
+                            </a>
+                        </div>
+
+                    }
+                </dl>
+            </div>
         </div>
     </div>
 </div>
