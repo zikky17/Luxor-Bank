@@ -9,9 +9,12 @@ namespace MoneyLaunderingGuard
     public class App
     {
         private readonly ApplicationDbContext _context = DatabaseService.GetDbContext();
+        public DateOnly LastReportRunTime { get; set; }
 
         public void Run()
         {
+
+
             var directoryPath = "../../../SuspiciousTransactions";
             if (!Directory.Exists(directoryPath))
             {
@@ -25,6 +28,8 @@ namespace MoneyLaunderingGuard
 
             Console.WriteLine("All 4 reports are done!");
             Console.WriteLine($"Suspicious transactions saved to folder: 'SuspiciousTransactions'");
+
+            LastReportRunTime = DateOnly.FromDateTime(DateTime.Today);
         }
 
         private void ProcessCountry(string country, string directoryPath)
@@ -34,6 +39,7 @@ namespace MoneyLaunderingGuard
             var suspiciousTransactions = GetSuspiciousTransactions(transactions);
 
             Console.WriteLine($"Getting report from {country}....");
+            Console.WriteLine($"Amount of new suspicious transactions are: {suspiciousTransactions.Count}");
             WriteTransactionsToFile(suspiciousTransactions, directoryPath, $"{country}.txt");
         }
 
@@ -55,11 +61,13 @@ namespace MoneyLaunderingGuard
         {
             var maxTotalTransactions = 23000;
             var maxSingleTransaction = 15000;
-            var today = DateOnly.FromDateTime(DateTime.Today);
-            var threeDaysAgo = today.AddDays(-3);
+            var lastThreeDays = DateOnly.FromDateTime(DateTime.Today.AddDays(-3));
+            var lastReportRunTime = LastReportRunTime;
+
+            var startDate = lastReportRunTime == default(DateOnly) ? lastThreeDays : lastReportRunTime;
 
             return transactions
-                .Where(t => t.Date >= threeDaysAgo)
+                .Where(t => t.Date >= startDate && t.Date <= DateOnly.FromDateTime(DateTime.Today)) 
                 .GroupBy(t => t.AccountId)
                 .Where(group => group.Sum(t => t.Amount) > maxTotalTransactions || group.Any(t => t.Amount > maxSingleTransaction))
                 .SelectMany(group => group)
