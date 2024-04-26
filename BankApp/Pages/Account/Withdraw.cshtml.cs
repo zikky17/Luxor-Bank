@@ -24,7 +24,7 @@ namespace BankApp.Pages.Account
         public int AccountId { get; set; }
 
         [Required]
-        [Range(100, 10000, ErrorMessage = "Withdraw amount must be between 100 and 100000.")]
+        [Range(100, 25000, ErrorMessage = "Withdraw amount must be between 100 and 25000.")]
         public decimal WithdrawAmount { get; set; }
 
         private readonly IAccountService _accountService = service;

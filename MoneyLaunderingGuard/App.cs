@@ -10,36 +10,60 @@ namespace MoneyLaunderingGuard
     {
         private readonly ApplicationDbContext _context = DatabaseService.GetDbContext();
 
-        public List<Transaction> SuspiciousSingleTransactions { get; set; }
-        public List<Customer> CustomersSweden { get; set; }
-        public List<Customer> CustomersNorway { get; set; }
-        public List<Customer> CustomersFinland { get; set; }
-        public List<Customer> CustomersDenmark { get; set; }
-
         public void Run()
         {
-            var maxSingleTransaction = 15000;
-            SuspiciousSingleTransactions = GetSuspiciousSingleTransaction(maxSingleTransaction);
-
-            CustomersSweden = GetCustomersSortedByCountry("Sweden");
-            CustomersNorway = GetCustomersSortedByCountry("Norway");
-            CustomersFinland = GetCustomersSortedByCountry("Finland");
-            CustomersDenmark = GetCustomersSortedByCountry("Denmark");
-
             var directoryPath = "../../../SuspiciousTransactions";
             if (!Directory.Exists(directoryPath))
             {
                 Directory.CreateDirectory(directoryPath);
             }
 
-            WriteTransactionsToFile(SuspiciousSingleTransactions, directoryPath, "SuspiciousTransactions.txt");
+            ProcessCountry("Sweden", directoryPath);
+            ProcessCountry("Norway", directoryPath);
+            ProcessCountry("Finland", directoryPath);
+            ProcessCountry("Denmark", directoryPath);
 
-            WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersSweden)), directoryPath, "Sweden.txt");
-            WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersNorway)), directoryPath, "Norway.txt");
-            WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersFinland)), directoryPath, "Finland.txt");
-            WriteTransactionsToFile(GetSuspiciousTransactionsThreeLastDays(GetTransactionsByCountry(CustomersDenmark)), directoryPath, "Denmark.txt");
+            Console.WriteLine("All 4 reports are done!");
+            Console.WriteLine($"Suspicious transactions saved to folder: 'SuspiciousTransactions'");
+        }
 
-            Console.WriteLine($"Suspicious transactions saved to: {directoryPath}");
+        private void ProcessCountry(string country, string directoryPath)
+        {
+            var customers = GetCustomersByCountry(country);
+            var transactions = GetTransactionsForCustomers(customers);
+            var suspiciousTransactions = GetSuspiciousTransactions(transactions);
+
+            Console.WriteLine($"Getting report from {country}....");
+            WriteTransactionsToFile(suspiciousTransactions, directoryPath, $"{country}.txt");
+        }
+
+        private List<Customer> GetCustomersByCountry(string country)
+        {
+            return _context.Customers.Where(c => c.Country == country).ToList();
+        }
+
+        private List<Transaction> GetTransactionsForCustomers(List<Customer> customers)
+        {
+            var customerIds = customers.Select(c => c.CustomerId);
+            return _context.Dispositions
+                .Where(d => customerIds.Contains(d.CustomerId))
+                .SelectMany(d => d.Account.Transactions)
+                .ToList();
+        }
+
+        private List<Transaction> GetSuspiciousTransactions(List<Transaction> transactions)
+        {
+            var maxTotalTransactions = 23000;
+            var maxSingleTransaction = 15000;
+            var today = DateOnly.FromDateTime(DateTime.Today);
+            var threeDaysAgo = today.AddDays(-3);
+
+            return transactions
+                .Where(t => t.Date >= threeDaysAgo)
+                .GroupBy(t => t.AccountId)
+                .Where(group => group.Sum(t => t.Amount) > maxTotalTransactions || group.Any(t => t.Amount > maxSingleTransaction))
+                .SelectMany(group => group)
+                .ToList();
         }
 
         private void WriteTransactionsToFile(List<Transaction> transactions, string directoryPath, string fileName)
@@ -60,57 +84,14 @@ namespace MoneyLaunderingGuard
             }
         }
 
-        public List<Customer> GetCustomersSortedByCountry(string country)
+        private Customer GetCustomerByAccountId(int accountId)
         {
-            var customers = _context.Customers.Where(c => c.Country == country).ToList();
-            return customers;
-        }
-
-        public List<Transaction> GetSuspiciousSingleTransaction(int maxAmount)
-        {
-            var transactions = _context.Transactions.Where(t => t.Amount > maxAmount).ToList();
-            return transactions;
-        }
-
-        public List<Transaction> GetTransactionsByCountry(List<Customer> customers)
-        {
-            foreach (var customer in customers)
-            {
-                var transactions = _context.Dispositions
-                 .Where(d => customers.Select(c => c.CustomerId).Contains(d.CustomerId))
-                 .SelectMany(d => d.Account.Transactions)
-                 .ToList();
-                return transactions;
-
-            }
-            return null;
-        }
-
-        public List<Transaction> GetSuspiciousTransactionsThreeLastDays(List<Transaction> transactions)
-        {
-            var maxTotalTransactions = 23000;
-            var today = DateOnly.FromDateTime(DateTime.Today);
-            var threeDaysAgo = today.AddDays(-3);
-
-            var suspiciousTransactions = transactions
-            .Where(t => t.Date >= threeDaysAgo)
-                .GroupBy(t => t.AccountId)
-                .Where(group => group.Sum(t => t.Amount) > maxTotalTransactions)
-                .SelectMany(group => group)
-                .ToList();
-
-            return suspiciousTransactions;
-        }
-
-        public Customer GetCustomerByAccountId(int accountId)
-        {
-            var customer = _context.Dispositions
-            .Include(d => d.Customer)
-            .Where(d => d.AccountId == accountId)
-            .Select(d => d.Customer)
-            .First();
-
-            return customer;
+            return _context.Dispositions
+                .Include(d => d.Customer)
+                .Where(d => d.AccountId == accountId)
+                .Select(d => d.Customer)
+                .First();
         }
     }
+
 }

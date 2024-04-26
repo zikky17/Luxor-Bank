@@ -1,0 +1,6 @@
+Customer Name: Olle Jyrkiäinen
+Transaction ID: 1060267
+Amount: 25000,00
+Date: 2024-04-26
+Account Number: 6
+

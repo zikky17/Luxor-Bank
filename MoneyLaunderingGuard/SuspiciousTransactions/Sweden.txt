@@ -1,100 +1,4 @@
 Customer Name: Elsa Stormo
-Transaction ID: 1060195
-Amount: 500,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060196
-Amount: 200,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060203
-Amount: 50000,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060204
-Amount: 500,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060205
-Amount: -500,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060206
-Amount: -10000,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060208
-Amount: -10000,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060210
-Amount: 5000,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060211
-Amount: 5000,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060212
-Amount: 5000,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060213
-Amount: 5000,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060214
-Amount: 5000,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060215
-Amount: -5000,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060218
-Amount: 58319,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060220
-Amount: 64992,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
-Transaction ID: 1060221
-Amount: -1000,00
-Date: 2024-04-22
-Account Number: 1
-
-Customer Name: Elsa Stormo
 Transaction ID: 1060222
 Amount: -1000,00
 Date: 2024-04-24
@@ -254,5 +158,29 @@ Customer Name: Elsa Stormo
 Transaction ID: 1060259
 Amount: 1000,00
 Date: 2024-04-25
+Account Number: 1
+
+Customer Name: Elsa Stormo
+Transaction ID: 1060260
+Amount: 5000,00
+Date: 2024-04-25
+Account Number: 1
+
+Customer Name: Elsa Stormo
+Transaction ID: 1060261
+Amount: 500,00
+Date: 2024-04-25
+Account Number: 1
+
+Customer Name: Elsa Stormo
+Transaction ID: 1060263
+Amount: -20000,00
+Date: 2024-04-26
+Account Number: 1
+
+Customer Name: Elsa Stormo
+Transaction ID: 1060266
+Amount: 25000,00
+Date: 2024-04-26
 Account Number: 1
 
