@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using ServiceLibrary.Data;
 using ServiceLibrary.Services;
+using ServiceLibrary.ViewModels;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BankAPI.Controllers
 {
@@ -18,24 +20,31 @@ namespace BankAPI.Controllers
         [Route("{id}/{limit}/{offset}")]
         public async Task<ActionResult<AccountViewModel>> GetOne(int id, int limit, int offset)
         {
-            var transactions = _context.Dispositions
-            .Include(d => d.Account)
+            var transactions = await _context.Dispositions
+                .Include(d => d.Account)
+                .ThenInclude(a => a.Transactions)
                 .Where(d => d.AccountId == id)
-                .Select(d => new AccountViewModel
+                .SelectMany(d => d.Account.Transactions)
+                .Take(limit)
+                .Skip(offset)
+                .Select(t => new TransactionViewModel
                 {
-                    AccountId = d.AccountId,
-                    Created = d.Account.Created,
-                    Balance = d.Account.Balance,
-                    Transactions = d.Account.Transactions.ToList()
+                    AccountId = t.AccountId,
+                    Date = t.Date,
+                    Operation = t.Operation,
+                    Type = t.Type,
+                    Amount = t.Amount
                 })
-                .Skip(limit)
-                .Take(offset);
+                .ToListAsync();
 
-            if (transactions == null)
+            if (transactions == null || transactions.Count == 0)
             {
-                return BadRequest("Account not found");
+                return BadRequest("Account not found or no transactions available");
             }
+
             return Ok(transactions);
         }
+
     }
 }
+
