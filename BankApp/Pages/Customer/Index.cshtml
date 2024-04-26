@@ -12,14 +12,14 @@
     <div class="flex-item">
     <form method="get" id="paginationForm" class="mt-3">
         <label for="pagination">Showing</label>
-        <select class="margin-left-20" asp-route-pageSize="@Model.PageSize" asp-for="PageSize" id="paginationSelect" name="PageSize" onchange="document.getElementById('paginationForm').submit();">
+            <select class="m-left-custom" asp-route-pageSize="@Model.PageSize" asp-for="PageSize" id="paginationSelect" name="PageSize" onchange="document.getElementById('paginationForm').submit();">
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
             <option value="100">100</option>
         </select>
+            <label class="m-left-custom" for="pagination">of @Model.AmountOfCustomers</label>
     </form>
-    <span class="mt-3 ml-3">of @Model.AmountOfCustomers</span>
     </div>
 
     @if (TempData["Message"] != null)
