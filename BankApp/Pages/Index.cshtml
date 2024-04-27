@@ -6,7 +6,29 @@
 }
 <h1 class="landing-page-margin">Banking made easy</h1>
 <hr class="primary-color" />
-<div class="background-image2"></div>
+<div class="flex-item">
+    <div class="image-container">
+        <div class="background-image-1 mt-5"></div>
+        <div class="text-container">
+            <p class="text-image-1 primary-color">"Your security is our priority. Welcome to a bank where your needs come first."</p>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <div class="background-image-2 mt-5"></div>
+        <div class="text-container">
+            <p class="text-image-2 primary-color">"Watch your dreams grow, one coin at a time. Together, we build a safer future."</p>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <div class="background-image-3 mt-5"></div>
+        <div class="text-container">
+            <p class="text-image-3 primary-color">"Gain insights to elevate your finances. Navigate your financial goals with confidence and clarity."</p>
+        </div>
+    </div>
+</div>
+
 
 <h2 class="landing-page-margin">Manage your transactions in a very nordic bank</h2>
 <hr class="primary-color" />
@@ -31,7 +53,7 @@
                     <a class="custom-btn custom-border-btn" asp-page="/Country" asp-route-country="@country.Key">
                         View
                         <i class="bi bi-eye ml-1"></i>
-                        </a>
+                    </a>
                 </td>
             </tr>
     </div>
@@ -39,3 +61,26 @@
     </table>
 </div>
 
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var images = document.querySelectorAll(".background-image");
+        var texts = document.querySelectorAll(".text-image");
+        var currentIndex = 0;
+
+        function showNextImage() {
+            if (currentIndex < images.length) {
+                images[currentIndex].style.animation = "buildUp 1.5s ease forwards";
+                images[currentIndex].style.opacity = "0.7";
+                texts[currentIndex].style.animation = "fadeIn 1.5s ease forwards";
+                texts[currentIndex].style.opacity = "1";
+                currentIndex++;
+                if (currentIndex < images.length) {
+                    setTimeout(showNextImage, 1500);
+                }
+            }
+        }
+
+        showNextImage();
+    });
+</script>
