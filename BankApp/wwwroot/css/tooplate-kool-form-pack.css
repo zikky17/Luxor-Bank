@@ -840,6 +840,17 @@ strong {
     text-align: center;
 }
 
+.flag {
+    height: 80px;
+    width: 120px;
+}
+
+.flex-item-gap {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+
 .show-all-customers {
     margin-top: 30px;
     color: #E07A5F;
