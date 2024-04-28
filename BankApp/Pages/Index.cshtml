@@ -45,7 +45,7 @@
 <h2 class="landing-manage mt-5">Manage your transactions in a very nordic bank</h2>
 <hr class="primary-color" />
 <div class="margin-container">
-    <table class="table custom-table">
+    <table class="table custom-table" id="index-table">
         <tr class="index-headers-text">
             <td>Country</td>
             <td>Customers</td>
@@ -94,4 +94,21 @@
         showNextImage();
     })
 
+    $(document).ready(function () {
+        var fadeInTable = function () {
+            var table = $('#index-table');
+            var windowTop = $(window).scrollTop();
+            var tableTop = table.offset().top;
+            var windowHeight = $(window).height();
+
+            if (windowTop + windowHeight > tableTop) {
+                table.addClass('fade-in');
+                $(window).off('scroll', fadeInTable);
+            }
+        };
+
+        fadeInTable();
+
+        $(window).on('scroll', fadeInTable);
+    });
 </script>

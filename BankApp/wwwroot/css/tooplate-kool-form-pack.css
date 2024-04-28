@@ -668,7 +668,7 @@ strong {
     background-size: 90%;
     background-position: center;
     border-radius: var(--border-radius-small);
-    height: 275px;
+    height: 250px;
     width: 100%;
     margin-top: 35px;
     animation: buildUp 1.5s ease forwards;
@@ -683,7 +683,7 @@ strong {
     background-repeat: no-repeat;
     background-position: center;
     border-radius: var(--border-radius-small);
-    height: 275px;
+    height: 250px;
     width: 100%;
     margin-top: 35px;
     animation: buildUp 1.5s ease forwards;
@@ -697,7 +697,7 @@ strong {
     background-repeat: no-repeat;
     background-position: center;
     border-radius: var(--border-radius-small);
-    height: 275px;
+    height: 250px;
     width: 100%;
     margin-top: 35px;
     animation: buildUp 1.5s ease forwards;
