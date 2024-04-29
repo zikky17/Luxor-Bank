@@ -1,50 +1,8 @@
 Customer Name: Henri Myller
-Transaction ID: 1060235
-Amount: 10,00
-Date: 2024-04-24
-Account Number: 5
-
-Customer Name: Henri Myller
-Transaction ID: 1060237
-Amount: 10,00
-Date: 2024-04-24
-Account Number: 5
-
-Customer Name: Henri Myller
-Transaction ID: 1060239
-Amount: 10,00
-Date: 2024-04-24
-Account Number: 5
-
-Customer Name: Henri Myller
-Transaction ID: 1060241
-Amount: 10,00
-Date: 2024-04-24
-Account Number: 5
-
-Customer Name: Henri Myller
-Transaction ID: 1060243
-Amount: 10,00
-Date: 2024-04-24
-Account Number: 5
-
-Customer Name: Henri Myller
-Transaction ID: 1060247
-Amount: 500,00
-Date: 2024-04-24
-Account Number: 5
-
-Customer Name: Henri Myller
 Transaction ID: 1060262
 Amount: 20000,00
 Date: 2024-04-26
 Account Number: 5
-
-Customer Name: Mark Aagesen
-Transaction ID: 1060257
-Amount: -5555,00
-Date: 2024-04-24
-Account Number: 2
 
 Customer Name: Mark Aagesen
 Transaction ID: 1060264

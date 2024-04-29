@@ -16,6 +16,22 @@ namespace BankAPI.Controllers
     {
         private readonly ApplicationDbContext _context = DatabaseService.GetDbContext();
 
+        // GET TRANSACTIONS ///////////////////////////////////////////////////////
+        /// <summary>
+        /// Get one or many transactions from the database
+        /// </summary>
+        /// <remarks>
+        /// LIMIT: Choose how many transactions you want to get<br/>
+        /// OFFSET: Choose how many transactions you want to skip
+        /// </remarks>
+        /// <returns>
+        /// One customers transactions
+        /// </returns>
+        /// <response code="200">
+        /// Successfully returned transactions for your customer
+        /// </response>
+
+
         [HttpGet]
         [Route("{id}/{limit}/{offset}")]
         public async Task<ActionResult<AccountViewModel>> GetOne(int id, int limit, int offset)

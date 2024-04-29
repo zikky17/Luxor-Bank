@@ -13,6 +13,19 @@ namespace BankAPI.Controllers
     {
         private readonly ApplicationDbContext _context = DatabaseService.GetDbContext();
 
+        // GET ONE ///////////////////////////////////////////////////////
+        /// <summary>
+        /// Get one customer from database
+        /// </summary>
+        /// <returns>
+        /// One customer detail page
+        /// </returns>
+        /// <remarks>
+        /// </remarks>
+        /// <response code="200">
+        /// Successfully returned your customer of choice
+        /// </response>
+
         [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult<CustomerViewModel>> GetOne(int id)

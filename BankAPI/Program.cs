@@ -1,6 +1,9 @@
-
-using ServiceLibrary.Interfaces;
-using ServiceLibrary.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace BankAPI
 {
@@ -11,11 +14,31 @@ namespace BankAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+
+            // Added general description for Swagger
+            builder.Services.AddSwaggerGen(sw =>
+            {
+                sw.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1.0",
+                    Title = "My API BankWebApp",
+                    Description = @"API for receiving customer information",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Gustav Ivering",
+                        Email = "gustav.ivering@live.se",
+                    },
+                });
+
+                // Include XML comments
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                sw.IncludeXmlComments(xmlPath);         
+            });
 
             var app = builder.Build();
 
@@ -27,12 +50,8 @@ namespace BankAPI
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }

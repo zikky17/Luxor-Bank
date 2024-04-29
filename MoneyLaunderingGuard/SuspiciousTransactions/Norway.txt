@@ -1,10 +1,4 @@
 Customer Name: Mark Aagesen
-Transaction ID: 1060257
-Amount: -5555,00
-Date: 2024-04-24
-Account Number: 2
-
-Customer Name: Mark Aagesen
 Transaction ID: 1060264
 Amount: 25000,00
 Date: 2024-04-26
