@@ -27,14 +27,22 @@
 
                 <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
 
-                    <a asp-page="/Index" class="custom-btn custom-border-btn nav-button">Home</a>
+                    <a asp-page="/Index" class="custom-btn custom-border-btn nav-button">
+                        Home
+                        <i class="fa-light fa-house"></i>
+                        </a>
 
-                    <a asp-page="/User/Index" class="custom-btn custom-border-btn nav-button">Show all Users</a>
+                    <a asp-page="/User/Index" class="custom-btn custom-border-btn nav-button">
+                        Show all Users
+                        </a>
 
                     <a asp-page="/User/CreateUser" class="custom-btn custom-border-btn nav-button">Create new User</a>
 
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                        <button type="submit" class="custom-btn btn nav-button">Logout</button>
+                        <button type="submit" class="custom-btn btn nav-button">
+                            Logout
+                            <i class="fa-light fa-arrow-right-from-bracket ml-1"></i>
+                            </button>
                     </form>
 
                 </div>
@@ -59,14 +67,24 @@
 
                 <div class="offcanvas-body d-flex flex-column justify-content-center align-items-center">
 
-                    <a asp-page="/Index" class="custom-btn custom-border-btn nav-button">Home</a>
+                    <a asp-page="/Index" class="custom-btn custom-border-btn nav-button">
+                        Home
+                        <i class="fa-light fa-house"></i>
+                        </a>
 
-                    <a asp-page="/Customer/Index" class="custom-btn custom-border-btn nav-button">Show Customers</a>
+                    <a asp-page="/Customer/Index" class="custom-btn custom-border-btn nav-button">
+                        Show Customers
+                        </a>
 
-                    <a asp-page="/Customer/Create" class="custom-btn custom-border-btn nav-button">Create new Customer</a>
+                    <a asp-page="/Customer/Create" class="custom-btn custom-border-btn nav-button">
+                        Create new Customer
+                        </a>
 
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                        <button type="submit" class="custom-btn custom-border-btn btn nav-button">Logout</button>
+                        <button type="submit" class="custom-btn custom-border-btn btn nav-button">
+                            Logout
+                            <i class="fa-light fa-arrow-right-from-bracket ml-1"></i>
+                            </button>
                     </form>
 
                 </div>

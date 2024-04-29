@@ -830,7 +830,7 @@ strong {
     }
 
     .landing-page-margin {
-        margin-top: 70px;
+        margin-top: 90px;
         color: #E07A5F;
         text-align: center;
     }
@@ -849,6 +849,7 @@ strong {
     display: flex;
     gap: 50px;
     justify-content: center;
+    margin-top: 50px;
 }
 
 .show-all-customers {
@@ -1093,7 +1094,7 @@ modal {
 }
 
 .nav-button {
-    width: 200px;
+    width: 220px;
     text-align: center;
     margin-bottom: 20px;
 }

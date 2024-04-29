@@ -24,6 +24,7 @@ namespace BankApp.ViewModels
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Enter a city between 2-50 characters")]
         public string City { get; set; }
 
+        [Required(ErrorMessage = "This field is required.")]
         public string Gender { get; set; } = null!;
 
         [Required(ErrorMessage = "This field is required.")]

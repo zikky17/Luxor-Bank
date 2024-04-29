@@ -3,7 +3,7 @@
 
 <div class="margin-class">
     <h1>All Customers</h1>
-
+    <hr class="primary-color"/>
     <form method="get">
         <input asp-for="@Model.Q" class="search-input" />
         <input type="hidden" asp-for="@Model.CustomerId" />
@@ -33,7 +33,10 @@
         </div>
     }
 
-    <a asp-page="/Customer/Create" class="custom-btn custom-border-btn btn mt-5">Create new customer <i class="fa-light fa-user-plus"></i></i></a>
+    <a asp-page="/Customer/Create" class="custom-btn custom-border-btn btn mt-5">
+        Create new customer
+        <i class="fa-light fa-user-plus"></i>
+    </a>
 
     <table class="table customers-table">
         <thead>
@@ -159,13 +162,13 @@
             @foreach (var customer in Model.Customers)
             {
                 <tr class="primary-color">
-                    <td>@customer.CustomerId</td>
-                    <td> @(string.IsNullOrEmpty(customer.NationalId) ? "Not specified" : customer.NationalId)</td>
-                    <td>@customer.FirstName</td>
-                    <td>@customer.LastName</td>
-                    <td>@customer.Streetaddress</td>
-                    <td>@customer.City</td>
-                    <td>
+                    <td class="align-middle">@customer.CustomerId</td>
+                    <td class="align-middle"> @(string.IsNullOrEmpty(customer.NationalId) ? "Not specified" : customer.NationalId)</td>
+                    <td class="align-middle">@customer.FirstName</td>
+                    <td class="align-middle">@customer.LastName</td>
+                    <td class="align-middle">@customer.Streetaddress</td>
+                    <td class="align-middle">@customer.City</td>
+                    <td class="align-middle">
                         <a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn view-button">
                             View
                             <i class="bi bi-eye ml-1"></i>
