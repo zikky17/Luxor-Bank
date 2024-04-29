@@ -11,10 +11,10 @@ Tekniska detaljer:
 
 - Frontend-teknologier: HTML, CSS, JavaScript, Razor Pages (ASP.NET Core)
 - Backend-teknologier: ASP.NET Core Razor Pages, C#
-- Databashantering: Entity Framework Core (Code First Approach)
+- Databashantering: Entity Framework Core (Code First Approach) med SQL databas
 - Autentisering och auktorisering: ASP.NET Core Identity
 - Animeringar: CSS-animations och CSS-transitioner för användarupplevelseförbättringar
-- Extern bibliotek: Bootstrap för responsiv design och jQuery för DOM-manipulation
+- Extern bibliotek: Bootstrap och jQuery
 
 Teknisk översikt: 
 
@@ -26,7 +26,7 @@ Teknisk översikt:
 
 -- MoneyLaunderingGuard --
 
-Denna app har även en konsoll-applikation som letar efter misstänksamma transaktioner och ger dig en lands specifik rapport när den körs.
+Denna app har även en konsoll-applikation som letar efter misstänksamma transaktioner och ger dig en land-specifik rapport när den körs.
 
 -- BankAPI -- 
 
