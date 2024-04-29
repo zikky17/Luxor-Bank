@@ -37,10 +37,10 @@
 </div>
 
 <div class="flex-item-gap">
-    <img class="flag" src="/images/Flag_of_Sweden.svg.png" alt="Swedish flag" />
-    <img class="flag" src="/images/Flag_of_Norway.svg.png" alt="Norwegian flag" />
-    <img class="flag" src="/images/Flag_of_Denmark.svg.png" alt="Danish flag" />
-    <img class="flag" src="/images/Flag_of_Finland.svg.png" alt="Finnish flag" />
+    <img class="flag hidden" src="/images/Flag_of_Sweden.svg.png" alt="Swedish flag" style="display:none;" />
+    <img class="flag hidden" src="/images/Flag_of_Norway.svg.png" alt="Norwegian flag" style="display:none;" />
+    <img class="flag hidden" src="/images/Flag_of_Denmark.svg.png" alt="Danish flag" style="display:none;" />
+    <img class="flag hidden" src="/images/Flag_of_Finland.svg.png" alt="Finnish flag" style="display:none;" />
 </div>
 <h2 class="landing-manage mt-5">Manage your transactions in a very nordic bank</h2>
 <hr class="primary-color" />
@@ -111,4 +111,33 @@
 
         $(window).on('scroll', fadeInTable);
     });
+
+    $(document).ready(function () {
+        var flags = $('.flag');
+        var windowTop = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        var table = $('.flex-item-gap');
+
+        var fadeInFlag = function () {
+            windowTop = $(window).scrollTop();
+            var tableTop = table.offset().top;
+
+            if (windowTop + windowHeight > tableTop) {
+                flags.each(function (index) {
+                    var flag = $(this);
+                    setTimeout(function () {
+                        flag.css('display', '');
+                        flag.addClass('fade-in');
+                    }, index * 500);
+                });
+
+                $(window).off('scroll', fadeInFlag);
+            }
+        };
+
+        fadeInFlag();
+
+        $(window).on('scroll', fadeInFlag);
+    });
+
 </script>
