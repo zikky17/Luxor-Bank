@@ -847,7 +847,7 @@ strong {
 
 .flex-item-gap {
     display: flex;
-    gap: 50px;
+    gap: 140px;
     justify-content: center;
     margin-top: 50px;
 }
@@ -1164,4 +1164,21 @@ modal {
     display: flex;
     gap: 30px;
     margin-left: 30px;
+}
+
+.country-box {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 20px;
+    margin-right: 15px;
+    margin-left: 40px;
+}
+
+.partial-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.negative-margin {
+    margin-top: 30px !important;
 }

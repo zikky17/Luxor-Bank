@@ -1,21 +1,28 @@
 ﻿@model BankWeb.Pages.IndexModel
 
-<div class="margin-container">
-    <table class="table custom-table" id="index-table">
-        <tr class="index-headers-text">
-            <td>Country</td>
-            <td>Customers</td>
-            <td>Accounts</td>
-            <td>Total Balance</td>
-        </tr>
-        @for (var i = 0; i < Model.Countries.Count; i++)
-        {
-            <tr>
-                <td>@Model.Countries[i]</td>
-                <td>@Model.CustomersByCountry[i]</td>
-                <td>@Model.AccountsPerCountry[i]</td>
-                <td>@Model.BalancePerCountry[i]</td>
-            </tr>
-        }
-    </table>
+<div class="margin-container flex-item negative-margin">
+    @foreach (var country in Model.Countries.Select((value, index) => new { Value = value, Index = index }))
+    {
+        var countryIndex = country.Index;
+        var countryName = country.Value;
+        var customers = Model.CustomersByCountry[countryIndex];
+        var accounts = Model.AccountsPerCountry[countryIndex];
+        var balance = Model.BalancePerCountry[countryIndex];
+
+        <div class="country-box">
+            <h2>@countryName</h2>
+            <hr class="primary-color" />
+            <p class="primary-color">Customers</p>
+            <p class="personal-text">@customers</p>
+            <p class="primary-color">Accounts</p>
+            <p class="personal-text">@accounts</p>
+            <p class="primary-color">Total Balance</p>
+            <p class="personal-text">@balance</p>
+            <a class="custom-btn custom-border-btn" asp-page="/Country" asp-route-country="@countryName">
+                View
+                <i class="bi bi-eye ml-1"></i>
+            </a>
+        </div>
+
+    }
 </div>
