@@ -1150,3 +1150,14 @@ modal {
         color: #333;
         padding: 5px;
     }
+
+.flex-item-footer {
+    display: flex; 
+    margin-left: 120px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 30px;
+    margin-left: 30px;
+}
