@@ -1,5 +1,21 @@
-﻿@model BankApp.Pages.Pages_Index
+﻿@model BankWeb.Pages.IndexModel
 
-
-@{
-}
+<div class="margin-container">
+    <table class="table custom-table" id="index-table">
+        <tr class="index-headers-text">
+            <td>Country</td>
+            <td>Customers</td>
+            <td>Accounts</td>
+            <td>Total Balance</td>
+        </tr>
+        @for (var i = 0; i < Model.Countries.Count; i++)
+        {
+            <tr>
+                <td>@Model.Countries[i]</td>
+                <td>@Model.CustomersByCountry[i]</td>
+                <td>@Model.AccountsPerCountry[i]</td>
+                <td>@Model.BalancePerCountry[i]</td>
+            </tr>
+        }
+    </table>
+</div>

@@ -1,9 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Net.Http.Headers;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Services;
+
 
 namespace BankWeb.Pages
 {

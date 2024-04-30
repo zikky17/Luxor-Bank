@@ -45,29 +45,13 @@
     <img class="flag" src="/images/Flag_of_Finland.svg.png" alt="Finnish flag" style="display:none;" />
 </div>
 
-<div class="margin-container">
-    <table class="table custom-table" id="index-table">
-        <tr class="index-headers-text">
-            <td>Country</td>
-            <td>Customers</td>
-            <td>Accounts</td>
-            <td>Total Balance</td>
-            <td>View Country</td>
-        </tr>
-        @for (var i = 0; i < Model.Countries.Count; i++)
-        {
-            <tr>
-                <td>@Model.Countries[i]</td>
-                <td>@Model.CustomersByCountry[i]</td>
-                <td>@Model.AccountsPerCountry[i]</td>
-                <td>@Model.BalancePerCountry[i]</td>
-            </tr>
-        }
-    </table>
+<div>
+
+        <partial name="_CountryBox" model="@Model" />
 
 </div>
 
-</div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var images = document.querySelectorAll(".background-image");
