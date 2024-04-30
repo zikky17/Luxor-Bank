@@ -734,7 +734,7 @@ strong {
 }
 
 .made-easy {
-    animation: slidein 7.2s forwards;
+    animation: slidein 7s forwards;
 }
 
 @keyframes showup {
@@ -1173,6 +1173,10 @@ modal {
     margin-right: 15px;
     margin-left: 40px;
 }
+
+    .country-box p {
+        margin-bottom: 5px;
+    }
 
 .partial-flex {
     display: flex;
