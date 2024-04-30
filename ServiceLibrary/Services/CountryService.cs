@@ -12,18 +12,35 @@ namespace ServiceLibrary.Services
 {
     public class CountryService(ApplicationDbContext context) : ICountryService
     {
-
         private readonly ApplicationDbContext _context = context;
+
+
+        public List<string> GetCountries()
+        {
+            var countries = _context.Customers.Select(c => c.Country).Distinct().ToList();
+            return countries;
+        }
+
+        public List<int> GetCustomersPerCountry(List<string> countries)
+        {
+            var customersByCountry = new List<int>();
+
+            foreach (var country in countries)
+            {
+                var customerCount = _context.Customers.Count(c => c.Country == country);
+                customersByCountry.Add(customerCount);
+            }
+
+            return customersByCountry;
+        }
 
         public List<Disposition> GetDispositions(string country)
         {
-            var dispositions = _context.Dispositions
-            .Include(d => d.Account)
-            .Include(d => d.Customer)
-             .Where(d => d.Account.Balance > 0 && d.Customer.Country == country)
-             .ToList();
-
-            return dispositions;
+            return _context.Dispositions
+                .Include(d => d.Account)
+                .Include(d => d.Customer)
+                .Where(d => d.Account.Balance > 0 && d.Customer.Country == country)
+                .ToList();
         }
 
         public List<(string FullName, decimal Balance, int CustomerId)> GetTopTenCustomers(List<Disposition> dispositions)

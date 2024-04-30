@@ -1152,8 +1152,12 @@ modal {
     }
 
 .flex-item-footer {
-    display: flex; 
+    display: flex;
     margin-left: 120px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
 }
 
 .social-icons {

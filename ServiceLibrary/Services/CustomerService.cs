@@ -10,33 +10,49 @@ namespace ServiceLibrary.Services
     {
         private readonly ApplicationDbContext _context = context;
 
-        public Dictionary<string, int> GetCustomersPerCountry()
+        public int GetCustomersPerCountry(string country)
         {
             var query = _context.Customers
-                .GroupBy(c => c.Country)
-                .ToDictionary(g => g.Key, g => g.Count());
+                .Where(c => c.Country == country)
+                .Count();
+           
             return query;
         }
 
-        public Dictionary<string, int> GetAccountsPerCountry()
+        public List<int> GetAccountsPerCountry(List<string> countries)
         {
-            var query = _context.Accounts
-                .Where(a => a.AccountId != null)
-                .SelectMany(a => a.Dispositions)
-                .Select(d => new { d.AccountId, Country = d.Customer.Country })
-                .GroupBy(d => d.Country)
-                .ToDictionary(g => g.Key, g => g.Select(d => d.AccountId).Distinct().Count());
-            return query;
+            var accountsPerCountry = new List<int>();
+
+            foreach (var country in countries)
+            {
+                var accountCount = _context.Dispositions
+                    .Include(d => d.Account)
+                    .Where(d => d.Account.Balance > 0 && d.Customer.Country == country)
+                    .Select(d => d.AccountId)
+                    .Distinct()
+                    .Count();
+
+                accountsPerCountry.Add(accountCount);
+            }
+
+            return accountsPerCountry;
         }
 
-        public Dictionary<string, decimal> GetBalancePerCountry()
+        public List<decimal> GetBalancePerCountry(List<string> countries)
         {
-            var query = _context.Dispositions
-                .Include(d => d.Account)
-                .Where(d => d.Account.Balance > 0)
-                .GroupBy(d => d.Customer.Country)
-                .ToDictionary(g => g.Key, g => g.Sum(d => d.Account.Balance));
-            return query;
+            var balancePerCountry = new List<decimal>();
+
+            foreach (var country in countries)
+            {
+                var totalBalance = _context.Dispositions
+                    .Include(d => d.Account)
+                    .Where(d => d.Account.Balance > 0 && d.Customer.Country == country)
+                    .Sum(d => d.Account.Balance);
+
+                balancePerCountry.Add(totalBalance);
+            }
+
+            return balancePerCountry;
         }
 
         public int GetNumberOfCustomers()

@@ -66,13 +66,22 @@ namespace MoneyLaunderingGuard
 
             var startDate = lastReportRunTime == default(DateOnly) ? lastThreeDays : lastReportRunTime;
 
-            return transactions
-                .Where(t => t.Date >= startDate && t.Date <= DateOnly.FromDateTime(DateTime.Today)) 
+            var suspiciousTransactions = transactions
+                .Where(t => t.Date >= startDate && t.Date <= DateOnly.FromDateTime(DateTime.Today))
                 .GroupBy(t => t.AccountId)
                 .Where(group => group.Sum(t => t.Amount) > maxTotalTransactions || group.Any(t => t.Amount > maxSingleTransaction))
                 .SelectMany(group => group)
                 .ToList();
+
+            var highAmountTransactions = transactions
+                .Where(t => t.Amount > maxSingleTransaction && !suspiciousTransactions.Contains(t))
+                .ToList();
+
+            suspiciousTransactions.AddRange(highAmountTransactions);
+
+            return suspiciousTransactions;
         }
+
 
         private void WriteTransactionsToFile(List<Transaction> transactions, string directoryPath, string fileName)
         {

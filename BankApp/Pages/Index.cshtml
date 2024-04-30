@@ -54,24 +54,17 @@
             <td>Total Balance</td>
             <td>View Country</td>
         </tr>
-        @foreach (var country in Model.CustomersPerCountry)
+        @for (var i = 0; i < Model.Countries.Count; i++)
         {
-            <div>
-            <tr class="fade-in">
-                <td class="align-middle">@country.Key</td>
-                <td class="align-middle">@country.Value</td>
-                <td class="align-middle">@(Model.AccountsPerCountry.ContainsKey(country.Key) ? Model.AccountsPerCountry[country.Key] : 0)</td>
-                <td class="align-middle">@(Model.BalancePerCountry.ContainsKey(country.Key) ? Model.BalancePerCountry[country.Key] : 0)</td>
-                <td class="align-middle">
-                    <a class="custom-btn custom-border-btn" asp-page="/Country" asp-route-country="@country.Key">
-                        View
-                        <i class="bi bi-eye ml-1"></i>
-                    </a>
-                </td>
+            <tr>
+                <td>@Model.Countries[i]</td>
+                <td>@Model.CustomersByCountry[i]</td>
+                <td>@Model.AccountsPerCountry[i]</td>
+                <td>@Model.BalancePerCountry[i]</td>
             </tr>
-    </div>
         }
     </table>
+
 </div>
 
 </div>
