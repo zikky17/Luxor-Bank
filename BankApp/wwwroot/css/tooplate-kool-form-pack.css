@@ -765,11 +765,11 @@ strong {
     }
 
     35% {
-        margin-left: 20px;
+        margin-left: 0px;
     }
 
     100% {
-        margin-left: 20px;
+        margin-left: 0px;
     }
 }
 
@@ -817,6 +817,7 @@ strong {
         margin-top: 20px;
         background-color: rgba(0, 0, 0, 0.8);
         border-collapse: collapse;
+        border-radius: 10px;
     }
 
     .empovering {
@@ -914,6 +915,7 @@ strong {
     background-color: rgba(0, 0, 0, 0.8);
     padding-top: 5px;
     padding: 20px 50px 20px 20px;
+    border-radius: 10px;
 }
 
 modal {
@@ -973,7 +975,8 @@ modal {
 }
 
 .country-table {
-    width: 70%;
+    width: 100%;
+    margin: 0 auto;
 }
 
     .country-table th,
@@ -1185,4 +1188,8 @@ modal {
 
 .negative-margin {
     margin-top: 30px !important;
+}
+
+.margin-right-20 {
+    margin-right: 20px;
 }
