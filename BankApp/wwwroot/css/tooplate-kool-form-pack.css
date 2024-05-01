@@ -1217,7 +1217,7 @@ strong {
 
 
 /* Mobile Styles */
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1200px) {
 
 
     h1 {
@@ -1292,19 +1292,10 @@ strong {
         margin-top: -50px;
     }
 
-    @media screen and (max-width: 1200px) {
-
-        .flex-item-partial {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-    }
-
     .flex-item-partial {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        gap: 15px;
     }
 
 
@@ -1336,11 +1327,10 @@ strong {
         margin-left: 20px;
     }
 
-    .text-image-1 {
+    .text-image-1, .text-image-2, .text-image-3 { 
         margin-bottom: 80px;
         padding: 10px;
     }
-
 
      /* Customer Index */
 
