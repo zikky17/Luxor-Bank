@@ -865,6 +865,10 @@ strong {
     width: 120px;
 }
 
+.customer-detail-flex {
+    display: flex;
+}
+
 .flex-item-gap {
     display: flex;
     gap: 140px;
@@ -912,6 +916,10 @@ strong {
     margin-left: 30px;
 }
 
+.create-button {
+    margin-left: 30px;
+}
+
 .next-button {
     background-color: #E07A5F;
     color: black;
@@ -936,40 +944,6 @@ strong {
     padding: 20px 50px 20px 20px;
     border-radius: 10px;
 }
-
-modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 40%;
-    height: 40%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
 
 .input-style {
     width: 180px;
@@ -1353,4 +1327,42 @@ modal {
         padding: 10px;
     }
 
+
+    //Customer Index //
+
+    .customers-table {
+        margin-top: 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-collapse: collapse;
+        border-radius: 10px;
+        width: 100%;
+    }
+
+    .customers-table th,
+    .customers-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .national-id-col, .address-col, .city-col {
+        display: none;
+    }
+
+    .customer-detail-flex {
+        display: grid;
+    }
+
+    dl .row {
+        margin: 0;
+    }
+
+    .customer-details-row {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .create-button {
+        margin-left: 5px;
+    }
 }

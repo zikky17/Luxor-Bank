@@ -60,7 +60,7 @@
                         <i class="fa-solid fa-angle-down green-color"></i>
                     </a>
                 </th>
-                <th class="index-headers-text" scope="col">
+                <th class="index-headers-text national-id-col" scope="col">
                     National Id
                     <a asp-page="/Customer/Index"
                        asp-route-pageSize="@Model.PageSize"
@@ -117,7 +117,7 @@
                         <i class="fa-solid fa-angle-down green-color"></i>
                     </a>
                 </th>
-                <th class="index-headers-text" scope="col">
+                <th class="index-headers-text address-col" scope="col">
                     Address
                     <a asp-page="/Customer/Index"
                        asp-route-pageSize="@Model.PageSize"
@@ -136,7 +136,7 @@
                         <i class="fa-solid fa-angle-down green-color"></i>
                     </a>
                 </th>
-                <th class="index-headers-text" scope="col">
+                <th class="index-headers-text city-col" scope="col">
                     City
                     <a asp-page="/Customer/Index"
                        asp-route-pageSize="@Model.PageSize"
@@ -163,11 +163,11 @@
             {
                 <tr class="primary-color">
                     <td class="align-middle">@customer.CustomerId</td>
-                    <td class="align-middle"> @(string.IsNullOrEmpty(customer.NationalId) ? "Not specified" : customer.NationalId)</td>
+                    <td class="align-middle national-id-col"> @(string.IsNullOrEmpty(customer.NationalId) ? "Not specified" : customer.NationalId)</td>
                     <td class="align-middle">@customer.FirstName</td>
                     <td class="align-middle">@customer.LastName</td>
-                    <td class="align-middle">@customer.Streetaddress</td>
-                    <td class="align-middle">@customer.City</td>
+                    <td class="align-middle address-col">@customer.Streetaddress</td>
+                    <td class="align-middle city-col">@customer.City</td>
                     <td class="align-middle">
                         <a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn view-button">
                             View
