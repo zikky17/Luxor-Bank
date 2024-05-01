@@ -757,11 +757,11 @@ strong {
 
 @keyframes slidein {
     0% {
-        margin-left: -1000px;
+        margin-left: -1200px;
     }
 
     20% {
-        margin-left: -1000px;
+        margin-left: -1200px;
     }
 
     35% {
@@ -1058,7 +1058,7 @@ modal {
 
 .delete-user {
     margin-top: 10px;
-    margin-left: 90px;
+    margin-left: 60px;
 }
 
 .button-margin {

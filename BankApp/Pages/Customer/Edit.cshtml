@@ -66,8 +66,12 @@
                 </div>
             </div>
 
-            <a class="custom-btn custom-border-btn btn back-button mt-3" asp-page="Index">Back</a>
-            <input class="custom-btn custom-border-btn btn search-button mt-3" type="submit" value="Update" />
+            <a asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId" class="custom-btn custom-border-btn btn back-button mt-3">
+                Back
+                <i class="fa-light fa-arrow-turn-down-left"></i>
+            </a>
+            <button class="custom-btn custom-border-btn btn search-button mt-3" type="submit">Update <i class="fa-light fa-pen-nib"></i></button>
+            
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
