@@ -571,6 +571,11 @@ strong {
     margin-top: 120px;
 }
 
+.container {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
 .top-text, .index-table, .link-colour {
     color: #E07A5F;
 }
@@ -592,14 +597,28 @@ strong {
     display: flex;
 }
 
+.flex-item-partial {
+    display: flex;
+}
+
 .flex-item-account {
     display: flex;
     gap: 50px;
 }
 
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .account-button {
     margin-top: -5px;
     width: 160px;
+}
+
+.mobile-image-text {
+    display: none;
 }
 
 .account-menu {
@@ -974,6 +993,10 @@ modal {
     color: #3FB32E !important;
 }
 
+.green-color-text {
+    color: #3FB32E !important;
+}
+
 .country-table {
     width: 100%;
     margin: 0 auto;
@@ -1206,6 +1229,15 @@ modal {
 
 
 
+
+
+
+
+
+
+
+
+
 /* Mobile Styles */
 @media screen and (max-width: 767px) {
 
@@ -1225,10 +1257,100 @@ modal {
     .background-image-1,
     .background-image-2,
     .background-image-3 {
-        height: 200px; 
+        height: 200px;
     }
+
+    // LANDING PAGE //
 
     .text-container {
         padding: 10px;
     }
+
+    #landing-header {
+        animation: none;
+        margin-left: 100px;
+    }
+
+    .margin-right-20 {
+        margin-right: 0px;
+    }
+
+    .made-easy, .second-header-text {
+        animation: none;
+        margin-left: 5px;
+    }
+
+    .personal-text {
+        display: none;
+    }
+
+    .mobile-image-text {
+        display: inline-block;
+        margin-top: -30px;
+        padding: 0;
+    }
+
+        .mobile-image-text p {
+            font-size: 14px;
+        }
+
+    .background-image-2 {
+        margin: 0;
+    }
+
+    .image-container {
+        margin-top: -50px;
+    }
+
+    .text-container {
+        display: none;
+    }
+
+    .background-image-3 {
+        background-size: 90%;
+    }
+
+    .landing-manage {
+        margin-top: -50px;
+    }
+
+    .flex-item-partial {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .country-box {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 20px;
+        margin-top: 10px;
+    }
+
+
+    .margin-container {
+        margin-top: 30px;
+    }
+
+    .flex-item-gap {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+    .flag {
+        height: 40px;
+        width: 60px;
+    }
+
+    .flex-item-footer {
+        margin-left: 20px;
+    }
+
+    .text-image-1 {
+        margin-bottom: 80px;
+        padding: 10px;
+    }
+
 }

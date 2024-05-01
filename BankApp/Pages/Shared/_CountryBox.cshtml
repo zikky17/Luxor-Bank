@@ -1,6 +1,6 @@
 ﻿@model BankWeb.Pages.IndexModel
 
-<div class="margin-container flex-item negative-margin">
+<div class="margin-container flex-item-partial negative-margin">
     @foreach (var country in Model.Countries.Select((value, index) => new { Value = value, Index = index }))
     {
         var countryIndex = country.Index;
@@ -13,13 +13,13 @@
             <h2>@countryName</h2>
             <hr class="primary-color" />
             <p class="primary-color">Customers</p>
-            <p class="personal-text">@customers</p>
+            <p class="green-color-text">@customers</p>
             <p class="primary-color">Accounts</p>
-            <p class="personal-text">@accounts</p>
+            <p class="green-color-text">@accounts</p>
             <p class="primary-color">Total Balance</p>
-            <p class="personal-text">@balance SEK</p>
+            <p class="green-color-text">@balance</p>
             <a class="custom-btn custom-border-btn mt-1" asp-page="/Country" asp-route-country="@countryName">
-                View Top 10
+                View
                 <i class="bi bi-eye ml-1"></i>
             </a>
         </div>
