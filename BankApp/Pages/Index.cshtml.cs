@@ -1,30 +1,29 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Net.Http.Headers;
 using ServiceLibrary.Interfaces;
-using ServiceLibrary.Services;
+
 
 namespace BankWeb.Pages
 {
    
-    public class IndexModel(ICustomerService service) : PageModel
+    public class IndexModel(ICustomerService service, ICountryService countryService) : PageModel
     {
 
         private readonly ICustomerService _customerService = service;
+        private readonly ICountryService _countryService = countryService;
 
-        public Dictionary<string, int> CustomersPerCountry { get; set; }
-        public Dictionary<string, int> AccountsPerCountry { get; set; }
-        public Dictionary<string, decimal> BalancePerCountry { get; set; }
-
+        public List<string> Countries { get; set; }
+        public List<int> CustomersByCountry { get; set; }
+        public List<decimal> BalancePerCountry { get; set; }
+        public List<int> AccountsPerCountry { get; set; }
 
         public void OnGet()
         {
-            CustomersPerCountry = _customerService.GetCustomersPerCountry();
+            Countries = _countryService.GetCountries();
+            CustomersByCountry = _countryService.GetCustomersPerCountry(Countries);
 
-            AccountsPerCountry = _customerService.GetAccountsPerCountry();
+            AccountsPerCountry = _customerService.GetAccountsPerCountry(Countries);
 
-            BalancePerCountry = _customerService.GetBalancePerCountry();
+            BalancePerCountry = _customerService.GetBalancePerCountry(Countries);
 
         }
 

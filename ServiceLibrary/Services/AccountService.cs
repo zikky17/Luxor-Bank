@@ -22,8 +22,8 @@ namespace ServiceLibrary.Services
                     AccountId = d.AccountId,
                     Created = d.Account.Created,
                     Balance = d.Account.Balance,
-                    Transactions = d.Account.Transactions.ToList()
-                })
+                    Transactions = d.Account.Transactions
+                }).ToList()
                 .First();
 
             return query;

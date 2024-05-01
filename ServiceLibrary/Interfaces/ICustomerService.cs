@@ -10,11 +10,11 @@ namespace ServiceLibrary.Interfaces
 {
     public interface ICustomerService
     {
-        public Dictionary<string, int> GetCustomersPerCountry();
+        public int GetCustomersPerCountry(string country);
 
-        public Dictionary<string, int> GetAccountsPerCountry();
+        public List<int> GetAccountsPerCountry(List<string> countries);
 
-        public Dictionary<string, decimal> GetBalancePerCountry();
+        public List<decimal> GetBalancePerCountry(List<string> countries);
 
         public int GetNumberOfCustomers();
 

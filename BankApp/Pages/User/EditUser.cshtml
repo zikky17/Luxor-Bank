@@ -31,9 +31,12 @@
             <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/User/Index">
                 Back
                 <i class="fa-light fa-arrow-turn-down-left"></i>
-                </a>
-            <input class="custom-btn custom-border-btn btn search-button mt-2" type="submit" value="Update" />
-            <input class="custom-btn custom-border-btn btn delete-button delete-user" asp-route-userId="@Model.UserId" asp-page-handler="Delete" type="submit" value="Delete" />
+            </a>
+            <button class="custom-btn custom-border-btn btn search-button mt-2" type="submit">Update <i class="fa-light fa-pen-nib"></i></button>
+            <button class="custom-btn custom-border-btn btn delete-button delete-user" asp-route-userId="@Model.UserId" asp-page-handler="Delete" type="submit">
+                Delete
+                <i class="fa-light fa-trash-can"></i>
+            </button>
 </form>
 
 <partial name="Shared/_ValidationScriptsPartial" />

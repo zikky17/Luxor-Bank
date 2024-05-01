@@ -4,14 +4,14 @@
 }
 
 <h1 class="margin-class">Create new Account</h1>
-<h3 class="primary-color">For @Model.FirstName @Model.LastName</h3>
 <hr class="primary-color" />
+<h3 class="primary-color">For @Model.FirstName @Model.LastName</h3>
 
 
 <form method="post">
     <div class="form-group">
         <label class="primary-color input-style" asp-for="@Model.AccountVM.Frequency">Frequency</label>
-        <select asp-for="@Model.AccountVM.Frequency">
+        <select asp-for="@Model.AccountVM.Frequency" style="width: 210px;">
             <option value="" selected disabled>Choose one</option>
             <option value="AfterTransaction">After Transaction</option>
             <option value="Monthly">Monthly</option>
@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
         <label class="primary-color input-style" asp-for="@Model.AccountVM.Balance">Deposit</label>
-        <input asp-for="@Model.AccountVM.Balance" />
+        <input placeholder="Optional" asp-for="@Model.AccountVM.Balance" />
         <span asp-validation-for="@Model.AccountVM.Balance" class="text-danger"></span>
     </div>
     <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Back</a>
