@@ -19,7 +19,7 @@
             <h3>Transactions</h3>
         </div>
         <div class="buttons">
-            <a class="custom-btn custom-border-btn btn account-button"
+            <a class="custom-btn custom-border-btn btn transaction-button"
                asp-route-customerId="@Model.CustomerId"
                asp-route-accountId="@Model.AccountId"
                asp-page="/Account/Deposit">
@@ -27,7 +27,7 @@
                 <i class="bi bi-plus-circle ml-1"></i>
             </a>
 
-            <a class="custom-btn custom-border-btn btn account-button"
+            <a class="custom-btn custom-border-btn btn transaction-button"
                asp-route-customerId="@Model.CustomerId"
                asp-route-accountId="@Model.AccountId"
                asp-page="/Account/Withdraw">
@@ -35,7 +35,7 @@
                 <i class="fa-light fa-money-simple-from-bracket"></i>
             </a>
 
-            <a class="custom-btn custom-border-btn btn account-button"
+            <a class="custom-btn custom-border-btn btn transaction-button"
                asp-route-customerId="@Model.CustomerId"
                asp-route-accountId="@Model.AccountId"
                asp-route-firstName="@Model.FirstName"

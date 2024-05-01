@@ -617,6 +617,10 @@ strong {
     width: 160px;
 }
 
+.transaction-button {
+    width: 160px;
+}
+
 .mobile-image-text {
     display: none;
 }
@@ -1213,7 +1217,7 @@ strong {
 
 
 /* Mobile Styles */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 992px) {
 
 
     h1 {
@@ -1288,11 +1292,21 @@ strong {
         margin-top: -50px;
     }
 
+    @media screen and (max-width: 1200px) {
+
+        .flex-item-partial {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+    }
+
     .flex-item-partial {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 30px;
     }
+
 
     .country-box {
         background-color: rgba(0, 0, 0, 0.5);
@@ -1308,14 +1322,14 @@ strong {
 
     .flex-item-gap {
         display: flex;
-        gap: 20px;
+        gap: 25px;
         justify-content: center;
         margin-top: 50px;
     }
 
     .flag {
-        height: 40px;
-        width: 60px;
+        height: 50px;
+        width: 75px;
     }
 
     .flex-item-footer {
@@ -1328,7 +1342,8 @@ strong {
     }
 
 
-    //Customer Index //
+     /* Customer Index */
+
 
     .customers-table {
         margin-top: 20px;
@@ -1374,6 +1389,10 @@ strong {
 
     .account-button {
         width: 160px;
+    }
+
+    .transaction-button {
+        width: 140px;
     }
 
     .buttons {
