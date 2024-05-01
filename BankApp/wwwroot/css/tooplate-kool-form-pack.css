@@ -849,6 +849,10 @@ strong {
     color: #E07A5F;
 }
 
+.account-button {
+    width: 160px;
+}
+
 .landing-page-margin {
     margin-top: 90px;
     color: #E07A5F;
@@ -945,15 +949,11 @@ strong {
     border-radius: 10px;
 }
 
-.input-style {
+.input-style, .input-style-second {
     width: 180px;
     margin-top: 20px;
 }
 
-.input-style-second {
-    width: 180px;
-    margin-top: -10px;
-}
 
 .small-margin {
     margin-left: 10px;
@@ -1365,4 +1365,43 @@ strong {
     .create-button {
         margin-left: 5px;
     }
+
+    .account-menu {
+        display: grid;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .account-button {
+        width: 160px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 17px;
+        margin-top: 10px;
+    }
+
+    .fixed-margin {
+        margin-top: 21px;
+    }
+
+    .input-style-second {
+        width: 180px;
+        margin-top: 20px;
+    }
+
+    .customer-detail-flex {
+        display: grid;
+    }
+
+    .form-row {
+        display: block !important;
+    }
+
+    .form-group {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+
 }

@@ -8,7 +8,7 @@
     <hr />
     <dd class="col-sm-4">Account Number: <span class="small-margin white-text">@Model.AccountId</span></dd>
 
-    <dd class="col-sm-4 mt-2">Balance: <span class="small-margin personal-text">@Model.AccountBalance SEK</span></dd>
+    <dd class="col-sm-4 mt-2">Balance: <span class="small-margin green-color-text">@Model.AccountBalance</span></dd>
     <div class="validation-container" style="bottom: 0.8em">
         <span asp-validation-for="@Model.AccountBalance" class="text-danger"></span>
     </div>
@@ -53,7 +53,7 @@
             <tr class="index-headers-text">
                 <td>Date</td>
                 <td>Operation</td>
-                <td>Type</td>
+                <td class="type-column">Type</td>
                 <td>Amount</td>
             </tr>
         </thead>
@@ -62,7 +62,7 @@
     </table>
 
     <div class="account-buttons">
-        <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Back
+        <a class="custom-btn custom-border-btn btn back-button" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">Back
             <i class="fa-light fa-arrow-turn-down-left"></i>
         </a>
 
