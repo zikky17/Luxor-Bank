@@ -313,78 +313,6 @@ strong {
     color: var(--white-color);
 }
 
-
-/*---------------------------------------
-  MODAL EMAIL FORM        
------------------------------------------*/
-.modal-content {
-    background-color: var(--dark-color);
-    border-radius: 0;
-    position: relative;
-}
-
-    .modal-content::after {
-        content: "";
-        background-color: var(--custom-btn-bg-color);
-        border: 50px solid var(--secondary-color);
-        border-radius: 100%;
-        position: absolute;
-        top: -100px;
-        right: -120px;
-        width: 250px;
-        height: 250px;
-        pointer-events: none;
-    }
-
-.modal-header,
-.modal-body,
-.modal-footer {
-    padding: 30px 40px;
-}
-
-.modal-header {
-    background-color: var(--dark-color);
-    border-radius: 0;
-    border-bottom: 0;
-    padding: 0;
-}
-
-.modal-body h2 {
-    color: var(--white-color);
-    font-size: var(--h4-font-size);
-    position: relative;
-    bottom: 30px;
-}
-
-.modal-header .btn-close {
-    filter: brightness(0) invert(1);
-    position: relative;
-    z-index: 22;
-    top: 20px;
-    right: 20px;
-    transition: all 0.3s;
-}
-
-    .modal-header .btn-close:hover {
-        transform: rotate(180deg);
-    }
-
-.modal-body,
-.modal-footer {
-    position: relative;
-    z-index: 2;
-}
-
-.modal-footer {
-    border-top: 0;
-    padding-top: 0;
-}
-
-    .modal-footer p {
-        font-size: var(--btn-font-size);
-    }
-
-
 /*---------------------------------------
   CUSTOM FORM               
 -----------------------------------------*/
@@ -1093,6 +1021,10 @@ strong {
     align-items: center;
 }
 
+.show-more-button {
+    margin-left: 15px;
+}
+
 .cashier-button {
     padding-top: 10px;
 }
@@ -1217,7 +1149,7 @@ strong {
 
 
 /* Mobile Styles */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 768px) {
 
 
     h1 {
@@ -1246,7 +1178,7 @@ strong {
 
     #landing-header {
         animation: none;
-        margin-left: 100px;
+        margin-left: 45px;
     }
 
     .margin-right-20 {
@@ -1295,7 +1227,6 @@ strong {
     .flex-item-partial {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 15px;
     }
 
 
@@ -1304,6 +1235,12 @@ strong {
         padding: 10px;
         border-radius: 20px;
         margin-top: 10px;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .partial-flex {
+        margin-right: 0;
     }
 
 
@@ -1324,12 +1261,24 @@ strong {
     }
 
     .flex-item-footer {
-        margin-left: 20px;
+        margin-left: 10px;
+    }
+
+    .flex-item-footer p {
+        font-size: 14px;
+        margin-top: 3px;
     }
 
     .text-image-1, .text-image-2, .text-image-3 { 
         margin-bottom: 80px;
         padding: 10px;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 30px;
+        margin-left: 20px;
+        margin-bottom: 10px !important;
     }
 
      /* Customer Index */
@@ -1345,7 +1294,7 @@ strong {
 
     .customers-table th,
     .customers-table td {
-        padding: 8px;
+        padding: 3px;
         font-size: 14px;
     }
 
@@ -1382,7 +1331,7 @@ strong {
     }
 
     .transaction-button {
-        width: 140px;
+        width: 100%;
     }
 
     .buttons {
@@ -1411,6 +1360,10 @@ strong {
     .form-group {
         width: 100% !important;
         margin-bottom: 20px !important;
+    }
+
+    .page-number {
+        font-size: 12px;
     }
 
 }
