@@ -785,6 +785,14 @@ strong {
     width: 160px;
 }
 
+.mobile-button {
+    display: none;
+}
+
+.back-button-mobile {
+    display: none;
+}
+
 .landing-page-margin {
     margin-top: 90px;
     color: #E07A5F;
@@ -968,6 +976,10 @@ strong {
     }
 
 .back-button {
+    background-color: #85b7d9;
+}
+
+.back-button-details {
     background-color: #85b7d9;
 }
 
@@ -1366,4 +1378,32 @@ strong {
         font-size: 12px;
     }
 
+    /* Create new Customer */
+
+    .form-style {
+        display: grid;
+        justify-content: c
+    }
+
+    .mobile-button {
+        display: inline-block;
+    }
+
+    .back-button-mobile {
+        display: inline-block;
+        background-color: #85b7d9;
+    }
+
+    .create-button, .back-button {
+        display: none;
+    }
+
+    .input-style, .input-style-second {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .form-row input {
+        width: 100%;
+    }
 }
