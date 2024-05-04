@@ -6,9 +6,11 @@
 <div class="details">
     <h1>@Model.FirstName @Model.LastName</h1>
     <hr />
+    <br />
     <dd class="col-sm-4">Account Number: <span class="small-margin white-text">@Model.AccountId</span></dd>
 
     <dd class="col-sm-4 mt-2">Balance: <span class="small-margin green-color-text">@Model.AccountBalance</span></dd>
+    <br />
     <div class="validation-container" style="bottom: 0.8em">
         <span asp-validation-for="@Model.AccountBalance" class="text-danger"></span>
     </div>
@@ -63,7 +65,7 @@
 
     <div class="account-buttons">
         <div>
-            <a class="custom-btn custom-border-btn btn back-button" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">
+            <a class="custom-btn custom-border-btn btn back-button-mobile" asp-page="/Customer/CustomerDetails" asp-route-customerId="@Model.CustomerId">
                 Back
                 <i class="fa-light fa-arrow-turn-down-left"></i>
             </a>

@@ -679,6 +679,14 @@ strong {
     align-items: center;
 }
 
+.user-edit-standard {
+    display: inline-block;
+}
+
+.user-edit-mobile {
+    display: none;
+}
+
 .second-header-text {
     width: 0px;
     animation: reveal 7s forwards;
@@ -1378,8 +1386,15 @@ strong {
         font-size: 12px;
     }
 
-    /* Create new Customer */
+    .search-input {
+        width: 160px;
+    }
 
+    .next-button {
+        margin-right: 0;
+    }
+display-edit-standard
+    /* Create new Customer */
     .form-style {
         display: grid;
         justify-content: c
@@ -1405,5 +1420,20 @@ strong {
 
     .form-row input {
         width: 100%;
+    }
+
+    /*Show all Users*/
+
+
+    .user-table td {
+        font-size: 12px;
+    }
+
+    .user-edit-mobile {
+        display: inline-block;
+    }
+
+    .user-edit-standard {
+        display: none;
     }
 }
