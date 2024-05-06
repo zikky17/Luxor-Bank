@@ -25,13 +25,18 @@
         <tbody>
             @foreach (var user in Model.Users)
             {
-                <tr class="primary-color">
-                    <td>@user.UserName</td>
-                    <td>@user.Role</td>
-                    <td><a asp-page="/User/EditUser" asp-route-userId="@user.UserId" class="custom-btn custom-border-btn">
+                <tr class="primary-color user-table">
+                    <td class="align-middle">@user.UserName</td>
+                    <td class="align-middle">@user.Role</td>
+                    <td>
+                        <a asp-page="/User/EditUser" asp-route-userId="@user.UserId" class="custom-btn custom-border-btn user-edit-standard">
                         Edit
                             <i class="bi bi-pencil ml-1"></i>
-                        </a></td>
+                        </a>
+                        <a asp-page="/User/EditUser" asp-route-userId="@user.UserId" class="custom-btn custom-border-btn user-edit-mobile">
+                            <i class="bi bi-pencil ml-1"></i>
+                        </a>
+                        </td>
                 </tr>
             }
         </tbody>

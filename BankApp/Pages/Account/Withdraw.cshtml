@@ -14,7 +14,7 @@
 <h1 class="margin-class">Withdraw</h1>
 <hr class="primary-color" />
 <form method="post">
-    <dd class="col-sm-4 mt-2 primary-color">Balance: <span class="small-margin personal-text">@Model.AccountBalance SEK</span></dd>
+    <dd class="col-sm-4 mt-2 primary-color">Balance: <span class="small-margin green-color-text">@Model.AccountBalance SEK</span></dd>
     <hr class="primary-color" />
     <div class="flex-item">
         <h4 class="header-quote">Account:</h4>
@@ -28,7 +28,7 @@
         </div>
     </div>
    
-    <a class="custom-btn custom-border-btn btn back-button mt-5"
+    <a class="custom-btn custom-border-btn btn back-button-mobile mt-5"
        asp-page="/Account/Index"
        asp-route-customerId="@Model.CustomerId"
        asp-route-accountId="@Model.AccountId"

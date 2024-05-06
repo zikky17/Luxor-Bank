@@ -3,7 +3,7 @@
 
 <div class="margin-class">
     <h1>All Customers</h1>
-    <hr class="primary-color"/>
+    <hr class="primary-color" />
     <form method="get">
         <input asp-for="@Model.Q" class="search-input" />
         <input type="hidden" asp-for="@Model.CustomerId" />
@@ -60,7 +60,7 @@
                         <i class="fa-solid fa-angle-down green-color"></i>
                     </a>
                 </th>
-                <th class="index-headers-text" scope="col">
+                <th class="index-headers-text national-id-col" scope="col">
                     National Id
                     <a asp-page="/Customer/Index"
                        asp-route-pageSize="@Model.PageSize"
@@ -117,7 +117,7 @@
                         <i class="fa-solid fa-angle-down green-color"></i>
                     </a>
                 </th>
-                <th class="index-headers-text" scope="col">
+                <th class="index-headers-text address-col" scope="col">
                     Address
                     <a asp-page="/Customer/Index"
                        asp-route-pageSize="@Model.PageSize"
@@ -136,7 +136,7 @@
                         <i class="fa-solid fa-angle-down green-color"></i>
                     </a>
                 </th>
-                <th class="index-headers-text" scope="col">
+                <th class="index-headers-text city-col" scope="col">
                     City
                     <a asp-page="/Customer/Index"
                        asp-route-pageSize="@Model.PageSize"
@@ -163,11 +163,11 @@
             {
                 <tr class="primary-color">
                     <td class="align-middle">@customer.CustomerId</td>
-                    <td class="align-middle"> @(string.IsNullOrEmpty(customer.NationalId) ? "Not specified" : customer.NationalId)</td>
+                    <td class="align-middle national-id-col"> @(string.IsNullOrEmpty(customer.NationalId) ? "Not specified" : customer.NationalId)</td>
                     <td class="align-middle">@customer.FirstName</td>
                     <td class="align-middle">@customer.LastName</td>
-                    <td class="align-middle">@customer.Streetaddress</td>
-                    <td class="align-middle">@customer.City</td>
+                    <td class="align-middle address-col">@customer.Streetaddress</td>
+                    <td class="align-middle city-col">@customer.City</td>
                     <td class="align-middle">
                         <a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn view-button">
                             View
@@ -176,40 +176,53 @@
                     </td>
                 </tr>
             }
+            <tr class="primary-color">
+                <td class="align-middle">
+                    @if (Model.CurrentPage != 1)
+                    {
+                        <a asp-page="/Customer/Index"
+                           asp-route-sortColumn="@Model.SortColumn"
+                           asp-route-customerId="@Model.CustomerId"
+                           asp-route-q="@Model.Q"
+                           asp-route-pageSize="@Model.PageSize"
+                           asp-route-sortOrder="@Model.SortOrder"
+                           asp-route-pageNumber="@(Model.CurrentPage - 1)"
+                           class="custom-btn custom-border-btn previous-button">
+                            <i class="fa-light fa-arrow-left"></i>
+                            Previous
+                        </a>
+                    }
+                </td>
+                <td>
+                </td>
+                <td>
+                  
+                </td>
+               
+                <td>
+                    <div class="align-middle primary-color page-number">Page @Model.CurrentPage of @Model.TotalPages</div>
+                </td>
+                <td class="city-col"></td>
+                <td class="address-col"></td>
+                <td>
+                    @if (Model.CurrentPage != Model.TotalPages && Model.TotalPages > 1)
+                    {
+                        <a asp-page="/Customer/Index"
+                           asp-route-sortColumn="@Model.SortColumn"
+                           asp-route-customerId="@Model.CustomerId"
+                           asp-route-q="@Model.Q"
+                           asp-route-pageSize="@Model.PageSize"
+                           asp-route-sortOrder="@Model.SortOrder"
+                           asp-route-pageNumber="@(Model.CurrentPage + 1)"
+                           class="custom-btn custom-border-btn next-button">
+                            Next
+                            <i class="fa-light fa-arrow-right"></i>
+                        </a>
+                    }
+                </td>
+            </tr>
         </tbody>
     </table>
-    <div class="flex-item" style="justify-content: space-between">
-        @if (Model.CurrentPage != 1)
-        {
-
-            <a asp-page="/Customer/Index"
-               asp-route-sortColumn="@Model.SortColumn"
-               asp-route-customerId="@Model.CustomerId"
-               asp-route-q="@Model.Q"
-               asp-route-pageSize="@Model.PageSize"
-               asp-route-sortOrder="@Model.SortOrder"
-               asp-route-pageNumber="@(Model.CurrentPage - 1)"
-               class="custom-btn custom-border-btn previous-button">
-                <i class="fa-light fa-arrow-left"></i>
-                Previous
-            </a>
-        }
-        <h3>Page @Model.CurrentPage of @Model.TotalPages</h3>
-        @if (Model.CurrentPage != Model.TotalPages && Model.TotalPages > 1)
-        {
-            <a asp-page="/Customer/Index"
-               asp-route-sortColumn="@Model.SortColumn"
-               asp-route-customerId="@Model.CustomerId"
-               asp-route-q="@Model.Q"
-               asp-route-pageSize="@Model.PageSize"
-               asp-route-sortOrder="@Model.SortOrder"
-               asp-route-pageNumber="@(Model.CurrentPage + 1)"
-               class="custom-btn custom-border-btn next-button">
-                Next
-                <i class="fa-light fa-arrow-right"></i>
-            </a>
-        }
-    </div>
 
 </div>
 

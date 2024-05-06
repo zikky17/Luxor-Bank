@@ -30,15 +30,15 @@
                 </div>
                 <div class="form-group">
                     <label class="primary-color input-style" asp-for="@Model.Role">User Role</label>
-                    <label class="primary-color" for="cashier">Cashier</label>
+                    <label class="primary-color mt-2" for="cashier">Cashier</label>
                     <input id="cashier" type="radio" name="role" value="Cashier" checked>
-                    <label class="margin-left-20 primary-color" for="admin">Admin</label>
+                    <label class="margin-left-20 primary-color mt-2" for="admin">Admin</label>
                     <input id="admin" type="radio" name="role" value="Admin">
                     <div class="validation-container">
                         <span asp-validation-for="@Model.Role" class="text-danger"></span>
                     </div>
                 </div>
-                <a class="custom-btn custom-border-btn btn back-button mt-2" asp-page="/User/Index">
+                <a class="custom-btn custom-border-btn btn back-button-details mt-2" asp-page="/User/Index">
                     Back
                     <i class="fa-light fa-arrow-turn-down-left"></i>
                 </a>

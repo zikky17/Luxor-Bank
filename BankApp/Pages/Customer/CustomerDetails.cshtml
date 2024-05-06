@@ -5,7 +5,7 @@
     <div class="row details customer-details-page">
         <h1 class="top-text">Customer Details</h1>
         <hr />
-        <div class="flex-item" style="justify-content: center">
+        <div class="customer-detail-flex" style="justify-content: center">
             <div class="col-md-6 customer-details-row">
                 <dl class="row">
                     @foreach (var c in Model.Customers)
@@ -39,10 +39,11 @@
 
                         <hr />
                         <div class="flex-item">
-                            <a class="custom-btn custom-border-btn btn back-button" asp-page="Index">
+                            <a class="custom-btn custom-border-btn btn back-button-details" asp-page="Index">
                                 Back
                                 <i class="fa-light fa-arrow-turn-down-left"></i>
                             </a>
+                           
                             <a class="custom-btn custom-border-btn btn margin-left-20" asp-page="/Customer/Edit"
                                asp-route-customerId="@c.CustomerId">
                                 Edit
@@ -74,9 +75,8 @@
                         {
                             <dt class="col-sm-4">Account Nr:</dt>
                             <dd class="col-sm-8">@account.AccountId</dd>
-                            <div class="row">
-                                <div class="col-sm-4 mt-3">
-                                    <a class="account-button custom-btn custom-border-btn btn mb-3"
+                                <div class="col-sm-4 mt-2">
+                                    <a class="custom-btn custom-border-btn btn mb-3 account-button"
                                        asp-page="/Account/Index"
                                        asp-route-customerId="@c.CustomerId"
                                        asp-route-accountId="@account.AccountId"
@@ -86,11 +86,10 @@
                                         <i class="bi bi-eye ml-1"></i>
                                     </a>
                                 </div>
-                            </div>
                         }
                         <hr />
                         <div class="col-sm-4 mt-2">
-                            <a class="account-button custom-btn custom-border-btn btn"
+                            <a class="custom-btn custom-border-btn btn account-button"
                                asp-page="/Account/NewAccount"
                                asp-route-customerId="@c.CustomerId"
                                asp-route-firstName="@c.FirstName"
