@@ -38,6 +38,10 @@
 
                     <a asp-page="/User/CreateUser" class="custom-btn custom-border-btn nav-button">Create new User</a>
 
+                    <a asp-page="/User/SuspiciousTransactions" class="custom-btn custom-border-btn nav-button">
+                        Suspicious Reports
+                    </a>
+
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
                         <button type="submit" class="custom-btn btn nav-button">
                             Logout

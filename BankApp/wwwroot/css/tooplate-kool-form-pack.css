@@ -191,6 +191,30 @@ strong {
         color: var(--link-hover-color);
     }
 
+.orange-color {
+    color: orange;
+}
+
+.itembox-sus {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    height: 100%;
+}
+
+.container-sus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sus-row {
+    margin-left: 20px;
+}
+
+
+
 
 /*---------------------------------------
   SITE HEADER        

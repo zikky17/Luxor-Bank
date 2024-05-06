@@ -1,0 +1,28 @@
+﻿@page
+@model BankApp.Pages.User.SuspiciousTransactionsModel
+@{
+}
+
+<h1 class="margin-class">Suspicious Transactions</h1>
+<hr class="primary-color" />
+<form method="post">
+    <button class="custom-btn custom-border-btn btn" type="submit" asp-page-handler="StartConsoleApp">Generate reports</button>
+    <div style="color: red;">UNDER CONSTRUCTION</div>
+</form>
+
+<div class="container-sus mt-5">
+    <div style="display: flex;">
+        @foreach (var fileContent in Model.FileContents)
+        {
+            <div style="flex: 1; margin-right: 10px;">
+                <div class="itembox-sus orange-color">
+                    <div style="text-align: center; font-weight: bold;">@fileContent[0]</div>
+                    @for (int i = 1; i < fileContent.Count; i++)
+                    {
+                        @fileContent[i] <br />
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
