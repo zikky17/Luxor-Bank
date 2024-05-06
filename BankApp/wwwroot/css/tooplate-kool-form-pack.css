@@ -547,6 +547,7 @@ strong {
 
 .transaction-button {
     width: 160px;
+    padding: 8px 20px;
 }
 
 .mobile-image-text {
@@ -797,10 +798,6 @@ strong {
     display: none;
 }
 
-.back-button-mobile {
-    display: none;
-}
-
 .landing-page-margin {
     margin-top: 90px;
     color: #E07A5F;
@@ -990,7 +987,8 @@ strong {
         box-shadow: 0 0 5px rgba(133, 183, 217, 0.5);
     }
 
-.back-button {
+.back-button-mobile {
+    display: inline-block;
     background-color: #85b7d9;
 }
 
