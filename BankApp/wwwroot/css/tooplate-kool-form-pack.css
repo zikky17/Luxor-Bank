@@ -888,6 +888,11 @@ strong {
     font-size: 14px;
 }
 
+.previous-button-mobile, .next-button-mobile {
+    display: none;
+}
+
+
 .hidden {
     display: none !important;
 }
@@ -1396,10 +1401,19 @@ strong {
     .page-number-mobile {
         font-size: 12px;
         display: inline-block;
+        margin-left: 30px;
     }
 
     .search-input {
         width: 160px;
+    }
+
+    .previous-button, .next-button {
+        display: none;
+    }
+
+    .previous-button-mobile, .next-button-mobile {
+        display: inline-block;
     }
 
 
