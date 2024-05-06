@@ -213,6 +213,9 @@ strong {
     margin-left: 20px;
 }
 
+.sus-report-exe {
+    display: inline-block;
+}
 
 
 
@@ -1496,6 +1499,14 @@ strong {
     }
 
     .user-edit-standard {
+        display: none;
+    }
+
+    .sus-report-exe {
+        display: none;
+    }
+
+    .nav-sus-button {
         display: none;
     }
 }

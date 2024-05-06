@@ -25,7 +25,7 @@ namespace BankApp.Pages.Account
 
         [Required]
         [Range(100, 25000, ErrorMessage = "Withdraw amount must be between 100 and 25000.")]
-        public decimal WithdrawAmount { get; set; }
+        public decimal Amount { get; set; }
 
         private readonly IAccountService _accountService = service;
         private readonly ICustomerService _customerService = customerService;
@@ -51,9 +51,9 @@ namespace BankApp.Pages.Account
             if (ModelState.IsValid)
             {
 
-                if (WithdrawAmount > AccountBalance)
+                if (Amount > AccountBalance)
                 {
-                    ModelState.AddModelError("WithdrawAmount", "Withdraw amount cannot exceed account balance.");
+                    ModelState.AddModelError("Amount", "Amount cannot exceed account balance.");
                     return Page();
                 }
 
@@ -63,7 +63,7 @@ namespace BankApp.Pages.Account
                     Date = DateOnly.FromDateTime(DateTime.Now),
                     Type = "Debit",
                     Operation = "Withdraw from customer",
-                    Amount = WithdrawAmount,
+                    Amount = Amount,
                 };
 
                 _accountService.Withdraw(transaction);

@@ -26,8 +26,8 @@ namespace BankApp.Pages
 
         public int CustomerId { get; set; }
 
-        [Range(100, 25000, ErrorMessage = "Deposit amount must be between 100 and 25000.")]
-        public decimal DepositAmount { get; set; }
+        [Range(100, 25000, ErrorMessage = "Amount must be between 100 and 25000.")]
+        public decimal Amount { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
         [StringLength(100)]
@@ -56,7 +56,7 @@ namespace BankApp.Pages
         {
             if (ModelState.IsValid)
             {
-                var depositResult = _accountService.Deposit(DepositAmount, AccountId, Comment);
+                var depositResult = _accountService.Deposit(Amount, AccountId, Comment);
 
                 switch (depositResult)
                 {
@@ -75,7 +75,7 @@ namespace BankApp.Pages
                         break;
 
                     case StatusMessage.IncorrectAmount:
-                        ModelState.AddModelError("DepositAmount", "Please enter a correct amount between 100 - 10,000");
+                        ModelState.AddModelError("Amount", "Please enter a correct amount between 100 - 10,000");
                         break;
                 }
 

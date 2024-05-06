@@ -26,7 +26,7 @@ namespace BankApp.Pages.Account
         public int TransferAccountId { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
-        public decimal TransferAmount { get; set; }
+        public decimal Amount { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
         [StringLength(100)]
@@ -57,9 +57,9 @@ namespace BankApp.Pages.Account
             AccountBalance = _customerService.GetBalance(AccountId);
             if (ModelState.IsValid)
             {
-                if (TransferAmount > AccountBalance)
+                if (Amount > AccountBalance)
                 {
-                    ModelState.AddModelError("TransferAmount", "Transfer amount cannot exceed account balance.");
+                    ModelState.AddModelError("Amount", "Transfer amount cannot exceed account balance.");
                     return Page();
                 }
 
@@ -69,10 +69,10 @@ namespace BankApp.Pages.Account
                     Date = DateOnly.FromDateTime(DateTime.Now),
                     Type = "Debit",
                     Operation = Comment,
-                    Amount = TransferAmount
+                    Amount = Amount
                 };
 
-                var message = _accountService.Deposit(TransferAmount, TransferAccountId, Comment);
+                var message = _accountService.Deposit(Amount, TransferAccountId, Comment);
 
                 if (message == StatusMessage.CantFindAccount)
                 {
