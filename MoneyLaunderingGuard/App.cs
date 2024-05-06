@@ -1,8 +1,11 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ServiceLibrary.Data;
 using ServiceLibrary.Interfaces;
 using ServiceLibrary.Services;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace MoneyLaunderingGuard
 {
@@ -13,8 +16,31 @@ namespace MoneyLaunderingGuard
 
         public void Run()
         {
+            string filePath = "../../../LastReportRunTime.txt";
+            if (File.Exists(filePath))
+            {
+                string lastRunTimeString = File.ReadAllText(filePath);
+                if (DateOnly.TryParse(lastRunTimeString, out DateOnly lastRunTime))
+                {
+                    LastReportRunTime = lastRunTime;
+                }
+                else
+                {
+                    LastReportRunTime = DateOnly.FromDateTime(DateTime.Today);
+                }
+            }
+            else
+            {
+                LastReportRunTime = DateOnly.FromDateTime(DateTime.Today);
+            }
 
+            ProcessReports();
 
+            File.WriteAllText(filePath, LastReportRunTime.ToString());
+        }
+
+        private void ProcessReports()
+        {
             var directoryPath = "../../../SuspiciousTransactions";
             if (!Directory.Exists(directoryPath))
             {
@@ -34,26 +60,28 @@ namespace MoneyLaunderingGuard
 
         private void ProcessCountry(string country, string directoryPath)
         {
+            Console.WriteLine($"Getting report from {country}....");
             var customers = GetCustomersByCountry(country);
             var transactions = GetTransactionsForCustomers(customers);
             var suspiciousTransactions = GetSuspiciousTransactions(transactions);
 
-            Console.WriteLine($"Getting report from {country}....");
             Console.WriteLine($"Amount of new suspicious transactions are: {suspiciousTransactions.Count}");
-            WriteTransactionsToFile(suspiciousTransactions, directoryPath, $"{country}.txt");
+            AppendTransactionsToFile(suspiciousTransactions, directoryPath, $"{country}.txt");
         }
 
         private List<Customer> GetCustomersByCountry(string country)
         {
-            return _context.Customers.Where(c => c.Country == country).ToList();
+            var customers = _context.Customers.Where(c => c.Country == country).ToList();
+            return customers;
         }
 
         private List<Transaction> GetTransactionsForCustomers(List<Customer> customers)
         {
             var customerIds = customers.Select(c => c.CustomerId);
+            var startDate = LastReportRunTime == default(DateOnly) ? DateOnly.FromDateTime(DateTime.Today.AddDays(-3)) : LastReportRunTime;
             return _context.Dispositions
                 .Where(d => customerIds.Contains(d.CustomerId))
-                .SelectMany(d => d.Account.Transactions)
+                .SelectMany(d => d.Account.Transactions.Where(t => t.Date >= startDate))
                 .ToList();
         }
 
@@ -61,13 +89,8 @@ namespace MoneyLaunderingGuard
         {
             var maxTotalTransactions = 23000;
             var maxSingleTransaction = 15000;
-            var lastThreeDays = DateOnly.FromDateTime(DateTime.Today.AddDays(-3));
-            var lastReportRunTime = LastReportRunTime;
-
-            var startDate = lastReportRunTime == default(DateOnly) ? lastThreeDays : lastReportRunTime;
 
             var suspiciousTransactions = transactions
-                .Where(t => t.Date >= startDate && t.Date <= DateOnly.FromDateTime(DateTime.Today))
                 .GroupBy(t => t.AccountId)
                 .Where(group => group.Sum(t => t.Amount) > maxTotalTransactions || group.Any(t => t.Amount > maxSingleTransaction))
                 .SelectMany(group => group)
@@ -82,11 +105,10 @@ namespace MoneyLaunderingGuard
             return suspiciousTransactions;
         }
 
-
-        private void WriteTransactionsToFile(List<Transaction> transactions, string directoryPath, string fileName)
+        private void AppendTransactionsToFile(List<Transaction> transactions, string directoryPath, string fileName)
         {
             var filePath = Path.Combine(directoryPath, fileName);
-            using (StreamWriter writer = new StreamWriter(filePath))
+            using (StreamWriter writer = new StreamWriter(filePath, true))
             {
                 foreach (var transaction in transactions)
                 {
@@ -101,6 +123,7 @@ namespace MoneyLaunderingGuard
             }
         }
 
+
         private Customer GetCustomerByAccountId(int accountId)
         {
             return _context.Dispositions
@@ -110,5 +133,5 @@ namespace MoneyLaunderingGuard
                 .First();
         }
     }
-
 }
+

@@ -1062,6 +1062,11 @@ strong {
 
 .view-button {
     padding: 5px 15px !important;
+    display: inline-block
+}
+
+.view-button-mobile {
+    display: none;
 }
 
 .form-row {
@@ -1414,7 +1419,14 @@ strong {
         display: inline-block;
     }
 
+    .view-button {
+        display: none;
+    }
 
+    .view-button-mobile {
+        padding: 5px 15px !important;
+        display: inline-block
+    }
 
     /* Create new Customer */
     .form-style {

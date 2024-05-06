@@ -169,10 +169,13 @@
                     <td class="align-middle address-col">@customer.Streetaddress</td>
                     <td class="align-middle city-col">@customer.City</td>
                     <td class="align-middle">
-                        <a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn view-button">
-
+                        <a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn view-button-mobile">
                             <i class="bi bi-eye ml-1"></i>
-                        </a>
+                            </a>
+                            <a asp-page="/Customer/CustomerDetails" asp-route-customerId="@customer.CustomerId" class="custom-btn custom-border-btn view-button">
+                                View
+                                <i class="bi bi-eye ml-1"></i>
+                            </a>
                     </td>
                 </tr>
             }
@@ -212,7 +215,7 @@
                 <td class="align-middle">
                     <p class="white-text page-number-mobile">of @Model.TotalPages</p>
                 </td>
-               
+
                 <td class="align-middle">
                     <p class="align-middle primary-color page-number">Page @Model.CurrentPage of @Model.TotalPages</p>
                     @if (Model.CurrentPage != Model.TotalPages && Model.TotalPages > 1)
@@ -232,7 +235,6 @@
                 <td>
                 </td>
                 <td>
-                   
                 </td>
                 <td>
                     @if (Model.CurrentPage != Model.TotalPages && Model.TotalPages > 1)
