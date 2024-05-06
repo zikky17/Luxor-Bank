@@ -877,6 +877,7 @@ strong {
     color: black;
     margin-right: 23px;
     padding: 7px 18px;
+    font-size: 14px;
 }
 
 
@@ -884,6 +885,7 @@ strong {
     background-color: #E07A5F;
     color: black;
     padding: 7px 18px;
+    font-size: 14px;
 }
 
 .hidden {
@@ -1107,6 +1109,15 @@ strong {
         padding: 5px;
     }
 
+.page-number {
+    font-size: 12px;
+    display: inline-block;
+}
+
+.page-number-mobile {
+    display: none;
+}
+
 .flex-item-footer {
     display: flex;
     margin-left: 120px;
@@ -1190,7 +1201,7 @@ strong {
         height: 200px;
     }
 
-    // LANDING PAGE //
+    /*LANDING PAGE*/ 
 
     .text-container {
         padding: 10px;
@@ -1284,12 +1295,12 @@ strong {
         margin-left: 10px;
     }
 
-    .flex-item-footer p {
-        font-size: 14px;
-        margin-top: 3px;
-    }
+        .flex-item-footer p {
+            font-size: 14px;
+            margin-top: 3px;
+        }
 
-    .text-image-1, .text-image-2, .text-image-3 { 
+    .text-image-1, .text-image-2, .text-image-3 {
         margin-bottom: 80px;
         padding: 10px;
     }
@@ -1301,7 +1312,7 @@ strong {
         margin-bottom: 10px !important;
     }
 
-     /* Customer Index */
+    /* Customer Index */
 
 
     .customers-table {
@@ -1312,11 +1323,11 @@ strong {
         width: 100%;
     }
 
-    .customers-table th,
-    .customers-table td {
-        padding: 3px;
-        font-size: 14px;
-    }
+        .customers-table th,
+        .customers-table td {
+            padding: 3px;
+            font-size: 14px;
+        }
 
     .national-id-col, .address-col, .city-col {
         display: none;
@@ -1369,10 +1380,6 @@ strong {
         margin-top: 20px;
     }
 
-    .customer-detail-flex {
-        display: grid;
-    }
-
     .form-row {
         display: block !important;
     }
@@ -1383,21 +1390,23 @@ strong {
     }
 
     .page-number {
+        display: none;
+    }
+
+    .page-number-mobile {
         font-size: 12px;
+        display: inline-block;
     }
 
     .search-input {
         width: 160px;
     }
 
-    .next-button {
-        margin-right: 0;
-    }
-display-edit-standard
+
+
     /* Create new Customer */
     .form-style {
         display: grid;
-        justify-content: c
     }
 
     .mobile-button {
