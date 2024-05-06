@@ -871,7 +871,7 @@ strong {
 
 .next-button {
     background-color: #E07A5F;
-    color: black;
+    color: white;
     margin-right: 23px;
     padding: 7px 18px;
     font-size: 14px;
@@ -880,7 +880,7 @@ strong {
 
 .previous-button {
     background-color: #E07A5F;
-    color: black;
+    color: white;
     padding: 7px 18px;
     font-size: 14px;
 }
@@ -1118,7 +1118,7 @@ strong {
     }
 
 .page-number {
-    font-size: 12px;
+    font-size: 16px;
     display: inline-block;
 }
 
@@ -1404,7 +1404,10 @@ strong {
     .page-number-mobile {
         font-size: 12px;
         display: inline-block;
-        margin-left: 30px;
+    }
+
+    .mobile-margin {
+        margin-left: 70px;
     }
 
     .search-input {
@@ -1417,6 +1420,8 @@ strong {
 
     .previous-button-mobile, .next-button-mobile {
         display: inline-block;
+        padding: 4px 15px;
+        background-color: #C35F44;
     }
 
     .view-button {
