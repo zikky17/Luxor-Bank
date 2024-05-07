@@ -47,7 +47,7 @@ namespace BankApp.ViewModels
         [MinLength(5, ErrorMessage = "Minimum 5 numbers required.")]
         public string? Telephonenumber { get; set; }
 
-        [EmailAddress]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "Invalid email address.")]
         public string? Emailaddress { get; set; }
     }
 }

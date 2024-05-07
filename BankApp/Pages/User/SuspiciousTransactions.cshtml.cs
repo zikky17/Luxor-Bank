@@ -56,14 +56,13 @@ namespace BankApp.Pages.User
         }
 
 
+        //public IActionResult OnPostStartConsoleApp()
+        //{
+        //    string consoleAppPath = "../MoneyLaunderingGuard/bin/Debug/net8.0/MoneyLaunderingGuard";
 
-        public IActionResult OnPostStartConsoleApp()
-        {
-            string consoleAppPath = "../MoneyLaunderingGuard/bin/Debug/net8.0/MoneyLaunderingGuard";
+        //    Process.Start(consoleAppPath);
 
-            Process.Start(consoleAppPath);
-
-            return RedirectToPage("SuspiciousTransactions");
-        }
+        //    return RedirectToPage("SuspiciousTransactions");
+        //}
     }
 }

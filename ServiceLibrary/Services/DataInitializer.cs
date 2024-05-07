@@ -16,7 +16,7 @@ namespace ServiceLibrary.Services
 
         public void SeedData()
         {
-            //_dbContext.Database.Migrate();
+            _dbContext.Database.Migrate();
             SeedRoles();
             SeedUsers();
         }

@@ -5,11 +5,11 @@
 
 <h1 class="margin-class">Suspicious Transactions</h1>
 <hr class="primary-color" />
-<form class="sus-report-exe" method="post">
+@* <form class="sus-report-exe" method="post">
     <button class="custom-btn custom-border-btn btn sus-report-exe" type="submit" asp-page-handler="StartConsoleApp">Generate reports</button>
     <div class="sus-report-exe" style="color: red;">UNDER CONSTRUCTION</div>
-</form>
-
+</form> *@
+<h4 class="primary-color">Showing last 10 transactions that fulfilled criteria for suspicious activity</h4>
 <div class="container-sus mt-5">
     <div style="display: flex;">
         @foreach (var fileContent in Model.FileContents)
