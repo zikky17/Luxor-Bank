@@ -1,3 +1,5 @@
+Länk till Azure : https://luxorbank.azurewebsites.net/
+
 BankWebApp är en webbapplikation som erbjuder banktjänster för användare. Applikationen är utformad för att vara användarvänlig och säker, med fokus på att tillhandahålla enkel åtkomst till banktjänster och hantering av transaktioner.
 
 Den här appen erbjuder följande funktioner:
