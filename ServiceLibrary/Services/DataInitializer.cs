@@ -16,7 +16,7 @@ namespace ServiceLibrary.Services
 
         public void SeedData()
         {
-            _dbContext.Database.Migrate();
+            //_dbContext.Database.Migrate();
             SeedRoles();
             SeedUsers();
         }
@@ -24,7 +24,7 @@ namespace ServiceLibrary.Services
         private void SeedUsers()
         {
             AddUserIfNotExists("richard.chalk@systementor.se", "Hejsan123#", new string[] { "Admin" });
-            AddUserIfNotExists("richard.chalk@customer.systementor.se", "Hejsan123#", new string[] { "Cashier" });
+            AddUserIfNotExists("richard.erdos.chalk@gmail.se", "Hejsan123#", new string[] { "Cashier" });
         }
 
         private void SeedRoles()

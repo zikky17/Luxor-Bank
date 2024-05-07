@@ -1015,11 +1015,11 @@ strong {
     }
 
 .back-button-mobile {
-    display: inline-block;
+    display: none;
     background-color: #85b7d9;
 }
 
-.back-button-details {
+.back-button-details, .back-button {
     background-color: #85b7d9;
 }
 

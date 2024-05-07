@@ -150448,3 +150448,9 @@ Amount: 60000,00
 Date: 2024-04-22
 Account Number: 11328
 
+Customer Name: Ingvild Lund
+Transaction ID: 1061228
+Amount: 25000,00
+Date: 2024-05-07
+Account Number: 24
+
